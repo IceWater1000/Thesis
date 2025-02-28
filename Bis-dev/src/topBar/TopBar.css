@@ -1,0 +1,119 @@
+.TopBar{
+   
+    box-sizing: border-box;
+    width: 100%;
+    height: 84.84px;
+    display: flex;
+    align-items: center;
+    background-color: #2F27CE;
+}
+.headings{
+    color: #fbfbfe;
+    margin: 0;
+    font-size: 41px;
+    font-weight:900;
+    font-family: 'Inter', sans-serif;
+}
+.ImageContainer{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.accountBackDrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+}
+.accountTab{
+    position: fixed;
+    overflow: hidden;
+    padding: 12px;
+    display: none;
+    
+    top: 84px;
+    flex-direction: column;
+    width: 400px;
+    right: 2%;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1050;
+    background-color: white;
+    border: #433BFF solid 2px;
+}
+.accountTab.show{
+    
+    display: flex; /* Slide into view */
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+.ATrow{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+.ImageContainer2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 24px;
+}
+.accountLabel{
+    font-size: 24pt;
+    font-weight: bold;
+    color: #433BFF;
+
+}
+.Labels{
+    font-size: 15pt;
+    font-weight: bold;
+    color: #433BFF;
+    width: 140px;
+}
+.Labels2{
+    font-size: 15pt;
+    font-weight: bold;
+    color: #2F27CE;
+    width: 140px;
+}
+.ATrow:last-of-type{
+    margin-top: 40px;
+    justify-content: space-evenly;
+}
+
+
+.addAccountTab{
+    position: fixed;
+    overflow: hidden;
+    padding: 12px;
+    display: none;
+    
+    top: 84px;
+    flex-direction: column;
+    width: 400px;
+    right: 30%;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1050;
+    background-color: white;
+    border: #433BFF solid 2px;
+}
+.addAccountTab.show{
+    
+    display: flex; /* Slide into view */
+    gap: 12px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}

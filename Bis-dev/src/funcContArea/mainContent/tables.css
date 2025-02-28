@@ -1,0 +1,137 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+  
+  th, td {
+    font-family: "Roboto", sans-serif;
+
+    font-size: 12px;
+    border: 1px solid black;
+    background-color: #fbfbfe;
+    padding: 4px;
+    text-align: left;
+}
+  
+  th {
+    background-color: #f4f4f4;
+}
+
+.thContent {
+
+}
+.sortButton {
+  cursor: pointer;
+}
+.actionColumn {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+.update{
+  background-color: #2F27CE;
+  color: #fbfbfe;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px;
+}
+.delete{
+  background-color: red;
+  color: #fbfbfe;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.show {
+  display: flex;
+  flex-direction: column;
+}
+.modalMainText {
+  color: #433BFF;
+  font-weight: bold;
+  font-size: 15pt;
+}
+.modalButtonContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.modalText{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 11pt;
+  color: #9994f5;
+}
+.modal-content {
+  width: 300px;
+  border: 2px solid #433BFF;
+  border-radius: 10px;  
+  background: #fbfbfe;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #2F27CE;
+  font-family: "Roboto", sans-serif;
+  color: #fbfbfe;
+  box-shadow: 2px 2px 4px rgba(47, 39, 206, 0.25);
+}
+button:hover{
+  color: #2F27CE;
+  background-color: #fbfbfe;
+}
+.topContainerTableData{
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+
+  margin-bottom: 24px;
+}
+.topContainerTableDataText{
+  font-weight: bold;
+}
+.disappear{
+  display: none;
+}
+
+
+.accountUpdate{
+  display: none;
+    right: 40px;
+    top: 80px;
+    position: absolute;
+    width: 460px;
+
+    background-color: #fbfbfe;
+    border-radius: 10px;
+    z-index: 2000;
+    box-sizing: border-box;
+    border: 2px solid #433BFF
+
+}
+.accountUpdate.show{
+  display: block;
+}
+

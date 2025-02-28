@@ -1,0 +1,33 @@
+.MainContent{
+    display: flex;
+    flex-direction: column;
+    margin: 24px;
+    
+    padding: 4px;
+    max-height: 520px;
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden;
+}
+
+.MainContent::-webkit-scrollbar {
+    left: 20px;
+    width: 8px; /* Width of the vertical scrollbar */
+  }
+  
+  /* Style the scrollbar track (the area the scrollbar moves in) */
+.MainContent::-webkit-scrollbar-track {
+    background: #fbfbfe; /* Light grey background */
+    border-radius: 10px;  /* Rounded corners for the track */
+  }
+  
+  /* Style the scrollbar thumb (the draggable part) */
+.MainContent::-webkit-scrollbar-thumb {
+    background: #2F27CE;     /* Darker grey for the thumb */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Style the scrollbar thumb when hovered */
+.MainContent::-webkit-scrollbar-thumb:hover {
+    background: #433BFF; /* Darker thumb when hovered */
+  }

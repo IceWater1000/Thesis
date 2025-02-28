@@ -1,0 +1,35 @@
+.CertificateMainContent{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+
+    
+}
+.ParameterArea{
+    padding: 12px;
+    border: 2px solid #2F27CE;
+    border-radius: 10px;
+    width: 30%;
+    height: 70vh;
+    
+    display: flex;
+    flex-direction: column;
+
+}
+.PreviewArea{
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #2F27CE;
+    margin-left: 10px;
+    border-radius: 10px
+    
+}
+.anInput{
+    width: 100%;
+    height: 40px;
+}
+.tables2{
+    width: 400px;
+    margin-top: 24px;
+}

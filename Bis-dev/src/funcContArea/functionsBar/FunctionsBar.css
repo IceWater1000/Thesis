@@ -1,0 +1,150 @@
+.functionsBar{
+    width: 100%;
+    height: 72px;
+    background-color: #433BFF;
+    gap: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    align-items: center;
+}
+.functionsBar.first {
+    display: flex;
+    flex-direction: row;
+}
+
+.functionsBar.second {
+    display:flex;
+    flex-direction: row-reverse;
+    
+}
+
+.functionBarButton{
+    
+    cursor: pointer;
+    height: 42px;
+    display: flex;
+    
+    font-weight: bold;
+    font-size: 19px;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 5px;
+    background-color: #433BFF;
+    transition: background-color 0.2s ease;
+    
+}
+.functionBarButtonText{
+    font-family: 'Inter', sans-serif;
+    color: #fbfbfe;
+    text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.25);
+    
+}
+.functionBarButton:hover{
+    background-color: #DEDCFF;
+    
+}
+.functionBarButton:hover .functionBarButtonText{
+    text-shadow:none;
+    color: #433BFF;
+}
+.functionsBarSearch{
+    background-color: #fbfbfe;
+    
+    height: 42px;
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    border: #fbfbfe solid 2px;
+    border-radius: 5px;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.25);
+
+}
+.residentInformationNav{
+    height: 42px;
+   
+}
+.functionsBarSelect{
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 19px;
+    background-color: #DEDCFF;
+    width: 256px;
+    height: 42px;
+
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.dashboardCanvas{
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fbfbfe;
+    
+    height: 80%;
+    border-radius: 10px;
+    z-index: 2000;
+    box-sizing: border-box;
+    border: 2px solid #433BFF
+}
+.dashboardCanvas.show{
+    display: flex;
+    flex-direction: column;
+
+}
+.static{
+    position: relative;
+}
+.accountAddingForm{
+    display: none;
+    left: 28px;
+    top: 80px;
+    position: absolute;
+    width: 460px;
+    background-color: #fbfbfe;
+    border-radius: 10px;
+    z-index: 2000;
+    box-sizing: border-box;
+    border: 2px solid #433BFF
+
+
+}
+.accountAddingForm.show{
+    display: block;
+
+}
+.accountAddingFormDark{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+}
+.addingAccountRow{
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+}
+.addingAccountRow.none{
+    display: none;
+}
+.addingAccountRow.show{
+    display: flex;
+}
+.addingAccountInput{
+    border: 2px solid #433BFF;
+}
+.addingAccountSelect{
+    border: 2px solid #433BFF;
+}
+.addingAccountButton{
+    width: 100%;
+}

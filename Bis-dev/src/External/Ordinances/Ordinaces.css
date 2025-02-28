@@ -1,0 +1,48 @@
+.ordinances{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ordinancesContainer{
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 24px 0px 24px 0px;
+    
+}
+.ordinancesBox{
+    display: flex;
+    flex-direction: column;
+    
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+    padding-top: 20px;
+}
+.ordinancesBoxTitle{
+    padding: 0px 24px 0px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    color: #2F27CE;
+    font-weight: 800;
+    text-align: center;
+}
+.ordinancesBoxDescription{
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: black;
+    text-align: justify;
+    padding: 0px 24px 24px 24px;
+
+}
+.ordinancesBoxImageContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0px 0px 10px 0px;
+    width: 100%;
+}
+.ordinancesBoxImage{
+    width: 100%;
+    object-fit: contain;
+}

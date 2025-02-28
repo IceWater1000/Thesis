@@ -1,0 +1,96 @@
+.loginFormContainer{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 648px;
+}
+
+.loginFormContainerLeft{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 62px;
+    padding-right: 62px;
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
+}
+.loginFormContainerRight{
+    border-radius: 0px 8px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    width: 50%;
+    background-color: #433BFF;
+}
+.welcomeText1{
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 70px;
+}
+.welcomeText2{
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+   
+}
+.logInCloseButton{
+    position: absolute;
+    top: 2%;
+    right: 4%;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+.logInCloseButton:hover{
+    color: #2F27CE;
+}
+.logins{
+    color: #fbfbfe;
+    background-color: #433BFF;
+    width: 40%;
+    height: 30px;
+    padding: 4px;
+}
+.logins:hover{
+    color: #433BFF;
+    background-color: #fbfbfe;
+}
+.divSize{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.logINTEXT{
+    color: #433BFF;
+    font-size: 23px;
+    font-weight: bold;
+    margin: 0;
+}
+.logForm{
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    gap: 24px;
+}
+.jLabel{
+    width: 100px;
+    color: #433BFF;
+}
+.jInput{
+    width: 200px;
+    height: 30px;
+}

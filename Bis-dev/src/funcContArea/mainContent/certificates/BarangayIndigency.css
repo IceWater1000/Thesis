@@ -1,0 +1,131 @@
+.clearanceMain{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: .8in;
+    
+    z-index: 1000;
+}
+
+.backgroundImages2{
+    position: absolute; /* Removes the image from the document flow */
+    opacity: .2;
+    top: 62%; /* Vertically centers the image */
+    left: 50%; /* Horizontally centers the image */
+    transform: translate(-50%, -50%);
+     /* Adjusts for the image's dimensions to ensure perfect centering */
+    max-width: 65%; /* Ensures the image scales if necessary */
+    max-height: 65%; /* Ensures the image scales if necessary */
+    z-index: -1; 
+}
+.theHead{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    justify-content: space-between;
+}
+.theHeadText{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Calibri';
+    color: black;
+    font-size: 11pt;
+    font-weight: bolder;
+}
+.theHeadText p{
+    
+    margin: 0;
+}
+.topHR{
+    margin-top: 24px;
+    margin-bottom: 0px;
+    background-color: white;
+    height: 7px;
+    width: 100%;
+    border-top: 2px dashed black;
+    border-bottom: 2px dashed black;
+    
+}
+.new{
+    font-family: 'Calibri';
+    color: black;
+    font-size: 14pt;
+    font-weight: bolder; 
+    font-style: italic;
+}
+.logCont{
+    width: 100px;
+    height: 100px;
+}
+.h1s{
+    font-size: 14pt;
+    font-family: 'Calibri', serif;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.h2{
+    font-size: 20pt;
+    font-family: 'Algerian', serif;
+    color: black;
+    text-align: center;
+    margin-top: 60px;
+}
+.h2s{
+    font-size: 20pt;
+    font-family: 'Algerian', serif;
+    color: black;
+    text-align: center;
+    margin-top: 30px;
+}
+.h3{
+    font-size: 20pt;
+    font-family: 'Bell MT', serif;
+    color: black;
+    font-weight:700;
+    text-align: center;
+    margin-top: 12px;
+    
+}
+.permitTable{
+    display: flex;
+    flex-direction: row;
+}
+.f1{
+    width: 160px;
+}
+.h4{
+    font-size: 18pt;
+    font-family: 'Bell MT', serif;
+    color: black;
+    font-weight:700;
+    text-align: center;
+    
+}
+.tds{
+    padding: 0;
+    padding-left: 4px;
+    color: black;
+    font-family: 'Calibri';
+    size: 12pt;
+    font-weight: bold;
+}
+.tables{
+   
+    border: 2px solid black;
+}
+.regularBold{
+    size: 14pt;
+    font-family: 'Calibri';
+    color: black;
+    font-weight: bold;
+}
+.regular{
+    size: 14pt;
+    font-family: 'Calibri';
+    color: black;
+    
+}

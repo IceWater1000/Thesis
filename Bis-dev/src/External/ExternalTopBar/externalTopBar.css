@@ -1,0 +1,51 @@
+
+.ExTopbar{
+    width: 100%;
+    height: 86px;
+    background-image: linear-gradient(to right, #2F27CE 0% , #2922B4 71%,#231D9B 82%,#1E1981 91%,#181468 100%);
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    box-sizing: border-box;
+    padding: 9px 260px 9px 260px;
+    
+}
+.exTImage{
+    margin-left: 20px;
+    width: 69px;
+    height: 69px;
+}
+.ExTopbarContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ExTopbarContainer.second{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.ExTopbarTitle1{
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin: -0px;
+}
+.ExTopbarTitle2{
+    margin: 0px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight:900;
+}
+.ExTopBarLink{
+    margin: 0px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+
+}
+.ExTopbarContainer:last-child{
+    margin-left: auto;
+}

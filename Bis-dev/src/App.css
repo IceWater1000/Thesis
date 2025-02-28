@@ -1,0 +1,364 @@
+.hsjs{
+    margin: 0;
+    background-image: url('/Images/loginBackground2Blurred.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.loginBackground{
+    background: linear-gradient(to right, rgba(4, 1, 68, 0.4), rgba(4, 1, 68, 0));
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    
+
+
+}
+.leftSide{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    flex: 1;
+    
+}
+.loginBarangayLogo{
+    border-radius: 10px;
+    
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+.logoBarangayTitleContainer{
+
+    margin-left: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.loginBarangayTitle1{
+    color: #fbfbfe;
+    font-family: "Roboto", serif;
+    font-weight: 500 ;
+    font-size: 12pt;
+}
+.loginBarangayTitle2{
+    color: #fbfbfe;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800 ;
+    font-size: 14pt;
+}
+.loginButton{
+    color: #fbfbfe;
+    background-color: #2F27CE;
+    border: #fbfbfe solid 2px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14pt;
+    font-weight: bolder;
+    padding: 12px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0px 0px 4px 2px rgba(27, 2, 255, 0.25);
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    transition: color 0.25s ease;
+}
+.loginButton:hover{
+    box-sizing: border-box;
+    color: #433BFF;
+    background-color: white;
+}
+.projectAnnouncementsOrdinances{
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(3px);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+.imageSlider{
+    position: relative;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    flex: 9;
+    max-height: 216px;
+    border: #433BFF solid 1px;
+    overflow: hidden;
+}
+.imageSliderImages{
+    cursor: pointer;
+    position: absolute;
+    width: 100%; /* Matches the parent’s width */
+    height: 100%; /* Matches the parent’s height */
+    object-fit: cover;
+    transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out;
+     /* Start off-screen */
+    opacity: 0;   
+}
+.imageSliderImages.text{
+    width: auto;
+    height: auto;
+    top: 5%;
+    left: 3%;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color:#2F27CE;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+.imageSliderImages.active {
+    transform: translateX(0); /* Centered on screen */
+    opacity: 1; /* Fully visible */
+    z-index: 2; /* Ensures it's on top */
+  }
+  .imageSliderImages.slide-out-left {
+    transform: translateX(-100%); /* Slide out to the left */
+    opacity: 0; /* Fade out */
+    z-index: 1; /* Push behind the incoming image */
+  }
+  .imageSliderImages.slide-in-right {
+    transform: translateX(100%); /* Start off-screen to the right */
+    opacity: 0; /* Invisible initially */
+    z-index: 1; /* Behind the current image */
+  }
+  .imageSliderImages.active.slide-in-right {
+    transform: translateX(0); /* Slide into view */
+    opacity: 1; /* Fade in */
+  }
+.pAOButtons{
+    flex: 1.5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 24px;
+    gap: 24px;
+}
+.pAOButton{
+    font-family: 'Roboto', sans-serif;
+    color: #fbfbfe;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+.pAOText {
+    font-family: 'Roboto', sans-serif;
+    color: #fbfbfe;
+    font-weight: bolder;
+    cursor: pointer;
+}
+.pAOText:hover{
+    color:#433BFF;
+}
+.pAOButton:hover{
+    color: #433BFF;
+}
+.pAOButton.active{
+    color:  #433BFF ;
+    text-decoration: underline;
+}
+.pAOContents{
+    flex: 5 ;
+    
+    border-radius: 10px;
+    padding-left: 24px;
+    padding-right: 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.pAOContents::-webkit-scrollbar {
+    width: 8px; /* Width of the vertical scrollbar */
+  }
+  
+  /* Style the scrollbar track (the area the scrollbar moves in) */
+  .pAOContents::-webkit-scrollbar-track {
+    background: #fbfbfe; /* Light grey background */
+    border-radius: 10px;  /* Rounded corners for the track */
+  }
+  
+  /* Style the scrollbar thumb (the draggable part) */
+  .pAOContents::-webkit-scrollbar-thumb {
+    background: #2F27CE;     /* Darker grey for the thumb */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Style the scrollbar thumb when hovered */
+  .pAOContents.descriptions::-webkit-scrollbar-thumb:hover {
+    background: #fbfbfe; /* Darker thumb when hovered */
+  }
+
+.projectAnnouncementsOrdinancesCanvas{
+    transform: translate(-50%,-50%);
+    position: fixed;
+    display: none;
+    border-radius: 10px;
+    border: #2F27CE solid 2px;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    width: 80%;
+    height: 100%;
+    z-index: 1000;
+}
+.projectAnnouncementsOrdinancesCanvas.show{
+    display: flex;
+}
+.LoginFormCanvas{
+    transform: translate(-50%,-50%);
+    position: fixed;
+    display: none;
+    border-radius: 10px;
+    border: #2F27CE solid 2px;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+
+    z-index: 1000;
+}
+.LoginFormCanvas.show{
+    display: flex;
+}
+.backdrops {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+  }
+
+
+
+
+.rightSide{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    padding: 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.MainBox{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.Description{
+    width: 100%;
+    color: white;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(3px);
+    font-family: 'Inter', sans-serif;
+    font-size: 15pt;
+    text-align: justify;
+}
+.DemoGraphics{
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(3px);
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 10px;
+}
+.DemoGraphics p{
+   margin: 0;
+   font-weight: bold;
+}
+.firstRow{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+.chartTitle{
+    margin: 0;
+   font-weight: bold;
+   font-size: 8pt;
+}
+.chartContainer{
+    padding: 8px;
+    border-radius: 10px;
+    background-color: white;
+    border: #433BFF solid 2px;
+    display: flex;
+    flex-direction: column;
+}
+canvas{
+}
+.pie{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.Personel{
+    margin:0;
+    width: 100%;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(3px);
+
+    border-radius: 10px;
+    padding: 10px;
+}
+.officialsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.Official{
+    display: flex;
+    width: 18.5%;
+    flex-direction: column;
+    background-color: #DEDCFF;
+    border: #433BFF solid 2px;
+    padding: 12px;
+    border-radius: 10px;
+    align-items: center;
+}
+.Official img{
+    border: #433BFF solid 2px;
+}
+.nameofOfficial{
+    font-weight: bold;
+    color: #433BFF;
+    text-decoration: underline;
+    text-align: center;
+    margin: 0;
+}
+.position{
+    margin: 0;
+    color: #433BFF;
+    text-align: center;
+}
+.other{
+    margin: 0;
+    color: #433BFF;
+    text-align: center;
+}

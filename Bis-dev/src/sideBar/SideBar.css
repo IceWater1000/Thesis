@@ -1,0 +1,123 @@
+*{
+    box-sizing: border-box; 
+}
+.SideBar{
+    width: 357px;
+    height: 600px;
+    background-color: #DEDCFF;  
+    
+}
+
+.sideBarContent{
+    height: 100%;
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+    padding-left: 25px;
+    padding-right: 25px;
+    
+}
+.sideBarLogArea{
+    margin-top: 24px;
+    width: 307px;
+    display: flex;
+    flex-direction: row;
+}
+.barangayLogoContainer{
+    width: 57px;
+    height: 57px;
+
+}
+.logoLabel{
+    width: 100%;
+    height: 65px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+}
+
+.headings2{
+    
+    margin: 0;
+    font-size: 24px;
+    font-weight:bold; 
+    color: #433BFF;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 1px 2px 2px rgba(0, 0,0, 0.25);
+}
+.headings3{
+    
+    margin: 0;
+    margin-top: -8px;
+    font-size: 12px;
+    font-weight:bold;
+    color: #433BFF;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 1px 2px 2px rgba(0, 0,0, 0.25);
+}
+.solidLine{
+    width: 100%;
+    margin: 0;
+    color: #433BFF;
+    border: 2px solid #433BFF;
+}
+.closeButtonContainer{
+    display: flex;
+}
+
+.sideBarButton{
+    width: 307px;
+    height: 42px;
+    
+    border: 2px #433BFF solid;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    
+    box-shadow: 2px 2px 4px rgba(47, 39, 206, 0.25);
+    transition: border 0.5 ease;
+    border-radius: 5px;
+}
+
+
+.buttonContainer{
+    width: 100%;
+    height: 100%;   
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.sideBarButton.active {
+    background-color: #433BFF;
+    border: 1px #fbfbfe solid;
+}
+.sideBarButton.active .sideBarButtonLabel{
+    color: #fbfbfe;
+}
+.sideBarButtonLogo{
+    display: flex;
+    align-items: center; 
+}
+.sideBarButtonLogoImage{
+    margin-left: 10px;
+    width: 32px;
+    height: 32px;
+}
+.sideBarButtonLabel{
+    margin-left: 19px;
+    color: #433BFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+    transition: color 0.3s ease,
+}
+
+.sideBarButton:hover{
+    background-color: #433BFF;
+    border: 1px #fbfbfE solid; 
+    
+}
+.sideBarButton:hover .sideBarButtonLabel{
+    color: #fbfbfe;
+}

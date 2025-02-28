@@ -1,0 +1,146 @@
+.announcements{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}.announcementsHeader{
+    width: 100%;
+    height: 300px;
+    position: relative;
+    margin: 0;
+    background-image: url('/Images/loginBackground2Blurred.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.blue{
+    padding-top: 40px;
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(67, 59, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.annnoncementsHeadText{
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    color: #FBFBFE;
+    font-weight:800;
+}
+.announcementsDescText{
+    margin-top: 20px;
+    max-width: 776px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    color: #FBFBFE;
+    font-weight:800;
+}
+.announcementsContainer{
+    width: 1152px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    padding: 24px;
+    
+}
+.announcementsBox{
+    width: 1104px;
+    border-radius: 10px;
+   
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 2px 2px 4px 2px rgba(0,0,0, 0.25);
+    
+}
+.announcementsBoxImage{
+    flex-shrink: 0;
+    width: 540px;
+    
+    
+    
+}
+.imagess{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.imagess.expanded{
+    object-fit: cover;
+}
+.announcementsHead{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+.announcementsHeadImage{
+width: 54px;
+height: 54px;
+}
+.announcementsHeadTextBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.announcementsBoxText{
+    padding: 12px 24px 12px 24px;
+    
+    display: flex;
+    flex-direction: column;
+    max-width: 564px;
+}
+.announcementsBoxUploader{
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #2F27CE;
+    font-weight:800;
+}
+.announcementsBoxDate{
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 10px;
+    color: #2F27CE;
+    font-weight:800;
+}
+.announcementsBoxTitle{
+    
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    color: black;
+    font-weight:800;
+}   
+.announcementsBoxDescription{
+    display: -webkit-box;
+    -webkit-line-clamp: 7; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    
+    font-size: 13px;
+    color: black;
+    
+    
+}
+.announcementsBoxDescription.expanded {
+    -webkit-line-clamp: unset;
+    max-height: 350px;
+    overflow-y: auto;
+    
+    
+  }
+.blueLine{
+    background-color: #2F27CE;
+    height: 2px;
+    width: 100%;
+    margin-bottom: 8px;
+}

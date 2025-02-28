@@ -1,0 +1,60 @@
+.map{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    gap: 24px;
+}
+
+.mapTitle{
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    color: #2F27CE;
+    font-weight:800; 
+}
+.mapTitle2{
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    color: #2F27CE;
+    font-weight:800; 
+}
+.map1{
+    width: 1000px;
+    height: 500px;
+    border: 2px solid #2F27CE;
+    border-radius: 10px;
+}
+
+.openLayerMapComponents{
+    display: flex;
+    flex-direction: column;   
+    align-items: center;
+    width: 1000px;
+    height: 500px;
+}
+.openLayerMapComponentsHeader{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.viewBorderButton{
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: white;
+    font-weight: 500; 
+    background-color: #2F27CE;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px;
+    box-shadow: 2px 2px 4px 2px rgba(27, 2, 255, 0.25);
+    transition: all 0.5s ease;
+}
+.viewBorderButton:hover{
+    color: #2F27CE;
+    background-color: white;
+}
+.mapLayer{
+    border: 2px solid #2F27CE;
+   
+}

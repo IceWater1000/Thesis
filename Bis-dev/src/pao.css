@@ -1,0 +1,181 @@
+.dashboardTabs{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 10px;
+
+    width: 100%;
+    height: 100%;
+
+}
+.dashboardTabTopBars{
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    background-color: #433BFF;
+    box-shadow: 0px 4px 4px rgba(47, 39, 206, 0.25);
+    padding: 12px 24px 12px 24px;
+
+}
+.dashbaorTabTopBarLabels{
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fbfbfe;
+}
+.dashboardTabMainContents{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0px 24px 24px 24px;
+    height: 100%;
+    max-height: 100%; /* Adjust this height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden;
+}
+.CloseButtons{
+    margin-left: auto;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.theContents{
+    border-radius: 5px;
+    background-color: #DEDCFF;
+    width: 100%;
+    padding: 10px;
+    min-height: 420px;
+    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    
+    box-shadow: 2px 2px 4px rgba(47, 39, 206, 0.25);
+    box-sizing: border-box;
+}
+.imgContents{
+    min-width: 400px;
+    max-width: 400px;
+    height: 400px;
+    display: flex;
+    cursor: pointer;
+    background-color: #fbfbfe;
+    border: #433BFF solid 2px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.imgContents img{
+    width: 100%;        
+  height: 100%;       
+  object-fit: cover;
+}
+.textContents{
+    min-height: 226px;
+    flex-grow: 2;
+    display: flex;
+    max-height: 150px;
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden;
+    overflow: hidden;
+    flex-direction: column;
+    color: #2F27CE;
+}
+.titles{
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+}
+.descriptions{
+    flex-grow: 1;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    overflow-y: auto;
+}
+.descriptions::-webkit-scrollbar {
+    width: 8px; /* Width of the vertical scrollbar */
+  }
+  
+  /* Style the scrollbar track (the area the scrollbar moves in) */
+  .descriptions::-webkit-scrollbar-track {
+    background: #fbfbfe; /* Light grey background */
+    border-radius: 10px;  /* Rounded corners for the track */
+  }
+  
+  /* Style the scrollbar thumb (the draggable part) */
+  .descriptions::-webkit-scrollbar-thumb {
+    background: #2F27CE;     /* Darker grey for the thumb */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Style the scrollbar thumb when hovered */
+  .descriptions::-webkit-scrollbar-thumb:hover {
+    background: #fbfbfe; /* Darker thumb when hovered */
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+  }
+.modal.show {
+    border-radius: 10px;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.9);
+    visibility: visible;
+  }
+.modalContent {
+    padding-top: 24px;
+    background-color: #fbfbfe;
+    border: #433BFF solid 2px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 80%;
+    max-height: 80%;
+    display: flex;
+    object-fit: cover;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden;
+  }
+  .modalImages{
+    width: 800px;
+    margin-bottom: 24px;
+
+  }
+  .zoomedImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    cursor: pointer;
+  }
+  .modalContent::-webkit-scrollbar {
+    width: 8px; /* Width of the vertical scrollbar */
+  }
+  
+  /* Style the scrollbar track (the area the scrollbar moves in) */
+  .modalContent::-webkit-scrollbar-track {
+    background: #fbfbfe; /* Light grey background */
+    border-radius: 10px;  /* Rounded corners for the track */
+  }
+  
+  /* Style the scrollbar thumb (the draggable part) */
+  .modalContent::-webkit-scrollbar-thumb {
+    background: #2F27CE;     /* Darker grey for the thumb */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Style the scrollbar thumb when hovered */
+  .modalContent::-webkit-scrollbar-thumb:hover {
+    background: #fbfbfe; /* Darker thumb when hovered */
+  }
