@@ -41,7 +41,7 @@ const HomeAnnouncements = () => {
     };
     fetchAnnouncements();
   }, []);
-  console.log(announcementsData);
+
   return (
     <div className="HomeAnnouncements">
       <div className="HomeIntroductionText">ANNOUNCEMENTS</div>
@@ -50,6 +50,7 @@ const HomeAnnouncements = () => {
           {announcementsData?.map((item, index) =>
             index < 4 ? (
               <HomeAnnouncementsBox
+                key={index}
                 Image={item.image[0]}
                 title={item.title}
                 details={item.date}

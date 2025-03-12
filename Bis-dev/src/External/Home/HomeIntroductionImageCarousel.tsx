@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import "./HomeIntroductionImageCarousel.css";
 import TextWithAnimation from "./TextWithAnimation";
+import axios from "axios";
 const HomeIntroductionImageCarousel = () => {
   const CarouselImages = [
     "/Images/loginBackground2.jpg",
@@ -18,6 +19,20 @@ const HomeIntroductionImageCarousel = () => {
     "Zone 2",
   ];
 
+  //Data Collector
+  useEffect(() => {
+    const FetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/homeDashboard/getData"
+        );
+        console.log(response);
+      } catch (error) {
+        console.log("Error on the Backend");
+      }
+    };
+    FetchData();
+  }, []);
   const [currentActive, setCurrentActive] = useState(0);
   const [previouseActive, setPreviousActive] = useState(
     CarouselImages.length - 1
