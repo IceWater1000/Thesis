@@ -1,20 +1,20 @@
 {
     "IntroductionImageLabel": [
         {
-            "label": "/Images/loginBackground2.jpg",
-            "Image": "Barangay Hall"
+            "Image": "/Images/loginBackground2.jpg",
+            "Label": "Barangay Hall"
         },
         {
-            "label": "/Images/download1.jpg",
-            "Image": "Chruch Plaza"
+            "Image": "/Images/download1.jpg",
+            "Label": "Chruch Plaza"
         },
         {
-            "label": "/Images/download2.jpg",
-            "Image": "Zone 1"
+            "Image": "/Images/download2.jpg",
+            "Label": "Zone 1"
         },
         {
-            "label": "/Images/download3.jpg",
-            "Image": "Gymnasium"
+            "Image": "/Images/download3.jpg",
+            "Label": "Gymnasium"
         }
     ]
 }
