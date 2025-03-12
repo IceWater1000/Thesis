@@ -18,8 +18,7 @@ const personel5Routes = require('./routes/personel5');
 const luponRecordRoutes = require('./routes/luponRecords');
 const chartFetcherRoutes = require('./routes/chartFetcher');
 const loginRoutes = require('./routes/login');
-const demographic = require('./routes/demographic');
-const HomeDashboard = require('./routes/HomeDashboardData')
+const demographic = require('./routes/demographic')
 const app = express();
 const corsOptions = {
     origin: 'http://localhost:5173', 
@@ -28,25 +27,23 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use('/api/demographic',demographic);
-app.use('/api/login',loginRoutes);
-app.use('/api/chart',chartFetcherRoutes);
-app.use('/api/lupon',luponRecordRoutes);
-app.use('/api/personel5', personel5Routes);
-app.use('/api/personel4', personel4Routes);
-app.use('/api/personel3', personel3Routes);
-app.use('/api/personel2', personel2Routes);
-app.use('/api/personel1',personel1Routes);
-app.use('/api/ordinances',ordinancesRoutes);
-app.use('/api/Announcements', announcementsRoutes);
-app.use('/api/inhabitants', inhabitantsRoutes);
-app.use('/api/household', householdRoutes);
-app.use('/api/householdMembers', hoseholdMembersRoutes);
-app.use('/api/KKMembers', KKMembersRoutes);
-app.use('/api/seniorCitizen', seniorCitizenRoutes);
-app.use('/api/dashboard', dashboardRoutes);
-app.use('/api/homeDashboard', HomeDashboard);
-
+app.use('/api/demographic',demographic)
+app.use('/api/login',loginRoutes)
+app.use('/api/chart',chartFetcherRoutes)
+app.use('/api/lupon',luponRecordRoutes)
+app.use('/api/personel5', personel5Routes)
+app.use('/api/personel4', personel4Routes)
+app.use('/api/personel3', personel3Routes)
+app.use('/api/personel2', personel2Routes)
+app.use('/api/personel1',personel1Routes)
+app.use('/api/ordinances',ordinancesRoutes)
+app.use('/api/Announcements', announcementsRoutes)
+app.use('/api/inhabitants', inhabitantsRoutes)  
+app.use('/api/household', householdRoutes)
+app.use('/api/householdMembers', hoseholdMembersRoutes)
+app.use('/api/KKMembers', KKMembersRoutes)
+app.use('/api/seniorCitizen', seniorCitizenRoutes)
+app.use('/api/dashboard', dashboardRoutes)
 
 const PORT = 5000;
 app.listen(PORT, () => {
