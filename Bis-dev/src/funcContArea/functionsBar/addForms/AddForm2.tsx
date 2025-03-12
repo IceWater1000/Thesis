@@ -25,7 +25,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residents"
+          "http://localhost:5000/api/inhabitants/residentsNotHouseholdHead"
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -61,7 +61,6 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
   // Handle form submission
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Form Data Submitted:", formData);
 
     // Pass the form data to another function
     submitFormData(formData);
@@ -128,7 +127,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
         <div className="formContainer">
           <label className="labels">House Number</label>
           <input
-            type="text"
+            type="number"
             id="HouseholdNumber"
             name="HouseholdNumber"
             value={formData.HouseholdNumber}
@@ -139,7 +138,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
         <div className="formContainer">
           <label className="labels">Total Inhabitants</label>
           <input
-            type="text"
+            type="number"
             id="TotalInhabitants"
             name="TotalInhabitants"
             value={formData.TotalInhabitants}
@@ -163,7 +162,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
         </div>
 
         <div className="formContainer">
-          <label className="labels">Address:</label>
+          <label className="labels">Zone:</label>
           <select
             id="AddressID"
             name="AddressID"

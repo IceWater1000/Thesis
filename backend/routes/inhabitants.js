@@ -381,6 +381,20 @@ router.get('/residents',(req,res) =>{
     }
   })
 })
+router.get('/residentsNotHouseholdHead',(req,res) =>{
+  
+  const query = `SELECT r.* FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead
+WHERE h.HouseholdHead IS NULL;
+`;
+  db.query(query, (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      res.json(results);
+    }
+  })
+})
 router.get('/residents11',(req,res) =>{
   const query = "SELECT * FROM `barangay_inhabitants_view1`";
   db.query(query, (err,results)=>{
