@@ -13,6 +13,7 @@ interface OptionType {
 }
 const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
   const [options, setOptions] = useState<OptionType[]>([]);
+  const [submited, setSubmitted] = useState(false);
   // State for form data
   const [formData, setFormData] = useState<{
     HouseholdNumber: string;
@@ -25,6 +26,9 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
     TotalInhabitants: "",
     HouseholdHead: null,
   });
+  const selectedOption =
+    options.find((option) => option.value === formData.HouseholdHead) || null;
+
   // Get Data from for the Household Head
   useEffect(() => {
     const fetchResidents = async () => {
@@ -44,7 +48,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
       }
     };
     fetchResidents();
-  }, [AddForm2]);
+  }, [AddForm2, submited]);
 
   // Handle input changes
   const handleChange = (
@@ -56,13 +60,15 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
       [name]: value,
     });
   };
-  const handleReactSelectChange = (option: SingleValue<OptionType>) => {
-    const value = option?.value || "";
-    setFormData({
-      ...formData,
-      HouseholdHead: value ? value : null,
-    });
+  const handleReactSelectChange = (
+    selectedOption: { value: string } | null
+  ) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      HouseholdHead: selectedOption ? selectedOption.value : null, // Ensure type remains string | null
+    }));
   };
+
   // Handle form submission
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -91,6 +97,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
     // Make your API call here
   };
   const cleanFormData = () => {
+    setSubmitted((prev) => !prev);
     setFormData({
       HouseholdNumber: "",
       AddressID: "1",
@@ -159,6 +166,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
             options={options}
             name="ResidentID"
             id="ResidentID"
+            value={selectedOption}
             onChange={handleReactSelectChange}
             className="reactSelect"
 
