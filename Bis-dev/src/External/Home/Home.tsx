@@ -17,12 +17,16 @@ const Home = () => {
       <HomeVisionMission />
 
       <HomeIntroduction />
+      <HomeAnnouncements />
+      <div
+        style={{ width: "100%", height: "46px", backgroundColor: "#2F27CE" }}
+      ></div>
 
       <HomeOfficials />
       <div
         style={{ width: "100%", height: "46px", backgroundColor: "#2F27CE" }}
       ></div>
-      <HomeAnnouncements />
+
       <HomeMap />
       <div
         style={{ width: "100%", height: "46px", backgroundColor: "#2F27CE" }}
