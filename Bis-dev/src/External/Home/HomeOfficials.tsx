@@ -54,7 +54,7 @@ const HomeOfficials = () => {
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
             name={officialsData[0].officials[0].name}
-            committee={officialsData[0].officials[0].name}
+            committee={officialsData[0].officials[0].other}
             position={officialsData[0].officials[0].position}
             img={officialsData[0].officials[0].image}
           />
@@ -64,13 +64,13 @@ const HomeOfficials = () => {
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
             name={officialsData[0].officials[1].name}
-            committee={officialsData[0].officials[1].name}
+            committee={officialsData[0].officials[1].other}
             position={officialsData[0].officials[1].position}
             img={officialsData[0].officials[1].image}
           />
           <HomeOfficialsBox
             name={officialsData[0].officials[2].name}
-            committee={officialsData[0].officials[2].name}
+            committee={officialsData[0].officials[2].other}
             position={officialsData[0].officials[2].position}
             img={officialsData[0].officials[2].image}
           />
@@ -80,19 +80,19 @@ const HomeOfficials = () => {
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
             name={officialsData[0].officials[3].name}
-            committee={officialsData[0].officials[3].name}
+            committee={officialsData[0].officials[3].other}
             position={officialsData[0].officials[3].position}
             img={officialsData[0].officials[3].image}
           />
           <HomeOfficialsBox
             name={officialsData[0].officials[4].name}
-            committee={officialsData[0].officials[4].name}
+            committee={officialsData[0].officials[4].other}
             position={officialsData[0].officials[4].position}
             img={officialsData[0].officials[4].image}
           />
           <HomeOfficialsBox
             name={officialsData[0].officials[5].name}
-            committee={officialsData[0].officials[5].name}
+            committee={officialsData[0].officials[5].other}
             position={officialsData[0].officials[5].position}
             img={officialsData[0].officials[5].image}
           />
@@ -102,13 +102,13 @@ const HomeOfficials = () => {
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
             name={officialsData[0].officials[6].name}
-            committee={officialsData[0].officials[6].name}
+            committee={officialsData[0].officials[6].other}
             position={officialsData[0].officials[6].position}
             img={officialsData[0].officials[6].image}
           />
           <HomeOfficialsBox
             name={officialsData[0].officials[7].name}
-            committee={officialsData[0].officials[7].name}
+            committee={officialsData[0].officials[7].other}
             position={officialsData[0].officials[7].position}
             img={officialsData[0].officials[7].image}
           />
@@ -118,7 +118,7 @@ const HomeOfficials = () => {
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
             name={officialsData[0].officials[10].name}
-            committee={officialsData[0].officials[10].name}
+            committee={officialsData[0].officials[10].other}
             position={officialsData[0].officials[10].position}
             img={officialsData[0].officials[10].image}
           />
@@ -128,13 +128,13 @@ const HomeOfficials = () => {
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
             name={officialsData[0].officials[8].name}
-            committee={officialsData[0].officials[8].name}
+            committee={officialsData[0].officials[8].other}
             position={officialsData[0].officials[8].position}
             img={officialsData[0].officials[8].image}
           />
           <HomeOfficialsBox
             name={officialsData[0].officials[9].name}
-            committee={officialsData[0].officials[9].name}
+            committee={officialsData[0].officials[9].other}
             position={officialsData[0].officials[9].position}
             img={officialsData[0].officials[9].image}
           />

@@ -681,12 +681,8 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
             >
               <option value="1">Single</option>
               <option value="2">Married</option>
-              <option value="3">Divorced</option>
               <option value="4">Separated</option>
               <option value="5">Widowed</option>
-              <option value="6">Annulled</option>
-              <option value="7">Unknown</option>
-              <option value="8">Live-in</option>
             </select>
           </div>
 
@@ -697,7 +693,6 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
               name="occupation"
               value={formData.occupation}
               onChange={handleChange}
-              required
             />
           </div>
 
