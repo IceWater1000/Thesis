@@ -125,23 +125,26 @@ router.get('/views2', (req, res) => {
   });
 });
 router.post('/add', (req, res) => {
-  const { HouseholdNumber,
-    AddressID,
-    TotalInhabitants,
-    HouseholdHead,
-    } = req.body;
+  const { HouseholdNumber, AddressID, TotalInhabitants, HouseholdHead } = req.body;
+
+  // Validate input
+  if (!HouseholdNumber || !AddressID || !TotalInhabitants || !HouseholdHead) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
   const query = 'INSERT INTO `household` (`HouseholdNumber`, `AddressID`, `TotalInhabitants`, `HouseholdHead`) VALUES (?, ?, ?, ?)';
-  db.query(query, [HouseholdNumber,
-    AddressID,
-    TotalInhabitants,
-    HouseholdHead,
-    ], (err, results) => {
+
+  db.query(query, [HouseholdNumber, AddressID, TotalInhabitants, HouseholdHead], (err, results) => {
     if (err) {
-      console.error('Error adding resident:', err);
-      res.status(500).send('Error adding resident');
-    } else {
-      res.status(201).send('Resident added successfully');
+      if (err.code === 'ER_DUP_ENTRY') {
+        return res.status(409).json({ error: 'Household number already exists' });
+      }
+      console.error('Database Error:', err);
+      return res.status(500).json({ error: 'Error adding resident' });
     }
+    res.status(201).json({ message: 'Resident added successfully', id: results.insertId });
   });
 });
+
+
 module.exports = router;

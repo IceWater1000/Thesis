@@ -25,7 +25,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residentsNotHouseholdHead"
+          "http://localhost:5000/api/inhabitants/residentsNotHouseholdHead "
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -74,7 +74,16 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
       try {
         const response = await axios.post(
           "http://localhost:5000/api/household/add",
-          data
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Cache-Control":
+                "no-store, no-cache, must-revalidate, proxy-revalidate",
+              Pragma: "no-cache",
+              Expires: "0",
+            },
+          }
         );
         console.log("Data added successfully:", response.data);
       } catch (error) {
