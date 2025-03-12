@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import HomeMainSection from "./HomeMainSection";
 import HomeVisionMission from "./HomeVisionMission";
 import HomeIntroduction from "./HomeIntroduction";
@@ -7,7 +6,7 @@ import HomeAnnouncements from "./HomeAnnouncements";
 import HomeMap from "./HomeMap";
 import HomeEmergencyNumbers from "./HomeEmergencyNumbers";
 import Footer from "../Footer";
-import Login from "../../Login";
+
 import "../../App.css";
 const Home = () => {
   return (
