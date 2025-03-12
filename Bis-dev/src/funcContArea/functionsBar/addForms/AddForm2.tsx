@@ -169,7 +169,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
             value={selectedOption}
             onChange={handleReactSelectChange}
             className="reactSelect"
-
+            required
             //isMulti={false} // Set to true for multi-select
           />
         </div>
