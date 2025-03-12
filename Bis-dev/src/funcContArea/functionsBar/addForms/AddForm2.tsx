@@ -14,11 +14,16 @@ interface OptionType {
 const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
   const [options, setOptions] = useState<OptionType[]>([]);
   // State for form data
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    HouseholdNumber: string;
+    AddressID: string;
+    TotalInhabitants: string;
+    HouseholdHead: string | null; // Explicitly allow string or null
+  }>({
     HouseholdNumber: "",
     AddressID: "1",
     TotalInhabitants: "",
-    HouseholdHead: "",
+    HouseholdHead: null,
   });
   // Get Data from for the Household Head
   useEffect(() => {
@@ -55,7 +60,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
     const value = option?.value || "";
     setFormData({
       ...formData,
-      HouseholdHead: value,
+      HouseholdHead: value ? value : null,
     });
   };
   // Handle form submission
@@ -74,16 +79,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
       try {
         const response = await axios.post(
           "http://localhost:5000/api/household/add",
-          data,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Cache-Control":
-                "no-store, no-cache, must-revalidate, proxy-revalidate",
-              Pragma: "no-cache",
-              Expires: "0",
-            },
-          }
+          data
         );
         console.log("Data added successfully:", response.data);
       } catch (error) {
@@ -99,7 +95,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
       HouseholdNumber: "",
       AddressID: "1",
       TotalInhabitants: "",
-      HouseholdHead: "",
+      HouseholdHead: null,
     });
   };
   return (
