@@ -487,7 +487,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
                   margin: "0",
                 }}
               >
-                Assign To House
+                Assign To Household
               </p>
               <div className="formContainer">
                 <label className="labels2">HouseholdNumber:</label>
@@ -737,7 +737,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
                 assignToHouse();
               }}
             >
-              Assign To House
+              Assign To Household
             </div>
           </div>
           <div className="formContainer" style={{ marginTop: "10px" }}>
