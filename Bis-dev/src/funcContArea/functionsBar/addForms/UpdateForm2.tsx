@@ -23,13 +23,19 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
     TotalInhabitants: "",
     HouseholdHead: "",
   });
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
   // State for form data
-  //Options of the React Select
+  //Getting the House that is being Updated
   useEffect(() => {
-    const fetchResidents = async () => {
+    //Options of the React Select
+    const fetchResidents = async (id: string) => {
+      console.log(residentId);
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residents"
+          `http://localhost:5000/api/inhabitants/residentsNotHouseholdHeadUpdate/${id}`
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -37,15 +43,12 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
             label: residents.Name,
           })
         );
+
         setOptions(transformResponse);
       } catch (err) {
         console.log("Error", err);
       }
     };
-    fetchResidents();
-  }, [AddForm1]);
-  //Getting the House that is being Updated
-  useEffect(() => {
     const fetchInhabitants = async () => {
       try {
         const response = await axios.get(
@@ -54,6 +57,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
           }`
         );
         setResidentData(response.data); // Store the fetched data
+        fetchResidents(response.data.HouseholdHead);
       } catch (err) {
         console.error("Error fetching resident:", err);
       }
@@ -62,7 +66,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
     fetchInhabitants();
   }, [residentId]);
   //set formData
-  console.log(residentData);
+
   useEffect(() => {
     if (Object.keys(residentData).length > 0) {
       setFormData({
@@ -168,8 +172,9 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
             options={options}
             name="ResidentID"
             id="ResidentID"
+            filterOption={filterOption}
             value={options.find(
-              (option) => option.value === formData.HouseholdHead
+              (option) => option.value == formData.HouseholdHead
             )}
             onChange={handleReactSelectChange}
             className="reactSelect"

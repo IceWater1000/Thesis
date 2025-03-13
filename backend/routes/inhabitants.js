@@ -384,7 +384,7 @@ router.get('/residents',(req,res) =>{
 router.get('/residentsNotHouseholdHead',(req,res) =>{
   
   const query = `SELECT r.* FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead
-WHERE h.HouseholdHead IS NULL;
+WHERE h.HouseholdHead IS NULL ORDER BY r.Name;
 `;
   db.query(query, (err,results)=>{
     if (err) {
@@ -394,7 +394,21 @@ WHERE h.HouseholdHead IS NULL;
       res.json(results);
     }
   })
-})
+});
+router.get('/residentsNotHouseholdHeadUpdate/:id',(req,res) =>{
+  const  Current  = req.params.id;
+  console.log(Current)
+  const query = `SELECT r.* FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead WHERE h.HouseholdHead IS NULL UNION SELECT * FROM residenttracker WHERE ResidentID = ? ORDER BY Name ASC;
+`;
+  db.query(query,[Current], (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      res.json(results);
+    }
+  })
+});
 router.get('/residents11',(req,res) =>{
   const query = "SELECT * FROM `barangay_inhabitants_view1`";
   db.query(query, (err,results)=>{

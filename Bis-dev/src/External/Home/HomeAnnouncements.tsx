@@ -63,7 +63,7 @@ const HomeAnnouncements = () => {
       </ScrollReveal>
       <ScrollReveal direction="Bottom">
         <HomeButton
-          label="To All Announcements"
+          label="View All Announcements"
           onItemClick={HomeButtonClickHandler}
         />
       </ScrollReveal>

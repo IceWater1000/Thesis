@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./forms.css";
 import axios from "axios";
 import Select, { SingleValue } from "react-select";
-
 interface Props {
   onItemClick: () => void;
 }
@@ -26,15 +25,19 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
     TotalInhabitants: "",
     HouseholdHead: null,
   });
+  // for Select Option and Filter Option
   const selectedOption =
     options.find((option) => option.value === formData.HouseholdHead) || null;
-
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
   // Get Data from for the Household Head
   useEffect(() => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residentsNotHouseholdHead "
+          "http://localhost:5000/api/inhabitants/residentsNotHouseholdHead"
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -144,6 +147,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
             name="HouseholdNumber"
             value={formData.HouseholdNumber}
             onChange={handleChange}
+            placeholder="Format ex.  12345"
             required
           />
         </div>
@@ -166,9 +170,11 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
             options={options}
             name="ResidentID"
             id="ResidentID"
+            filterOption={filterOption}
             value={selectedOption}
             onChange={handleReactSelectChange}
             className="reactSelect"
+            placeholder="Search Surname..."
             required
             //isMulti={false} // Set to true for multi-select
           />

@@ -22,7 +22,7 @@ const HomeMap = () => {
           <div className="HomeMapLegend">
             <div className="HomeMapLegendTitle">Legend</div>
             <HomeButton
-              label="To All Maps"
+              label="View All Maps"
               onItemClick={HomeButtonClickHandler}
             />
           </div>

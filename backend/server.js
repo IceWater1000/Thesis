@@ -19,7 +19,7 @@ const luponRecordRoutes = require('./routes/luponRecords');
 const chartFetcherRoutes = require('./routes/chartFetcher');
 const loginRoutes = require('./routes/login');
 const demographic = require('./routes/demographic')
-const HouseData = require("./routes/HomeDashboardData");
+const homeDashboard = require("./routes/HomeDashboardData");
 const app = express();
 const corsOptions = {
     origin: 'http://localhost:5173', 
@@ -45,7 +45,7 @@ app.use('/api/householdMembers', hoseholdMembersRoutes)
 app.use('/api/KKMembers', KKMembersRoutes)
 app.use('/api/seniorCitizen', seniorCitizenRoutes)
 app.use('/api/dashboard', dashboardRoutes)
-app.use('./api/homeDashboard', HouseData)
+app.use('/api/homeDashboard', homeDashboard)
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

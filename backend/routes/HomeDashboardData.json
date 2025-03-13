@@ -15,6 +15,10 @@
         {
             "Image": "/Images/download3.jpg",
             "Label": "Gymnasium"
+        },
+        {
+            "Image": "/Images/download3.jpg",
+            "Label": "ABACASKDA"
         }
     ],
     "BarangayGmail": "barangay_butnga_OrasES.@gmail.com"
