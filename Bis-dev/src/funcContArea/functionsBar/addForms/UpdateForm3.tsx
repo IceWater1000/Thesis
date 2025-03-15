@@ -29,10 +29,10 @@ const UpdateForm3: React.FC<Props> = ({ onItemClick, residentId }) => {
 
   useEffect(() => {
     //Fetch All Residents Data to put on the Select Options
-    const fetchResidents = async () => {
+    const fetchResidents = async (item: string) => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residents"
+          `http://localhost:5000/api/inhabitants/residentsNotHouseholdHeadAndMemberUpdate/${item}`
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -63,11 +63,6 @@ const UpdateForm3: React.FC<Props> = ({ onItemClick, residentId }) => {
         console.log("error", err);
       }
     };
-    fetchHouses();
-    fetchResidents();
-  }, [UpdateForm3]);
-
-  useEffect(() => {
     const fetchInhabitants = async () => {
       try {
         const response = await axios.get(
@@ -76,6 +71,8 @@ const UpdateForm3: React.FC<Props> = ({ onItemClick, residentId }) => {
           }`
         );
         setMemberData(response.data); // Store the fetched data
+        fetchHouses();
+        fetchResidents(response.data.ResidentID);
       } catch (err) {
         console.error("Error fetching resident:", err);
       }
@@ -136,6 +133,7 @@ const UpdateForm3: React.FC<Props> = ({ onItemClick, residentId }) => {
 
     // Pass the form data to another function
     submitFormData(formData);
+    cleanFormData();
   };
 
   //function to handle submitted data
