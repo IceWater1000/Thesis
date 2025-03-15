@@ -453,10 +453,11 @@ router.get('/residentsNotHouseholdHeadAndMemberUpdate/:id',(req,res) =>{
     }
   })
 });
-router.get('/residentsNotSeniorCitizenUpdate/:id',(req,res) =>{
+router.get('/residentsNotSeniorCitizenAndKKUpdate/:id',(req,res) =>{
   const Current = req.params.id;
-  const query = `SELECT r.* FROM residenttracker r LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID
-WHERE s.ResidentID IS NULL UNION SELECT * FROM residenttracker WHERE ResidentID = ? ORDER BY Name;
+  const query = `SELECT r.* FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead 
+  LEFT JOIN householdmembership hm ON r.ResidentID = hm.ResidentID 
+  WHERE h.HouseholdHead IS NULL AND hm.ResidentID IS NULL UNION SELECT * FROM residenttracker WHERE ResidentID = ? ORDER BY Name;
 `;
   db.query(query,[Current], (err,results)=>{
     if (err) {

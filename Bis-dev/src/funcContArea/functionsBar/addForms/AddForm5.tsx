@@ -11,6 +11,10 @@ interface OptionType {
 }
 const AddForm5 = ({ onItemClick }: Props) => {
   const [options, setOptions] = useState<OptionType[]>([]);
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
   const [formData, setFormData] = useState({
     Id: "",
     ContactNumber: "",
@@ -72,7 +76,7 @@ const AddForm5 = ({ onItemClick }: Props) => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residents"
+          "http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenAndKK"
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -86,8 +90,7 @@ const AddForm5 = ({ onItemClick }: Props) => {
       }
     };
     fetchResidents();
-  }),
-    [AddForm5];
+  }, [AddForm5]);
   return (
     <>
       <div className="container" style={{ width: "400px" }}>
@@ -128,6 +131,7 @@ const AddForm5 = ({ onItemClick }: Props) => {
               name="ResidentID"
               id="ResidentID"
               onChange={handleReactSelectChange}
+              filterOption={filterOption}
               className="reactSelect"
               required
               //isMulti={false} // Set to true for multi-select

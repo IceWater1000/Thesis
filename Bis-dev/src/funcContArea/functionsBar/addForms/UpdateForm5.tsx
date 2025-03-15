@@ -12,6 +12,11 @@ interface OptionType {
 }
 const UpdateForm5 = ({ residentId, onItemClick }: Props) => {
   const [options, setOptions] = useState<OptionType[]>([]);
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
+
   const [memberData, setMemberData] = useState<any>({});
   const [formData, setFormData] = useState({
     Id: "",
@@ -35,12 +40,15 @@ const UpdateForm5 = ({ residentId, onItemClick }: Props) => {
       KKMemberID: "",
     });
   };
-  //populating select
+
+  //getting the information of the data to be updated
   useEffect(() => {
-    const fetchResidents = async () => {
+    //Populating Select
+
+    const fetchResidents = async (item: string) => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residents"
+          `http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenAndKKUpdate/${item}`
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -53,10 +61,6 @@ const UpdateForm5 = ({ residentId, onItemClick }: Props) => {
         console.log("Error", err);
       }
     };
-    fetchResidents();
-  }, [UpdateForm5]);
-  //getting the information of the data to be updated
-  useEffect(() => {
     const fetchInhabitants = async () => {
       try {
         const response = await axios.get(
@@ -65,6 +69,7 @@ const UpdateForm5 = ({ residentId, onItemClick }: Props) => {
           }`
         );
         setMemberData(response.data); // Store the fetched data
+        fetchResidents(response.data.ResidentID);
       } catch (err) {
         console.error("Error fetching resident:", err);
       }
@@ -166,6 +171,7 @@ const UpdateForm5 = ({ residentId, onItemClick }: Props) => {
               name="ResidentID"
               id="ResidentID"
               value={options.find((option) => option.value === formData.Id)}
+              filterOption={filterOption}
               onChange={handleReactSelectChange}
               className="reactSelect"
               required
