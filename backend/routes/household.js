@@ -137,8 +137,13 @@ router.post('/add', (req, res) => {
     HouseholdHead,
     ], (err, results) => {
     if (err) {
-      console.error('Error adding resident:', err);
-      res.status(500).send('Error adding resident');
+      if(err.code == "ER_DUP_ENTRY"){
+        res.status(409).json({ message: 'Duplicate entry detected', error: err });
+      } else {
+        console.error('Error adding resident:', err);
+      res.status(500).send(err);
+      }
+      
     } else {
       res.status(201).send('Resident added successfully');
     }

@@ -238,6 +238,8 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
         console.log("Data added successfully: ", response.data.id);
       } catch (error) {
         console.error("Error adding data:", error);
+      } finally {
+        alert("Data Added Successfully");
       }
     };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./forms.css";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Select, { SingleValue } from "react-select";
 interface Props {
   onItemClick: () => void;
@@ -91,7 +91,12 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
           data
         );
         console.log("Data added successfully:", response.data);
-      } catch (error) {
+      } catch (error: any) {
+        if (error.response.status === 409) {
+          alert(
+            `Cannot Add Dubplicate Entry for HouseNumber: ${data.HouseholdNumber} \nHouseNumber:${data.HouseholdNumber} already exists`
+          );
+        }
         console.error("Error adding data:", error);
       }
     };
