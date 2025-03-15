@@ -27,7 +27,7 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residents"
+          "http://localhost:5000/api/inhabitants/residentsNotHouseholdHeadAndMember"
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -60,6 +60,17 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
     fetchHouses();
     fetchResidents();
   }, [AddForm3, formData]);
+
+  // for Select Option and Filter Option
+  const selectedOption =
+    options.find((option) => option.value === formData.Id) || null;
+  const selectedOption2 =
+    houseOption.find((option) => option.value === formData.HouseholdNumber) ||
+    null;
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
 
   const cleanFormData = () => {
     setFormData({
@@ -103,6 +114,7 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
 
     // Pass the form data to another function
     submitFormData(formData);
+    cleanFormData();
   };
 
   //function to handle submitted data
@@ -163,6 +175,8 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
               options={options}
               name="ResidentID"
               id="ResidentID"
+              value={selectedOption}
+              filterOption={filterOption}
               onChange={handleReactSelectChange}
               className="reactSelect"
               required
@@ -175,6 +189,8 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
               options={houseOption}
               name="HouseholdNumber"
               id="HouseholdNumber"
+              value={selectedOption2}
+              filterOption={filterOption}
               onChange={handleReactSelectChange2}
               className="reactSelect"
               required

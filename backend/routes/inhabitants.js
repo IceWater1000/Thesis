@@ -395,6 +395,19 @@ WHERE h.HouseholdHead IS NULL ORDER BY r.Name;
     }
   })
 });
+router.get('/residentsNotHouseholdHeadAndMember',(req,res) =>{
+  
+  const query = `SELECT r.* FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead LEFT JOIN householdmembership hm ON r.ResidentID = hm.ResidentID WHERE h.HouseholdHead IS NULL AND hm.ResidentID IS NULL ORDER BY r.Name;
+`;
+  db.query(query, (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      res.json(results);
+    }
+  })
+});
 router.get('/residentsNotHouseholdHeadUpdate/:id',(req,res) =>{
   const  Current  = req.params.id;
   console.log(Current)

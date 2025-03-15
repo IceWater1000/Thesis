@@ -21,6 +21,12 @@ const UpdateForm3: React.FC<Props> = ({ onItemClick, residentId }) => {
     RelationID: "",
     HouseholdMembershipID: "",
   });
+
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
+
   useEffect(() => {
     //Fetch All Residents Data to put on the Select Options
     const fetchResidents = async () => {
@@ -192,6 +198,7 @@ const UpdateForm3: React.FC<Props> = ({ onItemClick, residentId }) => {
               value={options.find(
                 (option) => option.value === memberData.ResidentID
               )}
+              filterOption={filterOption}
               onChange={handleReactSelectChange}
               className="reactSelect"
               required
@@ -207,6 +214,7 @@ const UpdateForm3: React.FC<Props> = ({ onItemClick, residentId }) => {
               value={houseOption.find(
                 (option) => option.value === memberData.HouseholdNumber
               )}
+              filterOption={filterOption}
               onChange={handleReactSelectChange2}
               className="reactSelect"
               required
