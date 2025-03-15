@@ -397,7 +397,9 @@ WHERE h.HouseholdHead IS NULL ORDER BY r.Name;
 });
 router.get('/residentsNotHouseholdHeadAndMember',(req,res) =>{
   
-  const query = `SELECT r.* FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead LEFT JOIN householdmembership hm ON r.ResidentID = hm.ResidentID WHERE h.HouseholdHead IS NULL AND hm.ResidentID IS NULL ORDER BY r.Name;
+  const query = `SELECT r.* FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead 
+  LEFT JOIN householdmembership hm ON r.ResidentID = hm.ResidentID 
+  WHERE h.HouseholdHead IS NULL AND hm.ResidentID IS NULL ORDER BY r.Name;
 `;
   db.query(query, (err,results)=>{
     if (err) {
@@ -411,7 +413,8 @@ router.get('/residentsNotHouseholdHeadAndMember',(req,res) =>{
 router.get('/residentsNotSeniorCitizenAndKK',(req,res) =>{
   
   const query = `SELECT r.* FROM residenttracker r LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID
-WHERE s.ResidentID IS NULL ORDER BY r.Name;
+  LEFT JOIN kkmembers k ON r.ResidentID = k.ResidentID
+WHERE s.ResidentID IS NULL AND k.ResidentID IS NULL ORDER BY Name;
 `;
   db.query(query, (err,results)=>{
     if (err) {
