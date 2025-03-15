@@ -152,7 +152,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
             name="HouseholdNumber"
             value={formData.HouseholdNumber}
             onChange={handleChange}
-            placeholder="Format ex.  12345"
+            placeholder="Format ex.  12345 !Must Not Be Duplicate"
             required
           />
         </div>
