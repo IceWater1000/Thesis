@@ -17,6 +17,10 @@ const AddForm4 = ({ onItemClick }: Props) => {
     EmailAddress: "",
   });
   const [options, setOptions] = useState<OptionType[]>([]);
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
   const cleanFormData = () => {
     setFormData({
       Id: "",
@@ -63,7 +67,7 @@ const AddForm4 = ({ onItemClick }: Props) => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residents"
+          "http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenAndKK"
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -78,8 +82,7 @@ const AddForm4 = ({ onItemClick }: Props) => {
       }
     };
     fetchResidents();
-  }),
-    [AddForm4];
+  }, [formData]);
   return (
     <>
       <div className="container" style={{ width: "400px" }}>
@@ -118,7 +121,11 @@ const AddForm4 = ({ onItemClick }: Props) => {
               options={options}
               name="ResidentID"
               id="ResidentID"
+              value={
+                options.find((option) => option.value === formData.Id) || null
+              }
               onChange={handleReactSelectChange}
+              filterOption={filterOption}
               className="reactSelect"
               required
               //isMulti={false} // Set to true for multi-select

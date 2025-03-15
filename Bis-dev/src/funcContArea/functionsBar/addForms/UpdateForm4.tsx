@@ -20,13 +20,18 @@ const UpdateForm4 = ({ residentId, onItemClick }: Props) => {
     SeniorID: "",
   });
   const [options, setOptions] = useState<OptionType[]>([]);
-  //populating Select Options
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
+
+  //getting the information of the data to be updated
   useEffect(() => {
     //Fetch All Residents Data to put on the Select Options
-    const fetchResidents = async () => {
+    const fetchResidents = async (item: string) => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residents"
+          `http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenUpdate/${item}`
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
@@ -34,17 +39,13 @@ const UpdateForm4 = ({ residentId, onItemClick }: Props) => {
             label: residents.Name,
           })
         );
+
         setOptions(transformResponse);
       } catch (err) {
         console.log("Error", err);
       }
     };
-    //Fetch All Houses Data to put on the Select Options
 
-    fetchResidents();
-  }, [UpdateForm4]);
-  //getting the information of the data to be updated
-  useEffect(() => {
     const fetchInhabitants = async () => {
       try {
         const response = await axios.get(
@@ -52,7 +53,9 @@ const UpdateForm4 = ({ residentId, onItemClick }: Props) => {
             residentId == "0" ? 0 : residentId
           }`
         );
+        console.log(response.data);
         setMemberData(response.data); // Store the fetched data
+        fetchResidents(response.data.ResidentID);
       } catch (err) {
         console.error("Error fetching resident:", err);
       }
@@ -155,6 +158,7 @@ const UpdateForm4 = ({ residentId, onItemClick }: Props) => {
               id="ResidentID"
               value={options.find((option) => option.value === formData.Id)}
               onChange={handleReactSelectChange}
+              filterOption={filterOption}
               className="reactSelect"
               required
               //isMulti={false} // Set to true for multi-select
