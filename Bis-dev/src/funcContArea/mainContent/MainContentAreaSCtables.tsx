@@ -29,6 +29,7 @@ interface Props {
   searchvalue: string;
 }
 import "./tables.css";
+import { useSelectAddformReload } from "../../utilities/SelectAdformDataReload";
 const MainContentAreaSCtables = ({
   filtervalue,
   searchvalue,
@@ -36,6 +37,7 @@ const MainContentAreaSCtables = ({
   type,
 }: Props) => {
   const [data, setData] = useState<Senior[]>([]);
+  const { SetSelectReload } = useSelectAddformReload();
   const [filterParameters, setFilterParameters] = useState<SeniorFilter>({
     address: "",
     civilStatus: "",
@@ -55,6 +57,7 @@ const MainContentAreaSCtables = ({
           return { ...item, Age }; // Add the age property
         });
         setData(updatedData);
+        SetSelectReload((prev: any) => !prev);
       } catch (err) {
         console.log("Error");
       }
@@ -82,6 +85,7 @@ const MainContentAreaSCtables = ({
       // Log or handle the successful deletion response
       console.log("Data deleted successfully:", response.data);
       setReload(!reload);
+      SetSelectReload((prev: any) => !prev);
     } catch (error) {
       // Handle any errors that occur during the deletion
       console.error("Error deleting data:", error);

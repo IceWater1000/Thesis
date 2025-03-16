@@ -432,7 +432,7 @@ router.get('/residentsNotSeniorCitizenAndValid',(req,res) =>{
 FROM residenttracker r  
 LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID  
 LEFT JOIN kkmembers k ON r.ResidentID = k.ResidentID  
-LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  -- Joining inhabitants table  
+LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  
 WHERE s.ResidentID IS NULL  
 AND k.ResidentID IS NULL  
 ORDER BY r.Name;

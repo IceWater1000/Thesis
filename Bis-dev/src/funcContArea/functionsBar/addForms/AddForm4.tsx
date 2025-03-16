@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Select, { SingleValue } from "react-select";
 import { useEffect } from "react";
+import { useSelectAddformReload } from "../../../utilities/SelectAdformDataReload";
 interface Props {
   onItemClick: () => void;
 }
@@ -16,6 +17,8 @@ const AddForm4 = ({ onItemClick }: Props) => {
     ContactNumber: "",
     EmailAddress: "",
   });
+  // for reloading the options when a data is added or deleted
+  const { SelectReload } = useSelectAddformReload();
   const [options, setOptions] = useState<OptionType[]>([]);
   const filterOption = (options: OptionType, inputValue: string) => {
     const lastName = options.label.split(",")[0]; // Extract the surname
@@ -82,7 +85,7 @@ const AddForm4 = ({ onItemClick }: Props) => {
       }
     };
     fetchResidents();
-  }, [formData]);
+  }, [formData, SelectReload]);
   return (
     <>
       <div className="container" style={{ width: "400px" }}>
