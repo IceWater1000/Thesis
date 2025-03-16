@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./forms.css";
 import axios, { AxiosError } from "axios";
 import Select, { SingleValue } from "react-select";
+import HouseMembersAddingConfirmation from "./ConfirmationModals/HouseMembersAddingConfirmation";
 interface Props {
   onItemClick: () => void;
 }
@@ -91,6 +92,7 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
           data
         );
         console.log("Data added successfully:", response.data);
+        alert("Data Added Successfully");
       } catch (error: any) {
         if (error.response.status === 409) {
           alert(

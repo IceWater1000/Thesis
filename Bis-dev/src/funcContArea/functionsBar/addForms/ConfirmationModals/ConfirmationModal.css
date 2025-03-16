@@ -1,0 +1,64 @@
+.BackDrop{
+    position: fixed !important; 
+    display: none;
+    inset: 0;
+    z-index: 1100; 
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+.BackDrop.Show{
+    display: block;
+}
+.HouseMemberConfirmationModal{ 
+    position: fixed; 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    
+    border: solid 2px blue;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 1101;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.ConfirmationHeadText{
+    color: #433BFF;
+    font-weight: bold;
+    font-size: 15pt;
+}
+.ConfirmationBodyText{
+    margin-top: 10px;
+     margin-bottom: 10px;
+    font-size: 11pt;
+    color: #9994f5;
+}
+.ConfirmationLine{
+    width: 100%;
+    margin: 0;
+    color: #433BFF;
+    border: 2px solid #433BFF;
+}
+.ConfirmationButton{
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #2F27CE;
+    font-family: "Roboto", sans-serif;
+    color: #fbfbfe;
+    box-shadow: 2px 2px 4px rgba(47, 39, 206, 0.25);
+    border-radius: 10px;
+}
+.ConfirmationButton:hover{
+    color: #2F27CE;
+    background-color: #fbfbfe;
+}
+.ConfirmationModalButtonContainer{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    gap: 24px;
+}

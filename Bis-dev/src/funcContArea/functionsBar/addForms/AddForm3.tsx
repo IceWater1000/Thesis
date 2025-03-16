@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Select, { SingleValue } from "react-select";
 import { useEffect } from "react";
+import HouseMembersAddingConfirmation from "./ConfirmationModals/HouseMembersAddingConfirmation";
 interface Props {
   onItemClick: () => void;
 }
@@ -16,10 +17,10 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
   const [options, setOptions] = useState<OptionType[]>([]);
   const [houseOption, setHouseOption] = useState<OptionType[]>([]);
   // State for form data
-
+  const [isConfirming, setIsConfirming] = useState(false);
   const [formData, setFormData] = useState({
-    Id: "",
-    HouseholdNumber: "",
+    Id: "123",
+    HouseholdNumber: "123",
     RelationID: "1",
   });
   useEffect(() => {
@@ -111,10 +112,9 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Form Data Submitted:", formData);
-
+    console.log(formData.HouseholdNumber);
     // Pass the form data to another function
-    submitFormData(formData);
-    cleanFormData();
+    setIsConfirming((prev) => !prev);
   };
 
   //function to handle submitted data
@@ -137,8 +137,27 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
     // Make your API call here
   };
 
+  //Confirmation Modal Click Fucntions
+
+  const OnCancelClickHanler = () => {
+    setIsConfirming((prev) => !prev);
+  };
+
+  const OnConfirmClickHandler = () => {
+    submitFormData(formData);
+    setIsConfirming((prev) => !prev);
+    cleanFormData();
+    onItemClick();
+  };
   return (
     <>
+      <HouseMembersAddingConfirmation
+        CurrentState={isConfirming}
+        OnCancelClick={OnCancelClickHanler}
+        OnConfirmClick={OnConfirmClickHandler}
+        HouseNumber={formData.HouseholdNumber}
+        RelationShip={Number(formData.RelationID)}
+      />
       <div className="container householdRecord">
         <div className="SideContainer">
           <div className="asdef">
