@@ -424,6 +424,34 @@ router.get('/residentsNotHouseholdHeadAndMember',(req,res) =>{
     }
   })
 });
+router.get('/residentsNotKKAndValid', (req,res)=>{
+  let Data =[];
+  const query = `SELECT  
+    r.*, 
+    DATE_FORMAT(i.DateOfBirth, "%Y-%m-%d") AS DateOfBirth 
+    FROM residenttracker r  
+    LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID  
+    LEFT JOIN kkmembers k ON r.ResidentID = k.ResidentID  
+    LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  
+    WHERE s.ResidentID IS NULL  
+    AND k.ResidentID IS NULL  
+    ORDER BY r.Name;
+
+`;
+  db.query(query, (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      Data=results;
+      const Seniors = Data.filter((item)=>
+        calculateAge(item.DateOfBirth) >=15 && calculateAge(item.DateOfBirth) <=30      
+      ); 
+      
+      res.json(Seniors);
+    }
+  })
+})
 router.get('/residentsNotSeniorCitizenAndValid',(req,res) =>{
   let Data =[];
   const query = `SELECT  
@@ -452,21 +480,7 @@ ORDER BY r.Name;
     }
   })
 });
-router.get('/residentsNotSeniorCitizenAndKK',(req,res) =>{
 
-  const query = `SELECT r.* FROM residenttracker r LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID
-  LEFT JOIN kkmembers k ON r.ResidentID = k.ResidentID
-WHERE s.ResidentID IS NULL AND k.ResidentID IS NULL ORDER BY Name;
-`;
-  db.query(query, (err,results)=>{
-    if (err) {
-      console.error('Error fetching residents:', err);
-      res.status(500).send(err);
-    } else {  
-      res.json(results);
-    }
-  })
-});
 
 router.get('/residentsNotHouseholdHeadUpdate/:id',(req,res) =>{
   const  Current  = req.params.id;
@@ -542,6 +556,44 @@ ORDER BY Name;
       Data=results;
       const Seniors = Data.filter((item)=>
         calculateAge(item.DateOfBirth) >=60     
+      ); 
+      
+      res.json(Seniors);
+    }
+  })
+});
+router.get('/residentsNotKKAndValidUpdate/:id',(req,res) =>{
+  let Data =[];
+  const Current = req.params.id;
+  const query = `SELECT  
+    r.*,  
+    DATE_FORMAT(i.DateOfBirth, "%Y-%m-%d") AS DateOfBirth  
+FROM residenttracker r  
+LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID  
+LEFT JOIN kkmembers k ON r.ResidentID = k.ResidentID  
+LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  
+WHERE s.ResidentID IS NULL  
+AND k.ResidentID IS NULL  
+
+UNION ALL  
+
+SELECT  
+    r.*,  
+    DATE_FORMAT(i.DateOfBirth, "%Y-%m-%d") AS DateOfBirth  
+FROM residenttracker r  
+LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  
+WHERE r.ResidentID = ?  
+
+ORDER BY Name;
+`;
+  db.query(query,[Current], (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      Data=results;
+      const Seniors = Data.filter((item)=>
+        calculateAge(item.DateOfBirth) >=15 && calculateAge(item.DateOfBirth) <=30     
       ); 
       
       res.json(Seniors);

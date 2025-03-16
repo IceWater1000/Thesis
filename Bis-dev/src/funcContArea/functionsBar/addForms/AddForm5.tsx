@@ -72,11 +72,13 @@ const AddForm5 = ({ onItemClick }: Props) => {
     addKK();
     onItemClick();
   };
+
+  //populate form
   useEffect(() => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenAndKK"
+          "http://localhost:5000/api/inhabitants/residentsNotKKAndValid"
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({
