@@ -14,6 +14,7 @@ interface Senior {
   OccupationID: string;
   SeniorCitizenID: string;
   SeniorCitizenNumber: string;
+  DateOfBirth: Date;
 }
 interface SeniorFilter {
   address: string;
@@ -49,7 +50,11 @@ const MainContentAreaSCtables = ({
         const response = await axios.get(
           "http://localhost:5000/api/seniorCitizen/view"
         );
-        setData(response.data);
+        const updatedData = response.data.map((item: Senior) => {
+          const Age = calculateAge(item.DateOfBirth); // Calculate age
+          return { ...item, Age }; // Add the age property
+        });
+        setData(updatedData);
       } catch (err) {
         console.log("Error");
       }
@@ -133,6 +138,20 @@ const MainContentAreaSCtables = ({
   useEffect(() => {
     setCurrentCount(filterData.length);
   }, [filterData]);
+
+  const calculateAge = (birthdate: Date) => {
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  };
   return (
     <div>
       <div className="topContainerTableData">

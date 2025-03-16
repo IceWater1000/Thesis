@@ -57,7 +57,7 @@ router.delete('/delete/:id', (req, res) => {
 });
 // Get Inhabitants
 router.get('/view', (req, res) => {
-    const query = 'SELECT * FROM `seniorcitizensfull2`';
+    const query = 'SELECT *,DATE_FORMAT(DateOfBirth, "%Y-%m-%d") AS DateOfBirth FROM `seniorcitizensfull2`';
     db.query(query, (err, results) => {
       if (err) {
         console.error('Error fetching residents:', err);
