@@ -510,6 +510,44 @@ router.get('/residentsNotSeniorCitizenAndKKUpdate/:id',(req,res) =>{
     }
   })
 });
+router.get('/residentsNotSeniorCitizenAndValidUpdate/:id',(req,res) =>{
+  let Data =[];
+  const Current = req.params.id;
+  const query = `SELECT  
+    r.*,  
+    DATE_FORMAT(i.DateOfBirth, "%Y-%m-%d") AS DateOfBirth  
+FROM residenttracker r  
+LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID  
+LEFT JOIN kkmembers k ON r.ResidentID = k.ResidentID  
+LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  
+WHERE s.ResidentID IS NULL  
+AND k.ResidentID IS NULL  
+
+UNION ALL  
+
+SELECT  
+    r.*,  
+    DATE_FORMAT(i.DateOfBirth, "%Y-%m-%d") AS DateOfBirth  
+FROM residenttracker r  
+LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  
+WHERE r.ResidentID = ?  
+
+ORDER BY Name;
+`;
+  db.query(query,[Current], (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      Data=results;
+      const Seniors = Data.filter((item)=>
+        calculateAge(item.DateOfBirth) >=60     
+      ); 
+      
+      res.json(Seniors);
+    }
+  })
+});
 router.get('/residents11',(req,res) =>{
   const query = "SELECT * FROM `barangay_inhabitants_view1`";
   db.query(query, (err,results)=>{

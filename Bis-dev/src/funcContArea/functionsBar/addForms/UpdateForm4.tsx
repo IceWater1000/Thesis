@@ -31,7 +31,7 @@ const UpdateForm4 = ({ residentId, onItemClick }: Props) => {
     const fetchResidents = async (item: string) => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenAndKKUpdate/${item}`
+          `http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenAndValidUpdate/${item}`
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({

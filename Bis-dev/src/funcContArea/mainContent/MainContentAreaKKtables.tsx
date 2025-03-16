@@ -14,6 +14,7 @@ interface KK {
   WorkStatus: string;
   YouthAgeGroup: string;
   YouthClassification: string;
+  DateOfBirth: Date;
 }
 interface KKFilter {
   youthClassification: string;
@@ -50,8 +51,11 @@ const MainContentAreaKKtables = ({
         const response = await axios.get(
           "http://localhost:5000/api/KKMembers/view"
         );
-        setData(response.data);
-        console.log(response.data);
+        const updatedData = response.data.map((item: KK) => {
+          const Age = calculateAge(item.DateOfBirth); // Calculate age
+          return { ...item, Age }; // Add the age property
+        });
+        setData(updatedData);
       } catch (err) {
         console.log("Error");
       }
@@ -171,6 +175,20 @@ const MainContentAreaKKtables = ({
   useEffect(() => {
     setCurrentCount(filterData.length);
   }, [filterData]);
+
+  const calculateAge = (birthdate: Date) => {
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  };
   return (
     <div>
       <div className="topContainerTableData">
