@@ -3,6 +3,20 @@ const router = express.Router();
 const db = require('../db'); // Import db connection
 
 
+const calculateAge = (birthdate) => {
+  const today = new Date();
+  const birthDate = new Date(birthdate);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (
+    monthDiff < 0 ||
+    (monthDiff === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+  return age;
+};
+
 router.post('/filter', (req, res) => {
   const { address, sex, civilStatus, occupation, citizenship } = req.body;
 
@@ -410,8 +424,36 @@ router.get('/residentsNotHouseholdHeadAndMember',(req,res) =>{
     }
   })
 });
+router.get('/residentsNotSeniorCitizenAndValid',(req,res) =>{
+  let Data =[];
+  const query = `SELECT  
+    r.*, 
+    DATE_FORMAT(i.DateOfBirth, "%Y-%m-%d") AS DateOfBirth 
+FROM residenttracker r  
+LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID  
+LEFT JOIN kkmembers k ON r.ResidentID = k.ResidentID  
+LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  -- Joining inhabitants table  
+WHERE s.ResidentID IS NULL  
+AND k.ResidentID IS NULL  
+ORDER BY r.Name;
+
+`;
+  db.query(query, (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      Data=results;
+      const Seniors = Data.filter((item)=>
+        calculateAge(item.DateOfBirth) >=60     
+      ); 
+      
+      res.json(Seniors);
+    }
+  })
+});
 router.get('/residentsNotSeniorCitizenAndKK',(req,res) =>{
-  
+
   const query = `SELECT r.* FROM residenttracker r LEFT JOIN seniorcitizens s ON r.ResidentID = s.ResidentID
   LEFT JOIN kkmembers k ON r.ResidentID = k.ResidentID
 WHERE s.ResidentID IS NULL AND k.ResidentID IS NULL ORDER BY Name;
@@ -420,7 +462,7 @@ WHERE s.ResidentID IS NULL AND k.ResidentID IS NULL ORDER BY Name;
     if (err) {
       console.error('Error fetching residents:', err);
       res.status(500).send(err);
-    } else {
+    } else {  
       res.json(results);
     }
   })

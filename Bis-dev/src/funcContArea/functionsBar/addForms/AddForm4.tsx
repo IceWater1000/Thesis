@@ -67,7 +67,7 @@ const AddForm4 = ({ onItemClick }: Props) => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenAndKK"
+          "http://localhost:5000/api/inhabitants/residentsNotSeniorCitizenAndValid"
         );
         const transformResponse: OptionType[] = response.data.map(
           (residents: any) => ({

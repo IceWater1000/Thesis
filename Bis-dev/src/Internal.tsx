@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useData } from "./DataContext";
 import "./Internal.css";
+import { DataProvider } from "./utilities/SelectAdformDataReload";
 const Internal = () => {
   const userAccount = JSON.parse(localStorage.getItem("data") || "");
   const [var1, setVar1] = useState("Dashboard");
@@ -43,7 +44,9 @@ const Internal = () => {
             passTheSelectedItem={getSelectedItem}
             userType={userAccount.usertype}
           />
-          <Outlet context={var2} />
+          <DataProvider>
+            <Outlet context={var2} />
+          </DataProvider>
         </div>
       </div>
     </>
