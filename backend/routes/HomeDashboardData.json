@@ -21,5 +21,26 @@
             "Label": "ABACASKDA"
         }
     ],
-    "BarangayGmail": "barangay_butnga_OrasES.@gmail.com"
+    "BarangayGmail": "barangay_butnga_OrasES.@gmail.com",
+    "Numbers":[
+        {
+            "Name":"Police",
+            "Number":[
+                "09221232432",
+                "09224137732"
+            ]
+        },
+        {
+            "Name":"Fire",
+            "Number":["09776857453","09877867564"]
+        },
+        {
+            "Name":"Oras Rescue",
+            "Number":["09119877869","09009875843"]
+        },
+        {
+            "Name":"RHU",
+            "Number":["09098876543","09879675870"]
+        }
+    ]
 }

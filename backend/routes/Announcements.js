@@ -81,12 +81,14 @@ router.post('/upload', upload.array("projectImage",5), function (req, res) {
  });
 //View
 router.get("/projects", (req, res) => {
-    
+    let Announcements = []
     fs.readFile(filepath, "utf8", (err, data) => {
       if (err) {
         return res.status(500).json({ message: "Failed to read the file." });
       }
-      res.json(JSON.parse(data));
+      Announcements = JSON.parse(data);
+      Announcements.reverse();
+      res.json(Announcements);
     });
   });
 //delete

@@ -64,7 +64,9 @@ const AddForm4 = ({ onItemClick }: Props) => {
       }
     };
     addSC();
+
     onItemClick();
+    alert("Data Added Successfully");
   };
   useEffect(() => {
     const fetchResidents = async () => {

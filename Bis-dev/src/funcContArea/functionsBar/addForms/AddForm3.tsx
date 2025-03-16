@@ -132,8 +132,9 @@ const AddForm3: React.FC<Props> = ({ onItemClick }: Props) => {
       }
     };
     addHH();
-    console.log(formData);
+
     onItemClick();
+    alert("Data Added Successfully");
     // Make your API call here
   };
 

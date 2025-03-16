@@ -70,7 +70,9 @@ const AddForm5 = ({ onItemClick }: Props) => {
       }
     };
     addKK();
+
     onItemClick();
+    alert("Data Added Successfully");
   };
 
   //populate form
