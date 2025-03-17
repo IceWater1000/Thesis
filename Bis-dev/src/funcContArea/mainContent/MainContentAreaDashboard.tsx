@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./MainContentAreaDashboard.css";
 import QualifiedCitizenForMembership from "../dashboard/QualifiedCitizenForMembership";
 import Activities from "../dashboard/Activities";
+import ActivitiesCompleted from "../dashboard/ActivitiesCompleted";
+import ActivitiesToday from "../dashboard/ActivitiesToday";
 const MainContentAreaDashboard = () => {
   return (
     <>
@@ -24,7 +26,9 @@ const MainContentAreaDashboard = () => {
           />
         </div>
         <div className="DashboardContentAreaRight">
+          <ActivitiesToday />
           <Activities />
+          <ActivitiesCompleted />
         </div>
       </div>
     </>

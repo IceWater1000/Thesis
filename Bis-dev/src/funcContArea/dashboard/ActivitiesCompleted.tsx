@@ -28,7 +28,7 @@ const getDateDifferenceFromToday = (item: string) => {
   return Math.ceil(differenceInTime / (1000 * 60 * 60 * 24));
 };
 
-const Activities = () => {
+const ActivitiesCompleted = () => {
   const [announcementData, setAnnouncementData] = useState<Announcement[]>([]);
   const [dataToBeDisplayed, setDataToBeDisplayed] = useState<
     DataToBeDisplayed[]
@@ -51,7 +51,7 @@ const Activities = () => {
         .filter(
           (item) =>
             item.activityDate !== "" &&
-            getDateDifferenceFromToday(item.activityDate) > 0
+            getDateDifferenceFromToday(item.activityDate) < 0
         ) // Remove empty dates
         .map((item, index) => ({
           id: index + 1,
@@ -64,7 +64,7 @@ const Activities = () => {
   }, [announcementData]);
   return (
     <div className="ActivitiesCard">
-      <div className="CardHeader">Upcoming Activities from Announcements</div>
+      <div className="CardHeader">Past Activities from Announcements</div>
       <div className="BlueLine"></div>
       <div className="QualifiedTable">
         <table>
@@ -72,8 +72,7 @@ const Activities = () => {
             <tr>
               <th>ID</th>
               <th>Title</th>
-              <th>Date</th>
-              <th>Days Until Event</th>
+              <th>Date Completed</th>
             </tr>
           </thead>
           <tbody>
@@ -82,7 +81,6 @@ const Activities = () => {
                 <td>{item.id}</td>
                 <td>{item.title}</td>
                 <td>{item.activityDate}</td>
-                <td>{item.Countdown} Days Left</td>
               </tr>
             ))}
           </tbody>
@@ -92,4 +90,4 @@ const Activities = () => {
   );
 };
 
-export default Activities;
+export default ActivitiesCompleted;

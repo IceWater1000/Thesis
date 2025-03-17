@@ -16,7 +16,18 @@ interface DataToBeDisplayed {
   activityDate: string;
   Countdown: number;
 }
+//Current Date
+const getCurrentFormattedDate = (): string => {
+  const today = new Date();
+  return today.toLocaleDateString("en-US", {
+    month: "long",
+    day: "2-digit",
+    year: "numeric",
+  });
+};
 
+console.log(getCurrentFormattedDate()); // Example Output: "March 17, 2025"
+//Date Difference Calculator
 const getDateDifferenceFromToday = (item: string) => {
   const targetDate: Date = new Date(item);
   const today: Date = new Date();
@@ -28,7 +39,7 @@ const getDateDifferenceFromToday = (item: string) => {
   return Math.ceil(differenceInTime / (1000 * 60 * 60 * 24));
 };
 
-const Activities = () => {
+const ActivitiesToday = () => {
   const [announcementData, setAnnouncementData] = useState<Announcement[]>([]);
   const [dataToBeDisplayed, setDataToBeDisplayed] = useState<
     DataToBeDisplayed[]
@@ -51,7 +62,7 @@ const Activities = () => {
         .filter(
           (item) =>
             item.activityDate !== "" &&
-            getDateDifferenceFromToday(item.activityDate) > 0
+            getDateDifferenceFromToday(item.activityDate) == 0
         ) // Remove empty dates
         .map((item, index) => ({
           id: index + 1,
@@ -64,32 +75,23 @@ const Activities = () => {
   }, [announcementData]);
   return (
     <div className="ActivitiesCard">
-      <div className="CardHeader">Upcoming Activities from Announcements</div>
+      <div style={{ display: "flex", flexDirection: "row", gap: "80px" }}>
+        <div className="CardHeader">Activities Today</div>
+        <div className="CardHeader">{getCurrentFormattedDate()}</div>
+      </div>
+
       <div className="BlueLine"></div>
       <div className="QualifiedTable">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Date</th>
-              <th>Days Until Event</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dataToBeDisplayed.map((item) => (
-              <tr>
-                <td>{item.id}</td>
-                <td>{item.title}</td>
-                <td>{item.activityDate}</td>
-                <td>{item.Countdown} Days Left</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <ul>
+          {dataToBeDisplayed.map((item) => (
+            <li>
+              <div className="CurrentActivityText">{item.title}</div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
 };
 
-export default Activities;
+export default ActivitiesToday;
