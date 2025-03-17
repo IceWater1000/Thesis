@@ -278,7 +278,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
           <div className={`dashboardForm ${isUpdating2 ? "show" : ""}`}>
             <form className="dashboardFormContents" onSubmit={handleSubmit2}>
               <div className="dashboardFormContent">
-                <label className="labels">Project Title</label>
+                <label className="labels">Announcement Title</label>
                 <input
                   className="inputs"
                   type="text"
@@ -304,7 +304,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
                 />
               </div>
               <div className="dashboardFormContent">
-                <label className="labels">Project Description</label>
+                <label className="labels">Announcement Details</label>
                 <textarea
                   className="textArea"
                   name="projectDescription"
@@ -336,7 +336,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
           <div className={`dashboardForm ${isUpdating ? "show" : ""}`}>
             <form className="dashboardFormContents" onSubmit={handleSubmit}>
               <div className="dashboardFormContent">
-                <label className="labels">Project Title</label>
+                <label className="labels">Announcement Title</label>
                 <input
                   className="inputs"
                   type="text"
@@ -358,7 +358,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
                 />
               </div>
               <div className="dashboardFormContent">
-                <label className="labels">Project Description</label>
+                <label className="labels">Announcement Deetails</label>
                 <textarea
                   className="textArea"
                   name="projectDescription"

@@ -53,7 +53,8 @@ const QualifiedCitizenForMembership = ({ gridArea, headText, url }: Props) => {
     >
       <div className="CardHeader">{headText}</div>
       <div className="CardHeader">Number of Residents: {data.length}</div>
-      <hr className="BlueLine"></hr>
+      <div className="BlueLine"></div>
+
       <div className="QualifiedTable">
         <table>
           <thead>

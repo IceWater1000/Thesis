@@ -31,7 +31,7 @@
     
 }
 .BlueLine{
-    height: 2px;
+    min-height: 2px;
     margin: 12px 0px 12px 0px;
     background-color: #2F27CE;
 }
