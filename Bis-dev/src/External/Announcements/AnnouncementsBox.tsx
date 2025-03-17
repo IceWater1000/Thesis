@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./Announcements.css";
 interface Props {
   title: string;
   image: string;
   date: string;
   uploader: string;
   description: string;
+  activityDate: string;
 }
 const AnnouncementsBox = ({
   title,
@@ -12,6 +14,7 @@ const AnnouncementsBox = ({
   uploader,
   date,
   description,
+  activityDate,
 }: Props) => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -41,6 +44,13 @@ const AnnouncementsBox = ({
 
         <hr className="blueLine"></hr>
         <div className="announcementsBoxTitle">{title}</div>
+        {activityDate != "" ? (
+          <div className="announcementsBoxActivityDate">
+            Activity Date: {activityDate}
+          </div>
+        ) : (
+          ""
+        )}
         <div
           className={`announcementsBoxDescription ${
             expanded ? "expanded" : ""

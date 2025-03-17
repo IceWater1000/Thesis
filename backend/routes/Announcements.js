@@ -35,15 +35,6 @@ router.post('/upload', upload.array("projectImage",5), function (req, res) {
     const image = req.files.map(item=>`/Data/${item.filename}`)
     
 
-    const dateObject = new Date(activityDate);
-
-    // Format the date to "Month DD, YYYY"
-    activityDate = dateObject.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    });
-    
     const newProject = {
         id: Date.now(), // Unique ID based on timestamp
         title,

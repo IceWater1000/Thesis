@@ -110,17 +110,29 @@ const Announcements = ({ label, onItemClick }: Props) => {
       day: "numeric",
     });
 
-    if (!title || !description || !image || !uploader || !activityDate) {
+    if (!title || !description || !image || !uploader) {
       alert("Please fill in all fields and select an image.");
       return;
     }
+
+    const dateObject = new Date(activityDate);
+
+    // Format the date to "Month DD, YYYY"
+    const NewactivityDate = dateObject.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
 
     const formData = new FormData();
     formData.append("title", title);
     formData.append("date", formattedDate);
     formData.append("description", description);
     formData.append("uploader", uploader);
-    formData.append("activityDate", activityDate);
+    formData.append(
+      "activityDate",
+      NewactivityDate == "Invalid Date" ? "" : NewactivityDate
+    );
     image.forEach((file: any) => {
       formData.append("projectImage", file);
     });
@@ -136,8 +148,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
         }
       );
       console.log("Project added:", response.data);
-
-      // Optionally, reset the form or update the UI
+      setActivityDate("");
     } catch (error: any) {
       console.error("Error adding project:", error.response.data.message);
     }
@@ -153,7 +164,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
         updatingValue
       );
 
-      // Optionally, reset the form or update the UI
+      setActivityDate("");
     } catch (error: any) {}
     setIsupdating2(!isUpdating2);
   };

@@ -9,11 +9,20 @@ interface Project {
   date: string;
   description: string;
   image: string;
+  activityDate: string;
 }
 
 const AnnouncementsContainer = () => {
   const [projects, setProjects] = useState<Project[]>([
-    { id: "", title: "", uploader: "", description: "", image: "", date: "" },
+    {
+      id: "",
+      title: "",
+      uploader: "",
+      description: "",
+      image: "",
+      date: "",
+      activityDate: "",
+    },
   ]);
   useEffect(() => {
     const fetchProjects = async () => {
@@ -36,6 +45,7 @@ const AnnouncementsContainer = () => {
             title={item.title}
             image={item.image}
             uploader={item.uploader}
+            activityDate={item.activityDate}
             description={item.description}
           />
         </ScrollReveal>
