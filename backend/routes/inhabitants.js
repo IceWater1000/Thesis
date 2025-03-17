@@ -411,8 +411,8 @@ WHERE h.HouseholdHead IS NULL ORDER BY r.Name;
 });
 router.get('/residentsNotHouseholdHeadAndMember',(req,res) =>{
   
-  const query = `SELECT r.* FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead 
-  LEFT JOIN householdmembership hm ON r.ResidentID = hm.ResidentID 
+  const query = `SELECT r.*,DATE_FORMAT(i.DateOfBirth, "%Y-%m-%d") AS DateOfBirth FROM residenttracker r LEFT JOIN household h ON r.ResidentID = h.HouseholdHead 
+  LEFT JOIN householdmembership hm ON r.ResidentID = hm.ResidentID LEFT JOIN barangayinhabitants i ON r.ResidentID = i.ResidentID  
   WHERE h.HouseholdHead IS NULL AND hm.ResidentID IS NULL ORDER BY r.Name;
 `;
   db.query(query, (err,results)=>{
