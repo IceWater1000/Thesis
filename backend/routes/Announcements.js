@@ -29,11 +29,20 @@ const upload = multer({ storage: storage })
 router.post('/upload', upload.array("projectImage",5), function (req, res) {
     // req.file is the name of your file in the form above, here 'uploaded_file'
     // req.body will hold the text fields, if there were any 
-    const { title, description, uploader, date } = req.body;
+    let { title, description, uploader, date, activityDate } = req.body;
     //const image = `/Data/${req.file.filename}`
     //req.files.map((file)=>{`/Data/${file.filename}`})
     const image = req.files.map(item=>`/Data/${item.filename}`)
     
+
+    const dateObject = new Date(activityDate);
+
+    // Format the date to "Month DD, YYYY"
+    activityDate = dateObject.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
     
     const newProject = {
         id: Date.now(), // Unique ID based on timestamp
@@ -41,6 +50,7 @@ router.post('/upload', upload.array("projectImage",5), function (req, res) {
         date,
         uploader,
         description,
+        activityDate,
         image,
       };
     

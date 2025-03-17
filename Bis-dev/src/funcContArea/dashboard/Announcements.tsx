@@ -13,6 +13,7 @@ interface Project {
   uploader: string;
   description: string;
   image: string;
+  activityDate: string;
 }
 interface OptionType {
   value: string;
@@ -29,6 +30,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [uploader, setUploader] = useState("");
+  const [activityDate, setActivityDate] = useState("");
   const [options, setOptions] = useState<OptionType[]>([]);
   const [image, setImage] = useState<any>([]);
 
@@ -38,6 +40,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
     uploader: "",
     description: "",
     image: "",
+    activityDate: "",
   });
   //Load JSON File Data
   useEffect(() => {
@@ -107,7 +110,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
       day: "numeric",
     });
 
-    if (!title || !description || !image || !uploader) {
+    if (!title || !description || !image || !uploader || !activityDate) {
       alert("Please fill in all fields and select an image.");
       return;
     }
@@ -117,6 +120,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
     formData.append("date", formattedDate);
     formData.append("description", description);
     formData.append("uploader", uploader);
+    formData.append("activityDate", activityDate);
     image.forEach((file: any) => {
       formData.append("projectImage", file);
     });
@@ -163,6 +167,10 @@ const Announcements = ({ label, onItemClick }: Props) => {
   const handleReactSelectChange = (option: SingleValue<OptionType>) => {
     const value = option?.value || "";
     setUploader(value);
+  };
+
+  const handleActivityDateChange = (e: any) => {
+    setActivityDate(e.target.value);
   };
   //for updating
   const handleDescriptionChange2 = (e: any) => {
@@ -247,7 +255,9 @@ const Announcements = ({ label, onItemClick }: Props) => {
               </div>
               <div className="textContent">
                 <div className="title">{project.title}</div>
-
+                <div className="activityDate">
+                  Activity Date: {project.activityDate}
+                </div>
                 <div className="description">{project.description}</div>
               </div>
               <div className="actionContent">
@@ -355,6 +365,15 @@ const Announcements = ({ label, onItemClick }: Props) => {
                   className="reactSelect"
                   required
                   //isMulti={false} // Set to true for multi-select
+                />
+              </div>
+              <div className="dashboardFormContent">
+                <label className="labels">Activity Date:</label>
+                <input
+                  className="inputs"
+                  name="projectActivityDate"
+                  type="date"
+                  onChange={handleActivityDateChange}
                 />
               </div>
               <div className="dashboardFormContent">
