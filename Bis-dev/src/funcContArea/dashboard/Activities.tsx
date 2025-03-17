@@ -47,7 +47,11 @@ const Activities = () => {
   useEffect(() => {
     setDataToBeDisplayed(
       announcementData
-        .filter((item) => item.activityDate !== "") // Remove empty dates
+        .filter(
+          (item) =>
+            item.activityDate !== "" &&
+            getDateDifferenceFromToday(item.activityDate) > 0
+        ) // Remove empty dates
         .map((item, index) => ({
           id: index + 1,
           title: item.title,
