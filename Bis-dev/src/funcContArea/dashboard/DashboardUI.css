@@ -78,3 +78,29 @@
     flex-direction: column;
     gap: 8px;
 }
+
+
+.NumbersContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    justify-content: space-between;
+}
+.EmergencyNumberContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.EmergnecySave{
+    font-size: 24px;
+    
+    margin-bottom: 12px;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    font-weight: bold;
+    background-color: #433BFF;
+    color: white;
+    cursor: pointer;
+    padding: 0px 12px 0px 12px;
+    border-radius: 10px;
+}

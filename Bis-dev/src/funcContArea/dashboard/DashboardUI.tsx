@@ -20,6 +20,9 @@ interface Carousel {
 }
 const DashboardUI = ({ label, onItemClick }: Props) => {
   const [carouselImages, setCarouselImages] = useState<Carousel[]>([]);
+  const [numbersLabelOriginal, setNumbersLabelOriginal] = useState<Numbers[]>(
+    []
+  );
   const [numbersLabel, setNumbersLabel] = useState<Numbers[]>([]);
 
   // for reloading Data
@@ -42,6 +45,7 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
         );
         setCarouselImages(response.data.IntroductionImageLabel);
         setNumbersLabel(response.data.Numbers);
+        setNumbersLabelOriginal(response.data.Numbers);
       } catch (error) {
         console.log("Error on the Backend");
       }
@@ -52,7 +56,7 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
   const carouselAddClickHandler = () => {
     setCarouselImagesAddformClicked((prev) => !prev);
   };
-  // for deteling
+  // for deleting
   const onDelete = async (item: number) => {
     try {
       const response = await axios.get(
@@ -62,6 +66,42 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
       console.log(error);
     }
     setReload(!reload);
+  };
+
+  //for editing the Emergency Numbers
+  const [isEdetingEmergency, setIsEdetingEmergency] = useState(false);
+
+  const onEmergencyNumberChange = (
+    type: number,
+    index: number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value;
+    setNumbersLabel((prev) =>
+      prev.map((item, i) =>
+        i === type
+          ? {
+              ...item,
+              Number: item.Number.map((num, j) => (j === index ? value : num)),
+            }
+          : item
+      )
+    );
+  };
+
+  const saveEmergencyNumbers = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/homeDashboard/EditNumbers",
+        { numbersLabel: numbersLabel }
+      );
+      console.log("ADDED", response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsEdetingEmergency(false);
+      setReload(!reload);
+    }
   };
   return (
     <>
@@ -74,6 +114,7 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
             className="CloseButton"
             onClick={() => {
               onItemClick();
+              setIsEdetingEmergency(false);
             }}
           >
             <img
@@ -83,6 +124,146 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
           </div>
         </div>
         <div className="dashboardTabMainContent">
+          <div className="EmergencyNumbers">
+            <div style={{ display: "flex", flexDirection: "row", gap: "24px" }}>
+              <div className="DashboardUIHead">EMERGENCY NUMBERS</div>
+              {isEdetingEmergency ? (
+                <>
+                  <div className="EmergnecySave" onClick={saveEmergencyNumbers}>
+                    Save
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+              <div
+                className="CarouselAdd"
+                onClick={() => {
+                  setIsEdetingEmergency((prev) => !prev);
+                  isEdetingEmergency
+                    ? setNumbersLabel(numbersLabelOriginal)
+                    : "";
+                }}
+              >
+                {isEdetingEmergency ? "CANCEL EDITING" : "EDIT"}
+              </div>
+            </div>
+            <div className="NumbersContainer">
+              <div className="EmergencyNumberContainer">
+                <div>Police</div>
+                {isEdetingEmergency ? (
+                  <>
+                    <input
+                      type="number"
+                      className="DashboardUIInput"
+                      value={numbersLabel[0]?.Number[0]}
+                      onChange={(event) => {
+                        onEmergencyNumberChange(0, 0, event);
+                      }}
+                    />
+                    <input
+                      type="number"
+                      className="DashboardUIInput"
+                      value={numbersLabel[0]?.Number[1]}
+                      onChange={(event) => {
+                        onEmergencyNumberChange(0, 1, event);
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div>{numbersLabel[0]?.Number[0]}</div>
+                    <div>{numbersLabel[0]?.Number[1]}</div>
+                  </>
+                )}
+              </div>
+              <div className="EmergencyNumberContainer">
+                <div>Fire</div>
+                {isEdetingEmergency ? (
+                  <>
+                    <input
+                      type="number"
+                      className="DashboardUIInput"
+                      value={numbersLabel[1]?.Number[0]}
+                      onChange={(event) => {
+                        onEmergencyNumberChange(1, 0, event);
+                      }}
+                    />
+                    <input
+                      type="number"
+                      className="DashboardUIInput"
+                      value={numbersLabel[1]?.Number[1]}
+                      onChange={(event) => {
+                        onEmergencyNumberChange(1, 1, event);
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div>{numbersLabel[1]?.Number[0]}</div>
+                    <div>{numbersLabel[1]?.Number[1]}</div>
+                  </>
+                )}
+              </div>
+              <div className="EmergencyNumberContainer">
+                <div>Oras Rescue</div>
+                {isEdetingEmergency ? (
+                  <>
+                    <input
+                      type="number"
+                      className="DashboardUIInput"
+                      value={numbersLabel[2]?.Number[0]}
+                      onChange={(event) => {
+                        onEmergencyNumberChange(2, 0, event);
+                      }}
+                    />
+                    <input
+                      type="number"
+                      className="DashboardUIInput"
+                      value={numbersLabel[2]?.Number[1]}
+                      onChange={(event) => {
+                        onEmergencyNumberChange(2, 1, event);
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div>{numbersLabel[2]?.Number[0]}</div>
+                    <div>{numbersLabel[2]?.Number[1]}</div>
+                  </>
+                )}
+              </div>
+              <div className="EmergencyNumberContainer">
+                <div>RHU</div>
+                {isEdetingEmergency ? (
+                  <>
+                    <input
+                      type="number"
+                      className="DashboardUIInput"
+                      value={numbersLabel[3]?.Number[0]}
+                      onChange={(event) => {
+                        onEmergencyNumberChange(3, 0, event);
+                      }}
+                    />
+                    <input
+                      type="number"
+                      className="DashboardUIInput"
+                      value={numbersLabel[3]?.Number[1]}
+                      onChange={(event) => {
+                        onEmergencyNumberChange(3, 1, event);
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div>{numbersLabel[3]?.Number[0]}</div>
+                    <div>{numbersLabel[3]?.Number[1]}</div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+          <hr className="BlueLine"></hr>
           <div className="CarouselImageTable">
             <div style={{ display: "flex", flexDirection: "row", gap: "24px" }}>
               <div className="DashboardUIHead">CAROUSEL IMAGES</div>

@@ -103,10 +103,35 @@ router.get("/getData", (req, res)=>{
 
    res.json(JSON.parse(data));
    
-})
+    })
+});
 
+router.post("/EditNumbers", (req,res)=>{
+    const {numbersLabel} = req.body
 
-})
+    fs.readFile(filePath, "utf8", (err, data)=>{
+        if(err){
+            return res.status(500).json({message: "Error in Opening the File"})
+        };
+        let newData = JSON.parse(data);
+
+        newData.Numbers = numbersLabel;
+
+        
+        console.log(newData.Numbers);
+        fs.writeFile(filePath, JSON.stringify(newData, null, 2), 'utf8', (err)=>{
+            if (err){
+                console.error('Failed to write to HomeDashboardData.json:', err);
+                    return;
+            };
+            console.log("Successfull");
+        });
+
+        res.json({message: "SUCCESSFULL"});
+        
+    })
+
+});
 
 
 module.exports = router;
