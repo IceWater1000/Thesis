@@ -106,7 +106,14 @@ const FunctionsBarD = () => {
             }}
           />
         </div>
-
+        <div>
+          <FunctionsBarButton
+            label="Dashboard UI"
+            onItemClick={() => {
+              onClickHandler("Personel");
+            }}
+          />
+        </div>
         <div style={{ marginLeft: "auto" }}>
           <FunctionsBarButton
             label="Log Out"

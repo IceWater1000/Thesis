@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../mainContent/MainContentAreaDashboard.css";
+import { useSelectAddformReload } from "../../utilities/SelectAdformDataReload";
 
 interface Announcement {
   activityDate: string;
@@ -40,6 +41,7 @@ const getDateDifferenceFromToday = (item: string) => {
 };
 
 const ActivitiesToday = () => {
+  const { AnnouncementReload } = useSelectAddformReload();
   const [announcementData, setAnnouncementData] = useState<Announcement[]>([]);
   const [dataToBeDisplayed, setDataToBeDisplayed] = useState<
     DataToBeDisplayed[]
@@ -55,7 +57,7 @@ const ActivitiesToday = () => {
     };
 
     fetchProjects();
-  }, []);
+  }, [AnnouncementReload]);
   useEffect(() => {
     setDataToBeDisplayed(
       announcementData
@@ -72,7 +74,7 @@ const ActivitiesToday = () => {
         }))
         .sort((a, b) => a.Countdown - b.Countdown) // Sort by Countdown (ascending)
     );
-  }, [announcementData]);
+  }, [announcementData, AnnouncementReload]);
   return (
     <div className="ActivitiesCard">
       <div style={{ display: "flex", flexDirection: "row", gap: "80px" }}>

@@ -3,6 +3,7 @@ import "./dashboardContents.css";
 
 import axios from "axios";
 import Select, { SingleValue } from "react-select";
+import { useSelectAddformReload } from "../../utilities/SelectAdformDataReload";
 interface Props {
   label: string;
   onItemClick: () => void;
@@ -21,6 +22,7 @@ interface OptionType {
 }
 
 const Announcements = ({ label, onItemClick }: Props) => {
+  const { SetAnnouncementReload } = useSelectAddformReload();
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedImage, setSelectedImage] = useState(false);
   const [allSelectedImage, setAllSelectedImage] = useState([]);
@@ -152,6 +154,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
     } catch (error: any) {
       console.error("Error adding project:", error.response.data.message);
     }
+    SetAnnouncementReload((prev: boolean) => !prev);
     setIsUpdating(!isUpdating);
   };
   //update submit
@@ -165,7 +168,10 @@ const Announcements = ({ label, onItemClick }: Props) => {
       );
 
       setActivityDate("");
-    } catch (error: any) {}
+    } catch (error: any) {
+      console.log(error);
+    }
+    SetAnnouncementReload((prev: boolean) => !prev);
     setIsupdating2(!isUpdating2);
   };
   //for adding

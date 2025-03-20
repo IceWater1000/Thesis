@@ -2,6 +2,7 @@ import { div } from "framer-motion/client";
 import React, { useEffect, useState } from "react";
 import "../mainContent/MainContentAreaDashboard.css";
 import axios from "axios";
+import { useSelectAddformReload } from "../../utilities/SelectAdformDataReload";
 interface Props {
   gridArea: string;
   headText: string;
@@ -14,6 +15,7 @@ interface SeniorData {
   DateOfBirth: Date;
 }
 const QualifiedCitizenForMembership = ({ gridArea, headText, url }: Props) => {
+  const { AnnouncementReload } = useSelectAddformReload();
   const [data, setData] = useState<any>([]);
   useEffect(() => {
     const FetchData = async () => {
@@ -29,7 +31,7 @@ const QualifiedCitizenForMembership = ({ gridArea, headText, url }: Props) => {
       }
     };
     FetchData();
-  }, []);
+  }, [AnnouncementReload]);
 
   //Age Calculator
 

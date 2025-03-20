@@ -25,10 +25,10 @@
     display: flex;
     
     font-weight: bold;
-    font-size: 19px;
+    font-size: 15px;
     align-items: center;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 12px;
+    padding-right: 12px;
     border-radius: 5px;
     background-color: #433BFF;
     transition: background-color 0.2s ease;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../mainContent/MainContentAreaDashboard.css";
+import { useSelectAddformReload } from "../../utilities/SelectAdformDataReload";
 
 interface Announcement {
   activityDate: string;
@@ -29,6 +30,7 @@ const getDateDifferenceFromToday = (item: string) => {
 };
 
 const ActivitiesCompleted = () => {
+  const { AnnouncementReload } = useSelectAddformReload();
   const [announcementData, setAnnouncementData] = useState<Announcement[]>([]);
   const [dataToBeDisplayed, setDataToBeDisplayed] = useState<
     DataToBeDisplayed[]
@@ -44,7 +46,7 @@ const ActivitiesCompleted = () => {
     };
 
     fetchProjects();
-  }, []);
+  }, [AnnouncementReload]);
   useEffect(() => {
     setDataToBeDisplayed(
       announcementData
@@ -61,7 +63,7 @@ const ActivitiesCompleted = () => {
         }))
         .sort((a, b) => a.Countdown - b.Countdown) // Sort by Countdown (ascending)
     );
-  }, [announcementData]);
+  }, [announcementData, AnnouncementReload]);
   return (
     <div className="ActivitiesCard">
       <div className="CardHeader">Past Activities from Announcements</div>
