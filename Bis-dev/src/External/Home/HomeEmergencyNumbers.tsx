@@ -34,29 +34,29 @@ const HomeEmergencyNumbers = () => {
             img="/Images/police.png"
             name="Police"
             dept="Department"
-            num1={data[0].Number[0]}
-            num2={data[0].Number[1]}
+            num1={data[0]?.Number[0] || ""}
+            num2={data[0]?.Number[1] || ""}
           />
           <HomeEmergencyNumbersBox
             img="/Images/fire.png"
             name="Fire"
             dept="Department"
-            num1={data[1].Number[0]}
-            num2={data[1].Number[1]}
+            num1={data[1]?.Number[0] || ""}
+            num2={data[1]?.Number[1] || ""}
           />
           <HomeEmergencyNumbersBox
             img="/Images/rescue.png"
             name="Oras Rescue"
             dept="Department"
-            num1={data[2].Number[0]}
-            num2={data[2].Number[1]}
+            num1={data[2]?.Number[0] || ""}
+            num2={data[2]?.Number[1] || ""}
           />
           <HomeEmergencyNumbersBox
             img="/Images/health.png"
             name="RHU"
             dept="Department"
-            num1={data[3].Number[0]}
-            num2={data[3].Number[1]}
+            num1={data[3]?.Number[0] || ""}
+            num2={data[3]?.Number[1] || ""}
           />
         </div>
       </ScrollReveal>
