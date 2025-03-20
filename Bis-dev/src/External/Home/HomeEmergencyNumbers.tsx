@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeEmergencyNumbersBox from "./HomeEmergencyNumbersBox";
 import ScrollReveal from "./ScrollReveal";
+import axios from "axios";
 
+interface Numbers {
+  Name: string;
+  Number: string[];
+}
 const HomeEmergencyNumbers = () => {
+  const [data, setData] = useState<Numbers[]>([]);
+  //Data Collector
+  useEffect(() => {
+    const FetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/homeDashboard/getData"
+        );
+
+        setData(response.data.Numbers);
+      } catch (error) {
+        console.log("Error on the Backend");
+      }
+    };
+    FetchData();
+  }, []);
+
   return (
     <div className="HomeEmergencyNumbers">
       <div className="HomeIntroductionText">EMEREGENCY NUMBERS</div>
@@ -12,29 +34,29 @@ const HomeEmergencyNumbers = () => {
             img="/Images/police.png"
             name="Police"
             dept="Department"
-            num1="+639221232432"
-            num2="+639224137732"
+            num1={data[0].Number[0]}
+            num2={data[0].Number[1]}
           />
           <HomeEmergencyNumbersBox
             img="/Images/fire.png"
             name="Fire"
             dept="Department"
-            num1="+639776857453"
-            num2="+639877867564"
+            num1={data[1].Number[0]}
+            num2={data[1].Number[1]}
           />
           <HomeEmergencyNumbersBox
             img="/Images/rescue.png"
             name="Oras Rescue"
             dept="Department"
-            num1="+639119877869"
-            num2="+639009875843"
+            num1={data[2].Number[0]}
+            num2={data[2].Number[1]}
           />
           <HomeEmergencyNumbersBox
             img="/Images/health.png"
             name="RHU"
             dept="Department"
-            num1="+639098876543"
-            num2="+639879675870"
+            num1={data[3].Number[0]}
+            num2={data[3].Number[1]}
           />
         </div>
       </ScrollReveal>
