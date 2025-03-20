@@ -6,6 +6,7 @@ import Ordinances from "../dashboard/Ordinances";
 import Projects from "../dashboard/Projects";
 import { useAuth } from "../../AuthContext";
 import Personel from "../dashboard/Personel";
+import DashboardUI from "../dashboard/DashboardUI";
 
 const FunctionsBarD = () => {
   const { setLoggedIN } = useAuth();
@@ -67,6 +68,18 @@ const FunctionsBarD = () => {
             />
           </>
         );
+
+      case "DashboardUI":
+        return (
+          <>
+            <DashboardUI
+              label="Dashboard UI"
+              onItemClick={() => {
+                onClickTabHandler();
+              }}
+            />
+          </>
+        );
       case "None":
         return "";
     }
@@ -110,7 +123,7 @@ const FunctionsBarD = () => {
           <FunctionsBarButton
             label="Dashboard UI"
             onItemClick={() => {
-              onClickHandler("Personel");
+              onClickHandler("DashboardUI");
             }}
           />
         </div>

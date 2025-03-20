@@ -1,46 +1,50 @@
 {
-    "IntroductionImageLabel": [
-        {
-            "Image": "/Images/loginBackground2.jpg",
-            "Label": "Barangay Hall"
-        },
-        {
-            "Image": "/Images/download1.jpg",
-            "Label": "Chruch Plaza"
-        },
-        {
-            "Image": "/Images/download2.jpg",
-            "Label": "Zone 1"
-        },
-        {
-            "Image": "/Images/download3.jpg",
-            "Label": "Gymnasium"
-        },
-        {
-            "Image": "/Images/download3.jpg",
-            "Label": "ABACASKDA"
-        }
-    ],
-    "BarangayGmail": "barangay_butnga_OrasES.@gmail.com",
-    "Numbers":[
-        {
-            "Name":"Police",
-            "Number":[
-                "09221232432",
-                "09224137732"
-            ]
-        },
-        {
-            "Name":"Fire",
-            "Number":["09776857453","09877867564"]
-        },
-        {
-            "Name":"Oras Rescue",
-            "Number":["09119877869","09009875843"]
-        },
-        {   
-            "Name":"RHU",
-            "Number":["09098876543","09879675870"]
-        }
-    ]
+  "IntroductionImageLabel": [
+    {
+      "ID": 1742467196251,
+      "Image": "/Data3/barangayImage-1742467196226-649922484.png",
+      "Label": "asdasdadasd"
+    },
+    {
+      "ID": 1742467428723,
+      "Image": "/Data3/barangayImage-1742467428672-254133450.png",
+      "Label": "qaasdasasdas"
+    },
+    {
+      "ID": 1742467438327,
+      "Image": "/Data3/barangayImage-1742467438295-217287623.png",
+      "Label": "12312312312"
+    }
+  ],
+  "BarangayGmail": "barangay_butnga_OrasES.@gmail.com",
+  "Numbers": [
+    {
+      "Name": "Police",
+      "Number": [
+        "09221232432",
+        "09224137732"
+      ]
+    },
+    {
+      "Name": "Fire",
+      "Number": [
+        "09776857453",
+        "09877867564"
+      ]
+    },
+    {
+      "Name": "Oras Rescue",
+      "Number": [
+        "09119877869",
+        "09009875843"
+      ]
+    },
+    {
+      "Name": "RHU",
+      "Number": [
+        "09098876543",
+        "09879675870"
+      ]
+    }
+  ]
 }

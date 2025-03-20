@@ -28,10 +28,11 @@ router.post('/uploadBarangayImage', upload.single("barangayImage"), function (re
    
     const { Label} = req.body;
 
-    const Image = `/Data2/${req.file.filename}`
-    
+    const Image = `/Data3/${req.file.filename}`;
+    const ID = Date.now();
     
     const newBarangayImage = {
+        ID,
        Image,
        Label
       };
@@ -44,20 +45,20 @@ router.post('/uploadBarangayImage', upload.single("barangayImage"), function (re
                 return;
             }
             
-            let Images = [];
+            let Images = null;
             
             try {
-                projects = JSON.parse(data); // Parse the JSON data
+                Images = JSON.parse(data); // Parse the JSON data
             } catch (err) {
                 console.error('Error parsing HomeDashboardData.json:', err);
                 return;
             }
     
             // Add the new project to the array
-            Images.push(newBarangayImage);
+            Images.IntroductionImageLabel.push(newBarangayImage);
             res.json(Images);
             // Write the updated array back to products.json
-            fs.writeFile(filePath, JSON.stringify(projects, null, 2), 'utf8', (err) => {
+            fs.writeFile(filePath, JSON.stringify(Images, null, 2), 'utf8', (err) => {
                 if (err) {
                     console.error('Failed to write to HomeDashboardData.json:', err);
                     return;
@@ -67,10 +68,31 @@ router.post('/uploadBarangayImage', upload.single("barangayImage"), function (re
             });
         });
     }
-    addNewProject(newProject);
+    addNewBarangayImage(newBarangayImage);
     
  });
 
+ // for Deleting BarangayImage
+ router.get("/delete/:id", (req, res) => {
+    const projectId = parseInt(req.params.id);
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        return res.status(500).json({ message: "Failed to read the file." });
+      }
+  
+      let carouselData = JSON.parse(data);
+      carouselData.IntroductionImageLabel = carouselData.IntroductionImageLabel.filter((project) => project.ID !== projectId);
+
+      
+      // Write the updated data back to the JSON file
+      fs.writeFile(filePath, JSON.stringify(carouselData, null, 2), (err) => {
+        if (err) {
+          return res.status(500).json({ message: "Failed to write the file." });
+        }
+        res.status(200).json({ message: "Project deleted successfully." });
+      });
+    });
+  });
 router.get("/getData", (req, res)=>{
    let ImageCarouselData = [];
 
