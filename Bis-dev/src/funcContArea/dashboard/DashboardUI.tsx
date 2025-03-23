@@ -150,7 +150,7 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
             </div>
             <div className="NumbersContainer">
               <div className="EmergencyNumberContainer">
-                <div>Police</div>
+                <div className="EmergencyNumberHeader">Police</div>
                 {isEdetingEmergency ? (
                   <>
                     <input
@@ -172,13 +172,17 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                   </>
                 ) : (
                   <>
-                    <div>{numbersLabel[0]?.Number[0]}</div>
-                    <div>{numbersLabel[0]?.Number[1]}</div>
+                    <div className="EmergencyNumber">
+                      {numbersLabel[0]?.Number[0]}
+                    </div>
+                    <div className="EmergencyNumber">
+                      {numbersLabel[0]?.Number[1]}
+                    </div>
                   </>
                 )}
               </div>
               <div className="EmergencyNumberContainer">
-                <div>Fire</div>
+                <div className="EmergencyNumberHeader">Fire</div>
                 {isEdetingEmergency ? (
                   <>
                     <input
@@ -200,13 +204,17 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                   </>
                 ) : (
                   <>
-                    <div>{numbersLabel[1]?.Number[0]}</div>
-                    <div>{numbersLabel[1]?.Number[1]}</div>
+                    <div className="EmergencyNumber">
+                      {numbersLabel[1]?.Number[0]}
+                    </div>
+                    <div className="EmergencyNumber">
+                      {numbersLabel[1]?.Number[1]}
+                    </div>
                   </>
                 )}
               </div>
               <div className="EmergencyNumberContainer">
-                <div>Oras Rescue</div>
+                <div className="EmergencyNumberHeader">Oras Rescue</div>
                 {isEdetingEmergency ? (
                   <>
                     <input
@@ -228,13 +236,17 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                   </>
                 ) : (
                   <>
-                    <div>{numbersLabel[2]?.Number[0]}</div>
-                    <div>{numbersLabel[2]?.Number[1]}</div>
+                    <div className="EmergencyNumber">
+                      {numbersLabel[2]?.Number[0]}
+                    </div>
+                    <div className="EmergencyNumber">
+                      {numbersLabel[2]?.Number[1]}
+                    </div>
                   </>
                 )}
               </div>
               <div className="EmergencyNumberContainer">
-                <div>RHU</div>
+                <div className="EmergencyNumberHeader">RHU</div>
                 {isEdetingEmergency ? (
                   <>
                     <input
@@ -256,8 +268,12 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                   </>
                 ) : (
                   <>
-                    <div>{numbersLabel[3]?.Number[0]}</div>
-                    <div>{numbersLabel[3]?.Number[1]}</div>
+                    <div className="EmergencyNumber">
+                      {numbersLabel[3]?.Number[0]}
+                    </div>
+                    <div className="EmergencyNumber">
+                      {numbersLabel[3]?.Number[1]}
+                    </div>
                   </>
                 )}
               </div>

@@ -104,3 +104,12 @@
     padding: 0px 12px 0px 12px;
     border-radius: 10px;
 }
+.EmergencyNumberHeader{
+    font-size: 20px;
+    color: black;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+}
+.EmergencyNumber{
+    font-style: italic;
+}
