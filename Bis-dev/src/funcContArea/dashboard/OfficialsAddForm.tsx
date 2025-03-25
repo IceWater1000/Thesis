@@ -16,6 +16,7 @@ const OfficialsAddForm = ({ onItemClick }: Props) => {
         <div style={{ display: "flex", gap: "24px" }}>
           <p className="tl">Adding New Sets of Officials</p>
           <button
+            style={{ marginLeft: "auto" }}
             onClick={() => {
               onItemClick();
             }}

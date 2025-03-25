@@ -80,6 +80,7 @@ const TanodUpdateForm = ({ items, onItemClick }: Props) => {
         <div style={{ display: "flex", gap: "24px" }}>
           <p className="tl">Barangay Tanod </p>
           <button
+            style={{ marginLeft: "auto" }}
             onClick={() => {
               onItemClick();
             }}

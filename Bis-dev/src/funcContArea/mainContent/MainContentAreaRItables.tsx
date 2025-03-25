@@ -244,11 +244,23 @@ const MainContentAreaRItables = ({
   const onUpdate = (item: string) => {
     setResID(item);
   };
+  const addToTransferred = async (item1: string, NewLocation: string) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/inhabitants/addToTransferred`,
+        { ID: item1, NewLocation: NewLocation }
+      );
+      console.log("Data deleted successfully:", response.data);
+    } catch (error) {
+      console.error("Error deleting data:", error);
+    }
+  };
   const onDelete = async (item: string) => {
     try {
       // Make a DELETE request to the backend with the item as a parameter
-      const response = await axios.delete(
-        `http://localhost:5000/api/inhabitants/delete/${item}`
+      const response = await axios.post(
+        `http://localhost:5000/api/inhabitants/delete`,
+        { ID: item, Status: reason }
       );
 
       // Log or handle the successful deletion response
@@ -257,6 +269,10 @@ const MainContentAreaRItables = ({
     } catch (error) {
       // Handle any errors that occur during the deletion
       console.error("Error deleting data:", error);
+    } finally {
+      if (reason === "transferred") {
+        addToTransferred(item, newBarangay);
+      }
     }
   };
 
@@ -272,6 +288,16 @@ const MainContentAreaRItables = ({
   useEffect(() => {
     setCurrentCount(filteredData.length);
   }, [filteredData]);
+
+  // for the delete modal
+  const [reason, setReason] = useState("deceased");
+  const [newBarangay, setNewBarangay] = useState("");
+
+  const newBarangayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const val = event.target.value;
+
+    setNewBarangay(val);
+  };
   return (
     <div>
       <div className="topContainerTableData">
@@ -372,12 +398,53 @@ const MainContentAreaRItables = ({
           ))}
         </tbody>
         <div className={`modal ${isModalOpen ? "show" : ""}`}>
-          <div className="modal-content">
-            <div className="modalMainText">Delete Data?</div>
+          <div className="modal-content2">
+            <div className="modalMainText">Remove Barangay Resident??</div>
 
             <hr className="solidLine"></hr>
-            <div className="modalText">This can't be undone</div>
-            <hr className="solidLine"></hr>
+            <div className="modalText">
+              Please specify the reason for removing this resident. This action
+              cannot be undone.
+            </div>
+            <hr className="solidLine" style={{ marginBottom: "8px" }}></hr>
+            <label className="radioButtonCont">
+              <input
+                className="radioButton"
+                type="radio"
+                value="deceased"
+                checked={reason === "deceased"}
+                onChange={() => setReason("deceased")}
+              />
+              <span className="radioButtonText">Deceased</span>
+            </label>
+
+            <label className="radioButtonCont">
+              <input
+                className="radioButton"
+                type="radio"
+                value="transferred"
+                checked={reason === "transferred"}
+                onChange={() => setReason("transferred")}
+              />
+              <span className="radioButtonText">
+                Transferred to Another Barangay
+              </span>
+            </label>
+            {reason === "transferred" ? (
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <label className="modalText">New Barangay:</label>
+                <input
+                  type="text"
+                  className="modalInput"
+                  value={newBarangay}
+                  onChange={newBarangayChange}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+
+            <hr className="solidLine" style={{ marginTop: "8px" }}></hr>
             <div className="modalButtonContainer">
               <button
                 onClick={() => {

@@ -227,10 +227,12 @@ const Ordinances = ({ label, onItemClick }: Props) => {
         isUpdating2 && (
           <div className={`dashboardForm ${isUpdating2 ? "show" : ""}`}>
             <form className="dashboardFormContents" onSubmit={handleSubmit2}>
+              <div className="dashboardAddformTitle">ORDINANCES UPDATEFORM</div>
+              <hr className="BlueLine" style={{ marginTop: "0" }}></hr>
               <div className="dashboardFormContent">
                 <label className="labels">Project Title</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   type="text"
                   name="projectTitle"
                   value={updatingValue.title}
@@ -241,7 +243,7 @@ const Ordinances = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Project Description</label>
                 <textarea
-                  className="textArea"
+                  className="dashboardTextAreaButton"
                   name="projectDescription"
                   id="projectDescription"
                   value={updatingValue.description}
@@ -270,10 +272,12 @@ const Ordinances = ({ label, onItemClick }: Props) => {
         isUpdating && (
           <div className={`dashboardForm ${isUpdating ? "show" : ""}`}>
             <form className="dashboardFormContents" onSubmit={handleSubmit}>
+              <div className="dashboardAddformTitle">ORDINANCES ADDFORM</div>
+              <hr className="BlueLine" style={{ marginTop: "0" }}></hr>
               <div className="dashboardFormContent">
                 <label className="labels">Project Title</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   type="text"
                   name="projectTitle"
                   onChange={handleTitleChange}
@@ -283,7 +287,7 @@ const Ordinances = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Project Description</label>
                 <textarea
-                  className="textArea"
+                  className="dashboardTextAreaButton"
                   name="projectDescription"
                   id="projectDescription"
                   onChange={handleDescriptionChange}
@@ -293,7 +297,7 @@ const Ordinances = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Image</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   name="projectImage"
                   type="file"
                   onChange={handleImageChange}

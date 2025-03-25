@@ -27,6 +27,25 @@
     font-weight: bold;
     color: #fbfbfe;
 }
+.dashboardAddformTitle{
+    color: #2F27CE;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+}
+.dashboardInputButton{
+  border: 2px solid #2F27CE;
+  width: 100%;
+}
+.dashboardSelectButton{
+  width: 100%;
+  border: 2px solid #2F27CE;
+}
+.dashboardTextAreaButton{
+  height: 200px;
+  width: 100%;
+  border: 2px solid #2F27CE;
+}
 .dashboardTabMainContent{
     display: flex;
     flex-direction: column;
@@ -148,12 +167,13 @@
     height: 32px;
 }
 .dashboardFormContents{
+    width: 700px;
     border-radius: 10px;
     border: #433BFF solid 2px;
     padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     background-color: #fbfbfe;
 }
 .dashboardFormContent:last-child{
@@ -164,9 +184,7 @@
     flex-direction: row;
     gap: 24px;
 }
-.textArea{
-    width: 100%;
-}
+
 .dashboardForm{
     position: fixed;
     top: 0;

@@ -61,12 +61,12 @@ router.post('/filter', (req, res) => {
 
 
 //delete Data
-router.delete('/delete/:id', (req, res) => {
-  const residentId = req.params.id; // Get the ID from the URL parameter
+router.post('/delete', (req, res) => {
+  const {ID, Status} = req.body;
 
 
-    const deleteResidentQuery = "DELETE FROM barangayinhabitants WHERE ResidentID = ?";
-    db.query(deleteResidentQuery, [residentId], (deleteResidentErr, deleteResidentResults) => {
+    const deleteResidentQuery = "UPDATE `barangayinhabitants` SET `status` = ? WHERE `barangayinhabitants`.`ResidentID` = ?;";
+    db.query(deleteResidentQuery, [Status,ID], (deleteResidentErr, deleteResidentResults) => {
       if (deleteResidentErr) {
         console.error("Error deleting resident:", deleteResidentErr);
         return res.status(500).json({ message: "Error deleting resident", error: deleteResidentErr });
@@ -75,6 +75,18 @@ router.delete('/delete/:id', (req, res) => {
       res.json({ message: "Data deleted successfully", affectedRows: deleteResidentResults.affectedRows });
     });
 });
+router.post('/addToTransferred',(req,res)=>{
+  const {ID, NewLocation} = req.body;
+  const query = "INSERT INTO `transferredresidents` (`ResidentID`, `Location`) VALUES (?, ?)"
+  db.query(query,[ID, NewLocation], (err,results)=>{
+    if (err) {
+      console.error("Error adding to transferred:", er);
+      return res.status(500).json({ message: "error adding to transferred", error: err });
+    }
+
+    res.json({ message: "sucessfully added", affectedRows: results.affectedRows });
+  });
+})
 //update data
 router.post('/update', (req, res) => {
   const {

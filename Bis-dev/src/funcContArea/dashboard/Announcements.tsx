@@ -304,10 +304,14 @@ const Announcements = ({ label, onItemClick }: Props) => {
         isUpdating2 && (
           <div className={`dashboardForm ${isUpdating2 ? "show" : ""}`}>
             <form className="dashboardFormContents" onSubmit={handleSubmit2}>
+              <div className="dashboardAddformTitle">
+                ANNOUNCEMENT UPDATEFORM
+              </div>
+              <hr className="BlueLine" style={{ marginTop: "0" }}></hr>
               <div className="dashboardFormContent">
                 <label className="labels">Announcement Title</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   type="text"
                   name="projectTitle"
                   value={updatingValue.title}
@@ -325,7 +329,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
                   value={options.find(
                     (option) => option.value === updatingValue.uploader
                   )}
-                  className="reactSelect"
+                  className="dashboardInputButton"
                   required
                   //isMulti={false} // Set to true for multi-select
                 />
@@ -333,7 +337,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Announcement Details</label>
                 <textarea
-                  className="textArea"
+                  className="dashboardTextAreaButton"
                   name="projectDescription"
                   id="projectDescription"
                   value={updatingValue.description}
@@ -362,10 +366,12 @@ const Announcements = ({ label, onItemClick }: Props) => {
         isUpdating && (
           <div className={`dashboardForm ${isUpdating ? "show" : ""}`}>
             <form className="dashboardFormContents" onSubmit={handleSubmit}>
+              <div className="dashboardAddformTitle">ANNOUNCEMENT ADDFORM</div>
+              <hr className="BlueLine" style={{ marginTop: "0" }}></hr>
               <div className="dashboardFormContent">
                 <label className="labels">Announcement Title</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   type="text"
                   name="projectTitle"
                   onChange={handleTitleChange}
@@ -379,7 +385,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
                   name="uploader"
                   id="uploader"
                   onChange={handleReactSelectChange}
-                  className="reactSelect"
+                  className="dashboardInputButton"
                   required
                   //isMulti={false} // Set to true for multi-select
                 />
@@ -387,7 +393,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Activity Date:</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   name="projectActivityDate"
                   type="date"
                   onChange={handleActivityDateChange}
@@ -396,7 +402,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Announcement Deetails</label>
                 <textarea
-                  className="textArea"
+                  className="dashboardTextAreaButton"
                   name="projectDescription"
                   id="projectDescription"
                   onChange={handleDescriptionChange}
@@ -406,7 +412,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Image</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   name="projectImage"
                   type="file"
                   onChange={handleImageChange}

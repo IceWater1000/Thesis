@@ -82,6 +82,7 @@ const StaffUpdateForm = ({ items, onItemClick }: Props) => {
         <div style={{ display: "flex", gap: "24px" }}>
           <p className="tl">Barangay Staff</p>
           <button
+            style={{ marginLeft: "auto" }}
             onClick={() => {
               onItemClick();
             }}

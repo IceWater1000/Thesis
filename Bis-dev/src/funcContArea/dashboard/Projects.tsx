@@ -276,10 +276,12 @@ const Projects = ({ label, onItemClick }: Props) => {
         isUpdating2 && (
           <div className={`dashboardForm ${isUpdating2 ? "show" : ""}`}>
             <form className="dashboardFormContents" onSubmit={handleSubmit2}>
+              <div className="dashboardAddformTitle">PROJECT UPDATEFROM</div>
+              <hr className="BlueLine" style={{ marginTop: "0" }}></hr>
               <div className="dashboardFormContent">
                 <label className="labels">Project Title</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   type="text"
                   name="projectTitle"
                   value={updatingValue.title}
@@ -297,14 +299,14 @@ const Projects = ({ label, onItemClick }: Props) => {
                     (option) => option.value === updatingValue.uploader
                   )}
                   onChange={handleReactSelectChangeUpdate}
-                  className="reactSelect"
+                  className="dashboardInputButton"
                   required
                 />
               </div>
               <div className="dashboardFormContent">
                 <label className="labels">Project Description</label>
                 <textarea
-                  className="textArea"
+                  className="dashboardTextAreaButton"
                   name="projectDescription"
                   id="projectDescription"
                   value={updatingValue.description}
@@ -333,10 +335,12 @@ const Projects = ({ label, onItemClick }: Props) => {
         isUpdating && (
           <div className={`dashboardForm ${isUpdating ? "show" : ""}`}>
             <form className="dashboardFormContents" onSubmit={handleSubmit}>
+              <div className="dashboardAddformTitle">PROJECT ADDFORM</div>
+              <hr className="BlueLine" style={{ marginTop: "0" }}></hr>
               <div className="dashboardFormContent">
                 <label className="labels">Project Title</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   type="text"
                   name="projectTitle"
                   onChange={handleTitleChange}
@@ -350,7 +354,7 @@ const Projects = ({ label, onItemClick }: Props) => {
                   name="uploader"
                   id="uploader"
                   onChange={handleReactSelectChange}
-                  className="reactSelect"
+                  className="dashboardSelectButton"
                   required
                 />
               </div>
@@ -358,7 +362,7 @@ const Projects = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Project Description</label>
                 <textarea
-                  className="textArea"
+                  className="dashboardTextAreaButton"
                   name="projectDescription"
                   id="projectDescription"
                   onChange={handleDescriptionChange}
@@ -368,7 +372,7 @@ const Projects = ({ label, onItemClick }: Props) => {
               <div className="dashboardFormContent">
                 <label className="labels">Image</label>
                 <input
-                  className="inputs"
+                  className="dashboardInputButton"
                   name="projectImage"
                   type="file"
                   onChange={handleImageChange}

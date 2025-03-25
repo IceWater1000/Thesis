@@ -83,6 +83,7 @@ const OfficialUpdateForm = ({ items, onItemClick }: Props) => {
         <div style={{ display: "flex", gap: "24px" }}>
           <p className="tl">Barangay Official Form</p>
           <button
+            style={{ marginLeft: "auto" }}
             onClick={() => {
               onItemClick();
             }}

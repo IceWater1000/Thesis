@@ -88,7 +88,14 @@ table {
   padding: 12px;
   border-radius: 5px;
 }
-
+.modal-content2 {
+  width: 400px;
+  border: 2px solid #433BFF;
+  border-radius: 10px;  
+  background: #fbfbfe;
+  padding: 12px;
+  border-radius: 5px;
+}
 button {
   margin: 10px;
   padding: 10px 20px;
@@ -134,4 +141,23 @@ button:hover{
 .accountUpdate.show{
   display: block;
 }
+
+
+.radioButtonCont{
+  display: flex;
+  flex-direction: row;
+}
+.radioButton{
+  height: 20px;
+  width: 40px;
+}
+.radioButtonText{
+  color: #433BFF;
+  font-weight: bold;
+  font-size: 12pt;
+}
+.modalInput{
+  width: 100%;
+}
+
 
