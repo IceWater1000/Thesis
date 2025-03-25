@@ -85,11 +85,23 @@ const ActivitiesToday = () => {
       <div className="BlueLine"></div>
       <div className="QualifiedTable">
         <ul>
-          {dataToBeDisplayed.map((item) => (
-            <li>
-              <div className="CurrentActivityText">{item.title}</div>
-            </li>
-          ))}
+          {dataToBeDisplayed.length != 0 ? (
+            dataToBeDisplayed.map((item) => (
+              <li>
+                <div className="CurrentActivityText">{item.title}</div>
+              </li>
+            ))
+          ) : (
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontWeight: "bold",
+                color: "Black",
+              }}
+            >
+              No Activities Today!!!
+            </div>
+          )}
         </ul>
       </div>
     </div>
