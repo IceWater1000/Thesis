@@ -97,15 +97,19 @@ const Ordinances = ({ label, onItemClick }: Props) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/ordinances/delete/${id}`
+          "http://localhost:5000/api/ordinances/delete",
+          {
+            method: "POST", // Changed from default GET to POST
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id, currentSelectedYear }), // Send the id in the request body
+          }
         );
 
         if (response.ok) {
-          console.log(response);
-          const updatedProjects = projects.filter(
-            (project) => project.id !== id
-          );
-          setProjects(updatedProjects);
+          setReload(!reload);
+          console.log("Project deleted successfully");
         } else {
           alert("Failed to delete the project.");
         }
@@ -115,6 +119,7 @@ const Ordinances = ({ label, onItemClick }: Props) => {
       }
     }
   };
+
   //add submit
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

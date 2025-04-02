@@ -7,7 +7,7 @@ const YearPicker = ({ selectChange }: Props) => {
   const currentYear = new Date().getFullYear();
   let yearSelector = Array.from(
     { length: currentYear - 2000 + 1 },
-    (_, i) => 2000 + i
+    (_, i) => currentYear - i
   );
 
   const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

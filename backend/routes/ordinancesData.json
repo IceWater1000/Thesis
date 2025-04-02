@@ -66,40 +66,12 @@
         ]
       },
       {
-        "id": 1743080248611,
-        "ordinanceNumber": "123123",
-        "title": "asdasd",
-        "description": "adsasdasd asd asd aqwd qwasd as",
-        "image": [
-          "/Data/projectImage-1743080248557-113896792.png",
-          "/Data/projectImage-1743080248592-667629527.png"
-        ]
-      },
-      {
         "id": 1743081771531,
         "ordinanceNumber": "23123",
         "title": "jhiyujhmnkhkhj khjmnkh ,hmnjh k mhj k i yuiy j m",
         "description": "asdqwdhgutythgijbjbughnvhfgfdbdbdhcbfnvhgjgjgjghththtytytyrtrtrtrtgfgbbvnb ",
         "image": [
           "/Data/projectImage-1743081771498-674204214.png"
-        ]
-      },
-      {
-        "id": 1743082131300,
-        "ordinanceNumber": "88888",
-        "title": "aaaaaaaaaaaaaaaaaaaaaa",
-        "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "image": [
-          "/Data/projectImage-1743082131255-829602227.png"
-        ]
-      },
-      {
-        "id": 1743082217210,
-        "ordinanceNumber": "12312312312312312312312",
-        "title": "312312312312",
-        "description": "3123123123123123123123",
-        "image": [
-          "/Data/projectImage-1743082217175-872509938.png"
         ]
       }
     ]

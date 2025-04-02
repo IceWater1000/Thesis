@@ -101,22 +101,31 @@ router.get("/projects", (req, res) => {
     });
   });
 //delete
-router.get("/delete/:id", (req, res) => {
-    const projectId = parseInt(req.params.id);
+router.post("/delete", (req, res) => {
+    const { id, currentSelectedYear } = req.body;
+    const numericId = Number(id);
+    const numericYear = Number(currentSelectedYear);
     fs.readFile(filepath, "utf8", (err, data) => {
       if (err) {
         return res.status(500).json({ message: "Failed to read the file." });
       }
-  
-      let projects = JSON.parse(data);
-      const updatedProjects = projects.filter((project) => project.id !== projectId);
+      
+      let allAnnouncements = JSON.parse(data);
+      let updatedAnnouncement = allAnnouncements.map(entry => 
+        entry.year === numericYear
+          ? { ...entry, ordinances: entry.ordinances.filter(ord => ord.id !== numericId) }
+          : entry
+      );
+
+      //let projects = allAnnouncements.find(entry => entry.year == currentSelectedYear)
+      //const updatedProjects = projects.filter((project) => project.id !== projectId);
   
       // Write the updated data back to the JSON file
-      fs.writeFile(filepath, JSON.stringify(updatedProjects, null, 2), (err) => {
+      fs.writeFile(filepath, JSON.stringify(updatedAnnouncement, null, 2), (err) => {
         if (err) {
           return res.status(500).json({ message: "Failed to write the file." });
         }
-        res.status(200).json({ message: "Project deleted successfully." });
+        res.status(200).json({ message: "Project deletedss successfully." });
       });
     });
   });
