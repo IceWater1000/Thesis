@@ -53,7 +53,7 @@ const YearPicker = ({ selectChange }: Props) => {
           <option
             value={item}
             key={index}
-            className={isActiveYear(item) ? "active" : "s"}
+            className={isActiveYear(item) ? "activeYear" : "s"}
           >
             {item}
           </option>
