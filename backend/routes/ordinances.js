@@ -156,6 +156,19 @@ router.post("/delete", (req, res) => {
       }
     });
   });
+  router.get("/availableYears", (req,res)=>{
+    let Ordinances = []
+    fs.readFile(filepath, "utf8", (err, data) => {
+      if (err) {
+        return res.status(500).json({ message: "Failed to read the file." });
+      }
+      Ordinances=JSON.parse(data);
+
+      let years = Ordinances.map((item)=> item.year);
+
+      res.json(years);
+    });
+  })
   //update
   router.post("/update", (req, res) => {
     

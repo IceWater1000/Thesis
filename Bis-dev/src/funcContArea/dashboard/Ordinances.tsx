@@ -4,6 +4,7 @@ import "./dashboardContents.css";
 import axios from "axios";
 import YearPicker from "./YearPicker";
 import { data } from "react-router-dom";
+import { useSelectAddformReload } from "../../utilities/SelectAdformDataReload";
 interface Props {
   label: string;
   onItemClick: () => void;
@@ -36,6 +37,8 @@ const Ordinances = ({ label, onItemClick }: Props) => {
   const [currentSelectedYear, setCurrentSelectedYear] = useState(
     new Date().getFullYear().toString()
   );
+  //For the Year Selector Active Background Option
+  const { YearPickerReload, SetYearPickerReload } = useSelectAddformReload();
   const [updatingValue, setUpdatingValue] = useState<Ordinances>({
     id: "",
     title: "",
@@ -167,6 +170,7 @@ const Ordinances = ({ label, onItemClick }: Props) => {
     }
     setIsUpdating(!isUpdating);
     setReload(!reload);
+    SetYearPickerReload(!YearPickerReload);
   };
   //update submit
   const handleSubmit2 = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -258,13 +262,23 @@ const Ordinances = ({ label, onItemClick }: Props) => {
         <div className="dashboardTabTopBar">
           <div className="dashbaorTabTopBarLabel">{label.toUpperCase()}</div>
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <div>Year:</div>
+            <div
+              style={{
+                color: "white",
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                fontSize: "20px",
+                fontWeight: "bold",
+              }}
+            >
+              Year:
+            </div>
             <YearPicker
               selectChange={(item: string) => {
                 setCurrentSelectedYear(item);
               }}
             />
-            <div>{currentSelectedYear}</div>
           </div>
           <div
             className="AddButton"

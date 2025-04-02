@@ -1,6 +1,6 @@
 [
   {
-    "year": 2024,
+    "year": "2024",
     "ordinances": [
       {
         "id": 1734261207905,
@@ -55,7 +55,7 @@
     ]
   },
   {
-    "year": 2025,
+    "year": "2025",
     "ordinances": [
       {
         "id": 1743080173200,
@@ -75,6 +75,34 @@
           "/Data/projectImage-1743081771498-674204214.png"
         ],
         "year": "2025"
+      }
+    ]
+  },
+  {
+    "year": "2020",
+    "ordinances": [
+      {
+        "id": 1743592236231,
+        "ordinanceNumber": "55463",
+        "title": "Hushdy gshdegdu hsad",
+        "description": "uyjyhighu ggsyadewt asdhygetdg jhhdhdu gasdasdb bhfgvjdnchchcbfjvnasd  hsydg  wgasyd wabhsaduyrg ashd ",
+        "image": [
+          "/Data/projectImage-1743592236227-865036942.png"
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2019",
+    "ordinances": [
+      {
+        "id": 1743592716809,
+        "ordinanceNumber": "12233",
+        "title": "asdqwdqdas",
+        "description": "asdqwqeqw easd qwd qwdasd oiah iuygeygqwyetfgyfg gstdgeyegdh gdygdh gdtdgeydg hgsydgethhghhfgygtdgfyeh ",
+        "image": [
+          "/Data/projectImage-1743592716801-643192288.png"
+        ]
       }
     ]
   }

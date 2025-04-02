@@ -5,6 +5,7 @@ export const dataContext = createContext<any>(null);
 export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [SelectReload, SetSelectReload] = useState(false);
   const [AnnouncementReload, SetAnnouncementReload] = useState(false);
+  const [YearPickerReload, SetYearPickerReload] = useState(false);
   return (
     <dataContext.Provider
       value={{
@@ -12,6 +13,8 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         SetSelectReload,
         AnnouncementReload,
         SetAnnouncementReload,
+        YearPickerReload,
+        SetYearPickerReload,
       }}
     >
       {children}
