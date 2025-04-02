@@ -29,7 +29,7 @@ const upload = multer({ storage: storage })
 router.post('/upload', upload.array("projectImage",5), function (req, res) {
     // req.file is the name of your file in the form above, here 'uploaded_file'
     // req.body will hold the text fields, if there were any 
-    const { title, description } = req.body;
+    const { title, description, ordinanceNumber,year } = req.body;
     //const image = `/Data/${req.file.filename}`
     //req.files.map((file)=>{`/Data/${file.filename}`})
     const image = req.files.map(item=>`/Data/${item.filename}`)
@@ -37,6 +37,7 @@ router.post('/upload', upload.array("projectImage",5), function (req, res) {
     
     const newProject = {
         id: Date.now(), // Unique ID based on timestamp
+        ordinanceNumber,
         title,
         description,
         image,
@@ -58,9 +59,22 @@ router.post('/upload', upload.array("projectImage",5), function (req, res) {
                 console.error('Error parsing products.json:', err);
                 return;
             }
-    
-            // Add the new project to the array
-            projects.push(newProject);
+            let selectedProject = projects.find(proj => proj.year == year);
+
+            if (selectedProject) {
+                
+                selectedProject.ordinances.push(newProject);
+            } else {
+                
+                // If the year dont exist
+                projects.push({
+                    year: year,
+                    ordinances: [newProject]
+                }); 
+                
+            }
+
+           
             res.json(projects);
             // Write the updated array back to products.json
             fs.writeFile(filePath, JSON.stringify(projects, null, 2), 'utf8', (err) => {
@@ -78,7 +92,7 @@ router.post('/upload', upload.array("projectImage",5), function (req, res) {
  });
 //View
 router.get("/projects", (req, res) => {
-    
+    let Ordinances = []
     fs.readFile(filepath, "utf8", (err, data) => {
       if (err) {
         return res.status(500).json({ message: "Failed to read the file." });
