@@ -44,12 +44,13 @@
       },
       {
         "id": 1743082071687,
-        "ordinanceNumber": "123123",
+        "ordinanceNumber": "123123123123",
         "title": "asdqwdqdas",
         "description": "qwdqwdasdasd",
         "image": [
           "/Data/projectImage-1743082071653-700810299.png"
-        ]
+        ],
+        "year": "2024"
       }
     ]
   },
@@ -60,19 +61,20 @@
         "id": 1743080173200,
         "ordinanceNumber": "123123",
         "title": "a123qweqwe",
-        "description": "asdasdzxc  asd asd asd as",
+        "description": "asdasdzxc  asd asd asd as jsjdueuhfyryfhhfudjdhsncnvnvnvnvnbchfbvyrhgufyh ggfhdgdyegdtsfsfs5wfAS asdjgugthgyfuhdjdhsuehdjh  sadsasd",
         "image": [
           "/Data/projectImage-1743080173185-673020816.png"
         ]
       },
       {
         "id": 1743081771531,
-        "ordinanceNumber": "23123",
+        "ordinanceNumber": "231232222",
         "title": "jhiyujhmnkhkhj khjmnkh ,hmnjh k mhj k i yuiy j m",
         "description": "asdqwdhgutythgijbjbughnvhfgfdbdbdhcbfnvhgjgjgjghththtytytyrtrtrtrtgfgbbvnb ",
         "image": [
           "/Data/projectImage-1743081771498-674204214.png"
-        ]
+        ],
+        "year": "2025"
       }
     ]
   }

@@ -129,9 +129,8 @@ router.post("/delete", (req, res) => {
       });
     });
   });
-  router.get("/specific/:id", (req, res) => {
-    const projectId = req.params.id;
-  
+  router.post("/specific", (req, res) => {
+    const { id, currentSelectedYear } = req.body;
     fs.readFile(filepath, "utf8", (err, data) => {
       if (err) {
         return res.status(500).json({ message: "Failed to read the file." });
@@ -139,48 +138,67 @@ router.post("/delete", (req, res) => {
   
       try {
         const jsonData = JSON.parse(data);
-  
+        let CurrentYear = jsonData.find(data => data.year == currentSelectedYear) || null;
+
         // Find and update the project
-        const projectIndex = jsonData.findIndex(project => project.id == projectId);
+        const projectIndex = CurrentYear.ordinances.findIndex(project => project.id == id);
         if (projectIndex === -1) {
           return res.status(404).json({ message: "Project not found." });
         }
   
-        res.json(jsonData[projectIndex]);
+        res.json(CurrentYear.ordinances[projectIndex]);
         
         
         
       } catch (err) {
+        
         return res.status(500).json({ message: "Failed to parse JSON data." });
       }
     });
   });
+  //update
   router.post("/update", (req, res) => {
     
     const updatedData = req.body;
-  
+    //Data Without Year
+    const formUpdatedData = {
+      id: updatedData.id,
+      title: updatedData.title,
+      ordinanceNumber: updatedData.ordinanceNumber,
+      description: updatedData.description,
+      image: updatedData.image,
+    }
     fs.readFile(filepath, "utf8", (err, data) => {
-      if (err) {
-        return res.status(500).json({ message: "Failed to read the file." });
-      }
-  
-      try {
-        const jsonData = JSON.parse(data);
-  
-        // Find and update the project
-        const projectIndex = jsonData.findIndex(project => project.id == updatedData.id);
+        if (err) {
+          return res.status(500).json({ message: "Failed to read the file." });
+        }
+    
+        try {
+          const jsonData = JSON.parse(data);
+        let CurrentYear = jsonData.find(data => data.year == updatedData.year) || null;
+        
+        
+        // Ensure CurrentYear is found
+        if (!CurrentYear) {
+          return res.status(404).json({ message: "Year not found." });
+        }
+
+        // Find and update the ordinance
+        const projectIndex = CurrentYear.ordinances.findIndex(project => project.id == updatedData.id);
         if (projectIndex === -1) {
           return res.status(404).json({ message: "Project not found." });
         }
-  
-        jsonData[projectIndex] = { ...jsonData[projectIndex], ...updatedData };
+        console.log(projectIndex);
+        console.log(CurrentYear)
+        // Update the ordinance in the ordinances array
+        CurrentYear.ordinances[projectIndex] = { ...CurrentYear.ordinances[projectIndex], ...formUpdatedData };
         
-        // Write the updated data back to the file
+        // Now save back the updated jsonData
         fs.writeFile(filepath, JSON.stringify(jsonData, null, 2), (err) => {
           if (err) {
             return res.status(500).json({ message: "Failed to update the file." });
           }
-          
+          res.json({ message: "Sucess" })
         });
       } catch (err) {
         return res.status(500).json({ message: "Failed to parse JSON data." });

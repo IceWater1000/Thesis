@@ -84,13 +84,24 @@ const Ordinances = ({ label, onItemClick }: Props) => {
     setIsUpdating(!isUpdating);
   };
   //for updating the data
-  const handleUpdate2 = async (item: string) => {
-    const response = await fetch(
-      `http://localhost:5000/api/ordinances/specific/${item}`
-    );
-    const data = await response.json();
-    setUpdatingValue(data);
-    setIsupdating2(!isUpdating);
+  const handleUpdate2 = async (id: string) => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/ordinances/specific",
+        {
+          method: "POST", // Changed from default GET to POST
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id, currentSelectedYear }), // Send the id in the request body
+        }
+      );
+      const data = await response.json();
+      setUpdatingValue(data);
+      setIsupdating2(!isUpdating);
+    } catch (error) {
+      console.log(error);
+    }
   };
   //for deleting the data
   const handleDelete = async (id: string) => {
@@ -160,15 +171,17 @@ const Ordinances = ({ label, onItemClick }: Props) => {
   //update submit
   const handleSubmit2 = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    const updatedData = { ...updatingValue, year: currentSelectedYear };
     try {
       const response = await axios.post(
         `http://localhost:5000/api/ordinances/update`,
-        updatingValue
+        updatedData
       );
-
+      setReload(!reload);
       // Optionally, reset the form or update the UI
-    } catch (error: any) {}
+    } catch (error: any) {
+      console.log(error);
+    }
     setIsupdating2(!isUpdating2);
   };
   //for adding
@@ -186,6 +199,12 @@ const Ordinances = ({ label, onItemClick }: Props) => {
     setUpdatingValue({
       ...updatingValue,
       description: e.target.value,
+    });
+  };
+  const handleOrdinanceNumberChange2 = (e: any) => {
+    setUpdatingValue({
+      ...updatingValue,
+      ordinanceNumber: e.target.value,
     });
   };
   const handleTitleChange2 = (e: any) => {
@@ -317,7 +336,18 @@ const Ordinances = ({ label, onItemClick }: Props) => {
               <div className="dashboardAddformTitle">ORDINANCES UPDATEFORM</div>
               <hr className="BlueLine" style={{ marginTop: "0" }}></hr>
               <div className="dashboardFormContent">
-                <label className="labels">Project Title</label>
+                <label className="labels">Ordinance Number</label>
+                <input
+                  className="dashboardInputButton"
+                  type="number"
+                  name="projectTitle"
+                  onChange={handleOrdinanceNumberChange2}
+                  value={updatingValue.ordinanceNumber}
+                  required
+                />
+              </div>
+              <div className="dashboardFormContent">
+                <label className="labels">Ordinance Title</label>
                 <input
                   className="dashboardInputButton"
                   type="text"
@@ -328,13 +358,13 @@ const Ordinances = ({ label, onItemClick }: Props) => {
                 />
               </div>
               <div className="dashboardFormContent">
-                <label className="labels">Project Description</label>
+                <label className="labels">Ordinance Description</label>
                 <textarea
                   className="dashboardTextAreaButton"
                   name="projectDescription"
                   id="projectDescription"
-                  value={updatingValue.description}
                   onChange={handleDescriptionChange2}
+                  value={updatingValue.description}
                   required
                 ></textarea>
               </div>
