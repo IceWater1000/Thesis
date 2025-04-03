@@ -32,25 +32,6 @@
         "image": [
           "/Data/projectImage-1743081654567-379068391.png"
         ]
-      },
-      {
-        "id": 1743081728609,
-        "ordinanceNumber": "123123",
-        "title": "jhiykjuojkjouljokpiljohlhkh",
-        "description": "adfkuhwsbef aweoif weuf awuegf owldfjkwevr algfnmnaskfhfhfurygh gurfyg ",
-        "image": [
-          "/Data/projectImage-1743081728573-266013285.png"
-        ]
-      },
-      {
-        "id": 1743082071687,
-        "ordinanceNumber": "123123123123",
-        "title": "asdqwdqdas",
-        "description": "qwdqwdasdasd",
-        "image": [
-          "/Data/projectImage-1743082071653-700810299.png"
-        ],
-        "year": "2024"
       }
     ]
   },
@@ -65,43 +46,20 @@
         "image": [
           "/Data/projectImage-1743080173185-673020816.png"
         ]
-      },
-      {
-        "id": 1743081771531,
-        "ordinanceNumber": "231232222",
-        "title": "jhiyujhmnkhkhj khjmnkh ,hmnjh k mhj k i yuiy j m",
-        "description": "asdqwdhgutythgijbjbughnvhfgfdbdbdhcbfnvhgjgjgjghththtytytyrtrtrtrtgfgbbvnb ",
-        "image": [
-          "/Data/projectImage-1743081771498-674204214.png"
-        ],
-        "year": "2025"
       }
     ]
   },
   {
-    "year": "2020",
+    "year": "2023",
     "ordinances": [
       {
-        "id": 1743592236231,
-        "ordinanceNumber": "55463",
-        "title": "Hushdy gshdegdu hsad",
-        "description": "uyjyhighu ggsyadewt asdhygetdg jhhdhdu gasdasdb bhfgvjdnchchcbfjvnasd  hsydg  wgasyd wabhsaduyrg ashd ",
+        "id": 1743670639956,
+        "ordinanceNumber": "122",
+        "title": "qwe12",
+        "description": " wq we asdhjd huasdas qwd asd ",
         "image": [
-          "/Data/projectImage-1743592236227-865036942.png"
-        ]
-      }
-    ]
-  },
-  {
-    "year": "2019",
-    "ordinances": [
-      {
-        "id": 1743592716809,
-        "ordinanceNumber": "12233",
-        "title": "asdqwdqdas",
-        "description": "asdqwqeqw easd qwd qwdasd oiah iuygeygqwyetfgyfg gstdgeyegdh gdygdh gdtdgeydg hgsydgethhghhfgygtdgfyeh ",
-        "image": [
-          "/Data/projectImage-1743592716801-643192288.png"
+          "/Data/projectImage-1743670639947-437257246.png",
+          "/Data/projectImage-1743670639948-158405358.png"
         ]
       }
     ]

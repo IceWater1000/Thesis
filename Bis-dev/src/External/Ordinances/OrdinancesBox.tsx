@@ -4,11 +4,23 @@ interface Ordinances {
   title: string;
   description: string;
   image: string[];
+  ordinanceNumber: string;
+  year: string;
 }
 
-const OrdinancesBox = ({ id, title, description, image }: Ordinances) => {
+const OrdinancesBox = ({
+  id,
+  title,
+  description,
+  image,
+  ordinanceNumber,
+  year,
+}: Ordinances) => {
   return (
     <div className="ordinancesBox" key={id}>
+      <div className="ordinancesBoxTitle">
+        Ordinance No. {ordinanceNumber} Series of {year}
+      </div>
       <div className="ordinancesBoxTitle"> {title}</div>
       <div style={{ padding: "0px 24px 24px 24px" }}>
         <hr className="blueLine"></hr>

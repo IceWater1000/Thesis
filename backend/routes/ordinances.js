@@ -112,14 +112,14 @@ router.post("/delete", (req, res) => {
       
       let allAnnouncements = JSON.parse(data);
       let updatedAnnouncement = allAnnouncements.map(entry => 
-        entry.year === numericYear
+        entry.year == numericYear
           ? { ...entry, ordinances: entry.ordinances.filter(ord => ord.id !== numericId) }
           : entry
-      );
+      ).filter(entry => entry.ordinances.length !== 0);
 
       //let projects = allAnnouncements.find(entry => entry.year == currentSelectedYear)
       //const updatedProjects = projects.filter((project) => project.id !== projectId);
-  
+     
       // Write the updated data back to the JSON file
       fs.writeFile(filepath, JSON.stringify(updatedAnnouncement, null, 2), (err) => {
         if (err) {

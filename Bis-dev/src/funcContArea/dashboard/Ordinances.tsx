@@ -124,6 +124,7 @@ const Ordinances = ({ label, onItemClick }: Props) => {
         if (response.ok) {
           setReload(!reload);
           console.log("Project deleted successfully");
+          console.log(response);
         } else {
           alert("Failed to delete the project.");
         }
