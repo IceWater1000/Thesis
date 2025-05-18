@@ -164,9 +164,9 @@ const FilterForms = ({ onItemClick, onFilterSave }: Props) => {
             defaultValue={"alive"}
             required
           >
-            <option value=""></option>
             <option value="alive">Alive</option>
             <option value="deceased">Deceased</option>
+            <option value="transferred">Transferred</option>
           </select>
         </div>
         <div className="filterFormContainer" style={{ marginTop: "10px" }}>

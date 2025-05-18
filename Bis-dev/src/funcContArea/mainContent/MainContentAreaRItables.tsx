@@ -20,6 +20,7 @@ interface Resident {
   OccupationID: string;
   Citizenship: string;
   status: string;
+  NewBarangay: string;
 }
 interface ResidentFilter {
   address: string;
@@ -87,6 +88,7 @@ const MainContentAreaRItables = ({
           return { ...item, Age }; // Add the age property
         });
         setData(updatedData);
+        console.log(updatedData);
       } catch (err) {
         console.log("Error");
       }
@@ -96,7 +98,6 @@ const MainContentAreaRItables = ({
   }, [apiLink, reload, addValue]);
 
   useEffect(() => {
-    console.log(filtervalue);
     setFilterParameters(filtervalue as ResidentFilter);
   }, [filtervalue]);
   useEffect(() => {
@@ -260,7 +261,7 @@ const MainContentAreaRItables = ({
       // Make a DELETE request to the backend with the item as a parameter
       const response = await axios.post(
         `http://localhost:5000/api/inhabitants/delete`,
-        { ID: item, Status: reason }
+        { ID: item, Status: reason, NewBarangay: newBarangay }
       );
 
       // Log or handle the successful deletion response
@@ -287,6 +288,7 @@ const MainContentAreaRItables = ({
   }, [data]);
   useEffect(() => {
     setCurrentCount(filteredData.length);
+    console.log(filteredData);
   }, [filteredData]);
 
   // for the delete modal
@@ -335,6 +337,8 @@ const MainContentAreaRItables = ({
               Object.keys(data[0]).map((key, index) =>
                 index == 12 ? (
                   ""
+                ) : key === "NewBarangay" ? (
+                  ""
                 ) : (
                   <>
                     <th className="thContent" key={`header-${key}-${index}`}>
@@ -352,47 +356,104 @@ const MainContentAreaRItables = ({
                   </>
                 )
               )}
-            {type == "official" ? "" : <th className="thContent">Action</th>}
+            {type !== "official" && (
+              <>
+                {filterParameters.status === "alive" && (
+                  <th className="thContent">Action</th>
+                )}
+                {filterParameters.status === "deceased" && (
+                  <th className="thContent">Action</th>
+                )}
+                {filterParameters.status === "transferred" && (
+                  <>
+                    <th className="thContent">New Barangay</th>
+                    <th className="thContent">Action</th>
+                  </>
+                )}
+              </>
+            )}
           </tr>
         </thead>
 
         <tbody>
           {filteredData.map((item, rowIndex) => (
             <tr key={`row-${rowIndex}`}>
-              {Object.values(item).map((val, colIndex) =>
-                colIndex == 12 ? (
-                  ""
-                ) : (
-                  <>
-                    <td key={`row-${rowIndex}-col-${colIndex}`}>{val}</td>
-                  </>
-                )
-              )}
-              {type == "official" ? (
-                ""
-              ) : (
-                <td>
-                  <div className="actionColumn">
-                    <div
-                      className="update"
-                      onClick={() => {
-                        onUpdate(Object.values(item)[0]);
-                        handleAddClick();
-                      }}
-                    >
-                      Update
-                    </div>
-                    <div
-                      className="delete"
-                      onClick={() => {
-                        setItemToDelete(Object.values(item)[0] as string); // Set the selected item
-                        setIsModalOpen(true); // Open the modal
-                      }}
-                    >
-                      Delete
-                    </div>
-                  </div>
-                </td>
+              <td>{item.ResidentID}</td>
+              <td>{item.LastName}</td>
+              <td>{item.GivenName}</td>
+              <td>{item.MiddleName}</td>
+              <td>{item.Qualifier}</td>
+              <td>{item.DateOfBirth.toString()}</td>
+              <td>{item.Address}</td>
+              <td>{item.PlaceOfBirth}</td>
+              <td>{item.Sex}</td>
+              <td>{item.CivilStatus}</td>
+              <td>{item.OccupationID}</td>
+              <td>{item.Citizenship}</td>
+              <td>{item.Age}</td>
+              {type !== "official" && (
+                <>
+                  {filterParameters.status === "alive" ? (
+                    <td>
+                      <div className="actionColumn">
+                        <div
+                          className="update"
+                          onClick={() => {
+                            onUpdate(Object.values(item)[0]);
+                            handleAddClick();
+                          }}
+                        >
+                          Update
+                        </div>
+                        <div
+                          className="delete"
+                          onClick={() => {
+                            setItemToDelete(Object.values(item)[0] as string); // Set the selected item
+                            setIsModalOpen(true); // Open the modal
+                          }}
+                        >
+                          Delete
+                        </div>
+                      </div>
+                    </td>
+                  ) : (
+                    <>
+                      {filterParameters.status === "deceased" && (
+                        <td>
+                          <div className="actionColumn">
+                            <div
+                              className="update"
+                              onClick={() => {
+                                onUpdate(Object.values(item)[0]);
+                                handleAddClick();
+                              }}
+                            >
+                              Update
+                            </div>
+                          </div>
+                        </td>
+                      )}
+                      {filterParameters.status === "transferred" && (
+                        <>
+                          <td>{item.NewBarangay}</td>
+                          <td>
+                            <div className="actionColumn">
+                              <div
+                                className="update"
+                                onClick={() => {
+                                  onUpdate(Object.values(item)[0]);
+                                  handleAddClick();
+                                }}
+                              >
+                                Update
+                              </div>
+                            </div>
+                          </td>
+                        </>
+                      )}
+                    </>
+                  )}
+                </>
               )}
             </tr>
           ))}

@@ -62,11 +62,11 @@ router.post('/filter', (req, res) => {
 
 //delete Data
 router.post('/delete', (req, res) => {
-  const {ID, Status} = req.body;
+  const {ID, Status,NewBarangay} = req.body;
 
 
-    const deleteResidentQuery = "UPDATE `barangayinhabitants` SET `status` = ? WHERE `barangayinhabitants`.`ResidentID` = ?;";
-    db.query(deleteResidentQuery, [Status,ID], (deleteResidentErr, deleteResidentResults) => {
+    const deleteResidentQuery = "UPDATE `barangayinhabitants` SET `status` = ?, `newBarangay` = ? WHERE `barangayinhabitants`.`ResidentID` = ?;";
+    db.query(deleteResidentQuery, [Status,NewBarangay,ID], (deleteResidentErr, deleteResidentResults) => {
       if (deleteResidentErr) {
         console.error("Error deleting resident:", deleteResidentErr);
         return res.status(500).json({ message: "Error deleting resident", error: deleteResidentErr });
@@ -102,7 +102,8 @@ router.post('/update', (req, res) => {
     civilStatus,
     occupation,
     citizenship,
-    status
+    status,
+    newBarangay
   } = req.body; // Extract data from the request body
 
   const query = `
@@ -119,7 +120,8 @@ router.post('/update', (req, res) => {
       CivilStatusID = ?,
       OccupationID = ?,
       CitizenshipID = ?,
-      status = ?
+      status = ?,
+      newBarangay = ?
     WHERE ResidentID = ?`;
 
   db.query(
@@ -137,6 +139,7 @@ router.post('/update', (req, res) => {
       occupation,
       citizenship,
       status,
+      newBarangay,
       resid,
     ],
     (err, results) => {

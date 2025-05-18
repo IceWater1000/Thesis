@@ -24,7 +24,16 @@ import MainContentAreaCertificates5 from "./mainContent/MainContenAreaCertificat
 import MainContentAreaCertificates6 from "./mainContent/MainContenAreaCertificate6";
 import MainContentAreaCertificates7 from "./mainContent/MainContenAreaCertificate7";
 const FuncContArea = () => {
-  let [passFilterItemValue, passFilterItemValueSetter] = useState({});
+  let [passFilterItemValue, passFilterItemValueSetter] = useState({
+    address: "",
+    sex: "",
+    civilStatus: "",
+    occupation: "",
+    citizenship: "",
+    status: "alive",
+    ageRange1: "",
+    ageRange2: "",
+  });
   let [passSearchItemValue, passSearchItemValueSetter] = useState("");
   const [cert, setCert] = useState("Barangay Clearance");
   const handleCertChange = (item: string) => {
@@ -81,7 +90,7 @@ const FuncContArea = () => {
   };
   //for refreshin tables
   let [refs, setRefs] = useState(false);
-  const passFilterItemHanlder = (item: object) => {
+  const passFilterItemHanlder = (item: any) => {
     passFilterItemValueSetter(item);
   };
   const passSearchItemHandler = (item: string) => {

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./forms.css";
 import axios from "axios";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 import Select, { SingleValue } from "react-select";
 interface Props {
@@ -84,6 +83,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
         occupation: residentData.OccupationID?.toString() || "1",
         citizenship: residentData.CitizenshipID?.toString() || "1",
         status: residentData.status?.toString() || "alive",
+        newBarangay: residentData.newBarangay || "",
       });
     }
   }, [residentData]);
@@ -102,9 +102,9 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
     occupation: "1",
     citizenship: "1",
     status: "alive",
+    newBarangay: "",
   });
-  console.log(formData);
-  console.log(residentData);
+
   // Handle input changes
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -134,6 +134,9 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
   //function to handle submitted data
   const submitFormData = (data: typeof formData) => {
     console.log("Submitting form data to API:", data);
+    if (formData.status !== "transferred") {
+      formData.newBarangay == "";
+    }
     const addData = async () => {
       try {
         const response = await axios.post(
@@ -350,8 +353,24 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
           >
             <option value="alive">Alive</option>
             <option value="deceased">Deceased</option>
+            <option value="transferred">Transffered</option>
           </select>
         </div>
+        {formData.status == "transferred" ? (
+          <div className="formContainer">
+            <label className="labels">NewBarangay: </label>
+            <input
+              type="text"
+              id="newBarangay"
+              name="newBarangay"
+              value={formData.newBarangay}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        ) : (
+          ""
+        )}
         <div className="formContainer" style={{ marginTop: "10px" }}>
           <button className="buttons" type="submit">
             Save
