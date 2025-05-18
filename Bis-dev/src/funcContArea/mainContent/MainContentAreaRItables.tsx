@@ -1,5 +1,5 @@
 import React from "react";
-import { useOutletContext } from "react-router-dom";
+
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -495,6 +495,7 @@ const MainContentAreaRItables = ({
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <label className="modalText">New Barangay:</label>
                 <input
+                  style={{ height: "30px", fontSize: "17px" }}
                   type="text"
                   className="modalInput"
                   value={newBarangay}

@@ -1,6 +1,6 @@
 .container{
     border-radius: 10px;
-    min-width: 700px;
+    min-width: 1000px;
     border: 2px solid #433BFF;
     background-color: whitesmoke;
     display: flex;
@@ -27,9 +27,9 @@
 }
 .SideContainer{
     display: flex;
-    width: 33%;
+    width: 300px;
     box-sizing: border-box;
-
+    flex-shrink: 0;
     position: relative;
     
     overflow: hidden;
@@ -90,10 +90,10 @@
 
 .forms{   
     display: flex;
-    width: 66%;
+    width: 100%;
     flex-direction: column;
     padding: 24px;
-    gap: 5px;
+    gap: 15px;
 }
 .forms1KK{   
     display: flex;
