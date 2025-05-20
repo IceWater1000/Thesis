@@ -14,6 +14,7 @@
     font-weight:900;
     font-family: 'Inter', sans-serif;
 }
+
 .ImageContainer{
     cursor: pointer;
     display: flex;
@@ -97,23 +98,55 @@
 .addAccountTab{
     position: fixed;
     overflow: hidden;
-    padding: 12px;
-    display: none;
     
+    display: none;
+    opacity: 0;
     top: 84px;
     flex-direction: column;
-    width: 400px;
+    width: 600px;
+    height: 600px;
     right: 30%;
     transition: opacity 0.3s ease-in-out;
     z-index: 1050;
     background-color: white;
     border: #433BFF solid 2px;
+   
 }
 .addAccountTab.show{
-    
-    display: flex; /* Slide into view */
+    opacity: 1;
+    display: flex; 
     gap: 12px;
     flex-direction: column;
-    flex-wrap: wrap;
+    
     border-radius: 10px;
+}
+.LogsTitle{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #2F27CE;
+}
+.LogsSection{
+    padding: 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color:black;
+    font-family: sans-serif;
+    font-size: 16px;
+    overflow-x: auto;
+}
+.buttons{
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    width: 100%;
+    background-color: #2F27CE;
+    font-family: "Roboto", sans-serif;
+    color: #fbfbfe;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(47, 39, 206, 0.25);
+    height: 25px;
 }

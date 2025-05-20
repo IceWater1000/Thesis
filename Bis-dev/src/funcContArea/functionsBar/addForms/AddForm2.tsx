@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./forms.css";
 import axios, { AxiosError } from "axios";
 import Select, { SingleValue } from "react-select";
-import HouseMembersAddingConfirmation from "./ConfirmationModals/HouseMembersAddingConfirmation";
+import AddToLog from "../../../Logging";
+
 interface Props {
   onItemClick: () => void;
 }
@@ -100,6 +101,8 @@ const AddForm2: React.FC<Props> = ({ onItemClick }: Props) => {
           );
         }
         console.error("Error adding data:", error);
+      } finally {
+        AddToLog("Data Added --Household--");
       }
     };
     addData();

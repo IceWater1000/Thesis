@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import UpdateForm3 from "../functionsBar/addForms/UpdateForm3";
 import "./tables.css";
+import AddToLog from "../../Logging";
 interface HouseholdMember {
   HouseholdMembershipID: string;
   CivilStatus: string;
@@ -145,7 +146,7 @@ const MainContentAreaHMtables = ({
 
       // Log or handle the successful deletion response
       console.log("Data deleted successfully:", response.data);
-      console.log(item);
+      AddToLog(`Data Deleted --Household Members-- ID:${item}`);
       setReload(!reload);
     } catch (error) {
       // Handle any errors that occur during the deletion

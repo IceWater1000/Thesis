@@ -45,6 +45,7 @@ const Login = ({ onItemClick, isVisible }: Props) => {
 
         setLoggedIN(true);
         localStorage.setItem("data", JSON.stringify(response.data.data));
+        localStorage.setItem("username", formData.username);
         onItemClick();
         navigate("/internal");
         // Navigate only if login is successful

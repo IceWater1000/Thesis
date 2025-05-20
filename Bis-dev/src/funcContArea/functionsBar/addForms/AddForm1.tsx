@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./forms.css";
 import axios from "axios";
 import Select, { SingleValue } from "react-select";
+import AddToLog from "../../../Logging";
 interface Props {
   onItemClick: () => void;
 }
@@ -205,7 +206,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
       middleName: "",
       qualifier: "",
       dateOfBirth: "",
-      address: "",
+      address: "1",
       placeOfBirth: "",
       sex: "male",
       civilStatus: "1",
@@ -239,6 +240,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
       } catch (error) {
         console.error("Error adding data:", error);
       } finally {
+        AddToLog(`Data Added --Barangay Resident--`);
         alert("Data Added Successfully");
       }
     };

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import UpdateForm1 from "../functionsBar/addForms/UpdateForm1";
 import "./tables.css";
+import AddToLog from "../../Logging";
 interface Resident {
   ResidentID: string;
   GivenName: string;
@@ -88,7 +89,6 @@ const MainContentAreaRItables = ({
           return { ...item, Age }; // Add the age property
         });
         setData(updatedData);
-        console.log(updatedData);
       } catch (err) {
         console.log("Error");
       }
@@ -267,6 +267,7 @@ const MainContentAreaRItables = ({
       // Log or handle the successful deletion response
       console.log("Data deleted successfully:", response.data);
       setReload(!reload);
+      AddToLog(`Data Deleted --Barangay Inhabitants-- ID:${item}`);
     } catch (error) {
       // Handle any errors that occur during the deletion
       console.error("Error deleting data:", error);
@@ -288,7 +289,6 @@ const MainContentAreaRItables = ({
   }, [data]);
   useEffect(() => {
     setCurrentCount(filteredData.length);
-    console.log(filteredData);
   }, [filteredData]);
 
   // for the delete modal

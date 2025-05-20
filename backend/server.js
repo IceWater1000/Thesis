@@ -18,8 +18,9 @@ const personel5Routes = require('./routes/personel5');
 const luponRecordRoutes = require('./routes/luponRecords');
 const chartFetcherRoutes = require('./routes/chartFetcher');
 const loginRoutes = require('./routes/login');
-const demographic = require('./routes/demographic')
+const demographic = require('./routes/demographic');
 const homeDashboard = require("./routes/HomeDashboardData");
+const logs = require('./routes/Logs');
 const app = express();
 const corsOptions = {
     origin: 'http://localhost:5173', 
@@ -46,6 +47,7 @@ app.use('/api/KKMembers', KKMembersRoutes)
 app.use('/api/seniorCitizen', seniorCitizenRoutes)
 app.use('/api/dashboard', dashboardRoutes)
 app.use('/api/homeDashboard', homeDashboard)
+app.use('/api/logs', logs)
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

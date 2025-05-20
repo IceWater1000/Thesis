@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import UpdateForm6 from "../functionsBar/addForms/UpdateForm6";
 import "./tables.css";
+import AddToLog from "../../Logging";
 interface Lupon {
   Id: string;
   NameOfComplainant: string;
@@ -146,6 +147,7 @@ const MainContentAreaLupon = ({ addValue, searchValue }: Props) => {
 
       // Log or handle the successful deletion response
       console.log("Data deleted successfully:", response.data);
+      AddToLog(`Data Deleted --Lupon Record-- ID:${item}`);
       setReload(!reload);
     } catch (error) {
       // Handle any errors that occur during the deletion

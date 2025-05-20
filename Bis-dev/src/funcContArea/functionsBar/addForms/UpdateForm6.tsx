@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Select, { SingleValue } from "react-select";
 import { useEffect } from "react";
+import AddToLog from "../../../Logging";
 interface Props {
   onItemClick: () => void;
   theID: string;
@@ -51,6 +52,7 @@ const UpdateForm6 = ({ onItemClick, theID }: Props) => {
         );
         console.log(response.data);
         setResidentData(response.data); // Store the fetched data
+        AddToLog("Data Updated --Lupon Record--");
       } catch (err) {
         console.error("Error fetching resident:", err);
       }

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import UpdateForm5 from "../functionsBar/addForms/UpdateForm5";
 import "./tables.css";
+import AddToLog from "../../Logging";
 interface KK {
   ContactNumber: string;
   EmailAddress: string;
@@ -146,6 +147,7 @@ const MainContentAreaKKtables = ({
 
       // Log or handle the successful deletion response
       console.log("Data deleted successfully:", response.data);
+      AddToLog(`Data Deleted --KK Member-- ID:${item}`);
       setReload(!reload);
     } catch (error) {
       // Handle any errors that occur during the deletion

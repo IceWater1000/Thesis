@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Select, { SingleValue } from "react-select";
 import { useEffect } from "react";
+import AddToLog from "../../../Logging";
 interface Props {
   residentId: string;
   onItemClick: () => void;
@@ -124,6 +125,7 @@ const UpdateForm5 = ({ residentId, onItemClick }: Props) => {
           formData
         );
         console.log("Data added successfully:", response.data);
+        AddToLog("Data Update --KK Member--");
       } catch (error) {
         console.error("Error adding data:", error);
       }

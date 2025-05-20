@@ -1,0 +1,5 @@
+
+[2025-05-18T09:37:39.124Z] admin -- Data Added --Barangay Resident--
+[2025-05-18T09:39:42.270Z] admin -- Data Added --Household--
+[2025-05-18T09:47:41.287Z] admin -- Data Updated --Barangay Inhabitants--
+[2025-05-18T09:57:23.417Z] admin -- Data Deleted --Household-- ID:698

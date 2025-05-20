@@ -3,6 +3,7 @@ import axios from "axios";
 import Select, { SingleValue } from "react-select";
 import { useEffect } from "react";
 import { useSelectAddformReload } from "../../../utilities/SelectAdformDataReload";
+import AddToLog from "../../../Logging";
 interface Props {
   onItemClick: () => void;
 }
@@ -58,6 +59,7 @@ const AddForm4 = ({ onItemClick }: Props) => {
           "http://localhost:5000/api/inhabitants/addSC",
           formData
         );
+        AddToLog("Data Added --Senior Citizen--");
         console.log("Data added successfully:", response.data);
       } catch (error) {
         console.error("Error adding data:", error);

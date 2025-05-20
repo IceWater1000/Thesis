@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./TopBar.css";
+import { div } from "framer-motion/client";
 interface Props {
   userID: string;
 }
@@ -57,50 +58,11 @@ const TopBar = ({ userID }: Props) => {
     cleanData();
     setAccountAddOpen(!accountAddOpen);
   };
-  const handleAddSave = () => {
-    const update = async () => {
-      try {
-        const response = await axios.post(
-          `http://localhost:5000/api/login/add`,
-          theUserData2
-        );
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    update();
-    setAccountAddOpen(!accountAddOpen);
-    cleanData();
-  };
-  const handleSave = () => {
-    const update = async () => {
-      try {
-        const response = await axios.post(
-          `http://localhost:5000/api/login/update`,
-          theUserData
-        );
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    update();
-    setIsEditing(!isEditing);
-    setAccountOpen(!accountOpen);
-  };
+
   const handleOpenClick = () => {
     setAccountOpen(!accountOpen);
   };
-  const handleChange2 = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
-    setTheUserData2({
-      ...theUserData2,
-      [name]: value,
-    });
-  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setTheUserData({
@@ -108,10 +70,20 @@ const TopBar = ({ userID }: Props) => {
       [name]: value,
     });
   };
-  const handleEdit = () => {
-    setIsEditing(!isEditing);
-  };
-  console.log(theUserData2);
+  const [LogData, setLogData] = useState<string[]>([]);
+  useEffect(() => {
+    const getLogs = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/logs/GetAll`
+        );
+        setLogData(response.data.logs);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getLogs();
+  }, []);
   return (
     <>
       <div className="TopBar">
@@ -129,20 +101,7 @@ const TopBar = ({ userID }: Props) => {
             <div className="accountLabel">Account</div>
             <hr className="solidLine"></hr>
           </div>
-          <div className="ATrow">
-            <div className="Labels"> Full Name: </div>
-            {isEditing ? (
-              <input
-                className="inputs2"
-                name="userTrueName"
-                onChange={handleChange}
-                value={theUserData.userTrueName}
-              ></input>
-            ) : (
-              <div className="Labels2">{theUserData.userTrueName}</div>
-            )}
-          </div>
-          <hr className="solidLine"></hr>
+
           <div className="ATrow">
             <div className="Labels"> Username: </div>
             {isEditing ? (
@@ -157,20 +116,7 @@ const TopBar = ({ userID }: Props) => {
             )}
           </div>
           <hr className="solidLine"></hr>
-          <div className="ATrow">
-            <div className="Labels"> Position: </div>
-            {isEditing ? (
-              <input
-                className="inputs2"
-                name="position"
-                onChange={handleChange}
-                value={theUserData.position}
-              ></input>
-            ) : (
-              <div className="Labels2">{theUserData.position}</div>
-            )}
-          </div>
-          <hr className="solidLine"></hr>
+
           <div className="ATrow">
             <div className="Labels"> Type: </div>
             <div className="Labels2">{theUserData.usertype}</div>
@@ -195,19 +141,10 @@ const TopBar = ({ userID }: Props) => {
             {theUserData.usertype == "admin" ||
             theUserData.usertype == "secretary" ? (
               <div className="buttons" onClick={handleAdd}>
-                Add
+                View Logs
               </div>
             ) : (
               ""
-            )}
-            {isEditing ? (
-              <div className="buttons" onClick={handleSave}>
-                Save
-              </div>
-            ) : (
-              <div className="buttons" onClick={handleEdit}>
-                Edit
-              </div>
             )}
 
             <div className="buttons" onClick={handleOpenClick}>
@@ -216,48 +153,18 @@ const TopBar = ({ userID }: Props) => {
           </div>
         </div>
         <div className={`addAccountTab ${accountAddOpen ? "show" : ""}`}>
-          <div className="ATrow">
-            <div className="accountLabel">Add Form</div>
+          <div className="LogsTitle">Logs</div>
+          <div className="LogsSection">
+            {LogData.map((data, index) => (
+              <div key={index}>{data}</div>
+            ))}
           </div>
-          <hr className="solidLine"></hr>
           <div className="ATrow">
-            <div className="Labels"> Full Name: </div>
-            <input type="text" name="userTrueName" onChange={handleChange2} />
-          </div>
-          <hr className="solidLine"></hr>
-          <div className="ATrow">
-            <div className="Labels"> Position: </div>
-            <input type="text" name="position" onChange={handleChange2} />
-          </div>
-          <hr className="solidLine"></hr>
-          <div className="ATrow">
-            <div className="Labels"> Username: </div>
-            <input type="text" name="username" onChange={handleChange2} />
-          </div>
-          <hr className="solidLine"></hr>
-          {theUserData.usertype == "admin" ? (
-            <div className="ATrow" style={{ alignItems: "center" }}>
-              <div className="Labels"> User Type: </div>
-              <select
-                name="usertype"
-                value={theUserData2.usertype}
-                onChange={handleChange2}
-                required
-                defaultValue={"official"}
-              >
-                <option value="official">Official</option>
-                <option value="secretary">Secretary</option>
-              </select>
-            </div>
-          ) : (
-            ""
-          )}
-
-          <div className="ATrow">
-            <div className="buttons" onClick={handleAddSave}>
-              Add
-            </div>
-            <div className="buttons" onClick={handleAdd}>
+            <div
+              className="buttons"
+              onClick={handleAdd}
+              style={{ marginTop: "auto" }}
+            >
               Close
             </div>
           </div>

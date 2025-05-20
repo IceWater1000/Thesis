@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import AddForm1 from "../functionsBar/addForms/UpdateForm2";
 import "./tables.css";
+import AddToLog from "../../Logging";
 interface House {
   HouseholdNumber: string;
   Address: string;
@@ -155,7 +156,7 @@ const MainContentAreaHtables = ({
 
       // Log or handle the successful deletion response
       console.log("Data deleted successfully:", response.data);
-      console.log(response.data);
+      AddToLog(`Data Deleted --Household-- ID:${item}`);
       setReload(!reload);
     } catch (error) {
       // Handle any errors that occur during the deletion

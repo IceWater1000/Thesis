@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./forms.css";
 import axios from "axios";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import Select, { SingleValue } from "react-select";
+import AddToLog from "../../../Logging";
 interface Props {
   onItemClick: () => void;
   residentId: string;
@@ -14,7 +15,7 @@ interface OptionType {
 }
 const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
   //const [data, setData] = useState<DataTransferItem[]>([]);
-  const navigate = useNavigate();
+
   const [residentData, setResidentData] = useState<any>({});
   const [options, setOptions] = useState<OptionType[]>([]);
   const [formData, setFormData] = useState({
@@ -114,6 +115,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
           data
         );
         console.log("Data added successfully:", response.data);
+        AddToLog("Data Updated --Household--");
       } catch (error) {
         console.error("Error adding data:", error);
       }
