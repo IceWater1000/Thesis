@@ -35,8 +35,15 @@ const AnnouncementsContainer = () => {
           new Date(a.activityDate).getTime() -
           new Date(b.activityDate).getTime()
       );
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
 
-      setProjects(data);
+      const upcomingActivities = data.filter((activity) => {
+        const activityDate = new Date(activity.activityDate);
+        activityDate.setHours(0, 0, 0, 0); // Make sure to compare only the date part
+        return activityDate >= today;
+      });
+      setProjects(upcomingActivities);
     };
 
     fetchProjects();

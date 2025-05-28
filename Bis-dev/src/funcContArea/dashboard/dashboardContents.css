@@ -56,10 +56,19 @@
     overflow-y: auto; /* Enables vertical scrolling */
     overflow-x: hidden;
 }
+.ArchiveSelect{
+  width: 200px;
+  margin-left: auto;
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 10px;
+  
+}
 .AddButton{
     object-fit: cover;
     cursor: pointer;
-    margin-left: auto;
+    
 }
 .CloseButton{
     

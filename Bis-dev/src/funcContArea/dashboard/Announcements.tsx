@@ -24,6 +24,7 @@ interface OptionType {
 const Announcements = ({ label, onItemClick }: Props) => {
   const { SetAnnouncementReload } = useSelectAddformReload();
   const [projects, setProjects] = useState<Project[]>([]);
+  const [archivedProjects, setArchivedProjects] = useState<Project[]>([]);
   const [selectedImage, setSelectedImage] = useState(false);
   const [allSelectedImage, setAllSelectedImage] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -35,6 +36,10 @@ const Announcements = ({ label, onItemClick }: Props) => {
   const [activityDate, setActivityDate] = useState("");
   const [options, setOptions] = useState<OptionType[]>([]);
   const [image, setImage] = useState<any>([]);
+
+  const [selectedView, setSelectedView] = useState<"upcoming" | "archived">(
+    "upcoming"
+  );
 
   const [updatingValue, setUpdatingValue] = useState<Project>({
     id: "",
@@ -50,8 +55,23 @@ const Announcements = ({ label, onItemClick }: Props) => {
       const response = await fetch(
         "http://localhost:5000/api/Announcements/projects"
       );
-      const data = await response.json();
-      setProjects(data);
+      const data: Project[] = await response.json();
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const removedActivities: Project[] = [];
+      const remainingActivities: Project[] = [];
+      data.forEach((activity) => {
+        const activityDate = new Date(activity.activityDate);
+        activityDate.setHours(0, 0, 0, 0);
+        if (activityDate < today) {
+          removedActivities.push(activity);
+        } else {
+          remainingActivities.push(activity);
+        }
+      });
+      setProjects(remainingActivities);
+      setArchivedProjects(removedActivities);
     };
 
     fetchProjects();
@@ -233,22 +253,40 @@ const Announcements = ({ label, onItemClick }: Props) => {
     };
     fetchResidents();
   }, [Announcements]);
+  const displayedProjects =
+    selectedView === "upcoming" ? projects : archivedProjects;
   return (
     <>
       <div className="dashboardTab">
         <div className="dashboardTabTopBar">
           <div className="dashbaorTabTopBarLabel">{label.toUpperCase()}</div>
-          <div
-            className="AddButton"
-            onClick={() => {
-              handleUpdate();
-            }}
+
+          <select
+            className="ArchiveSelect"
+            value={selectedView}
+            onChange={(e) =>
+              setSelectedView(e.target.value as "upcoming" | "archived")
+            }
           >
-            <img
-              className="dashbaordTabTopBarButton"
-              src="/Images/White/add.png"
-            />
-          </div>
+            <option value="upcoming">Upcoming Activities</option>
+            <option value="archived">Archived Activities</option>
+          </select>
+
+          {selectedView == "upcoming" ? (
+            <div
+              className="AddButton"
+              onClick={() => {
+                handleUpdate();
+              }}
+            >
+              <img
+                className="dashbaordTabTopBarButton"
+                src="/Images/White/add.png"
+              />
+            </div>
+          ) : (
+            ""
+          )}
           <div
             className="CloseButton"
             onClick={() => {
@@ -262,7 +300,7 @@ const Announcements = ({ label, onItemClick }: Props) => {
           </div>
         </div>
         <div className="dashboardTabMainContent">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <div key={index} className="theContent">
               <div className="imgContent">
                 <img

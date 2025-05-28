@@ -11,6 +11,7 @@ interface Announcements {
   uploader: string;
   date: string;
   description: string;
+  activityDate: string;
   image: string;
 }
 
@@ -32,9 +33,21 @@ const HomeAnnouncements = () => {
         const response = await fetch(
           "http://localhost:5000/api/Announcements/projects"
         );
-        const data = await response.json();
+        const data: Announcements[] = await response.json();
+        data.sort(
+          (a, b) =>
+            new Date(a.activityDate).getTime() -
+            new Date(b.activityDate).getTime()
+        );
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
 
-        setAnnouncementsData(data);
+        const upcomingActivities = data.filter((activity) => {
+          const activityDate = new Date(activity.activityDate);
+          activityDate.setHours(0, 0, 0, 0); // Make sure to compare only the date part
+          return activityDate >= today;
+        });
+        setAnnouncementsData(upcomingActivities);
       } catch (error) {
         console.log("ERROR Fetching");
       }
