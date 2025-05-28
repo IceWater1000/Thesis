@@ -7,7 +7,7 @@ import BarLeft from "../BarLeft";
 interface Officials {
   id: string;
   image: string;
-  name: string;
+  full_name: string;
   other: string;
   position: string;
 }
@@ -16,27 +16,18 @@ interface OfficialsYear {
   officials: Officials[];
 }
 const HomeOfficials = () => {
-  const [officialsData, setOfficialsData] = useState<OfficialsYear[]>([
-    {
-      year: "",
-      officials: Array(11).fill({
-        id: "",
-        image: "",
-        name: "",
-        other: "",
-        position: "",
-      }),
-    },
-  ]);
+  const [officialsData, setOfficialsData] = useState<Officials[]>([]);
   useEffect(() => {
+    console.log("aqweqweqweqweqw");
     const fetchOfficials = async () => {
       const response = await fetch("http://localhost:5000/api/personel1/view");
       const data = await response.json();
+
       setOfficialsData(data);
     };
     fetchOfficials();
   }, []);
-
+  console.log(officialsData);
   return (
     <div className="HomeOfficials">
       <div className="HomeIntroductionText">THE BARANGAY COUNCIL</div>
@@ -53,90 +44,90 @@ const HomeOfficials = () => {
       <ScrollReveal direction="Bottom">
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
-            name={officialsData[0].officials[0].name}
-            committee={officialsData[0].officials[0].other}
-            position={officialsData[0].officials[0].position}
-            img={officialsData[0].officials[0].image}
+            name={officialsData[0]?.full_name}
+            committee={officialsData[0]?.other}
+            position={officialsData[0]?.position}
+            img={officialsData[0]?.image}
           />
         </div>
       </ScrollReveal>
       <ScrollReveal direction="Bottom">
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
-            name={officialsData[0].officials[1].name}
-            committee={officialsData[0].officials[1].other}
-            position={officialsData[0].officials[1].position}
-            img={officialsData[0].officials[1].image}
+            name={officialsData[1]?.full_name}
+            committee={officialsData[1]?.other}
+            position={officialsData[1]?.position}
+            img={officialsData[1]?.image}
           />
           <HomeOfficialsBox
-            name={officialsData[0].officials[2].name}
-            committee={officialsData[0].officials[2].other}
-            position={officialsData[0].officials[2].position}
-            img={officialsData[0].officials[2].image}
-          />
-        </div>
-      </ScrollReveal>
-      <ScrollReveal direction="Bottom">
-        <div className="HomeOfficialsRow">
-          <HomeOfficialsBox
-            name={officialsData[0].officials[3].name}
-            committee={officialsData[0].officials[3].other}
-            position={officialsData[0].officials[3].position}
-            img={officialsData[0].officials[3].image}
-          />
-          <HomeOfficialsBox
-            name={officialsData[0].officials[4].name}
-            committee={officialsData[0].officials[4].other}
-            position={officialsData[0].officials[4].position}
-            img={officialsData[0].officials[4].image}
-          />
-          <HomeOfficialsBox
-            name={officialsData[0].officials[5].name}
-            committee={officialsData[0].officials[5].other}
-            position={officialsData[0].officials[5].position}
-            img={officialsData[0].officials[5].image}
+            name={officialsData[2]?.full_name}
+            committee={officialsData[2]?.other}
+            position={officialsData[2]?.position}
+            img={officialsData[2]?.image}
           />
         </div>
       </ScrollReveal>
       <ScrollReveal direction="Bottom">
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
-            name={officialsData[0].officials[6].name}
-            committee={officialsData[0].officials[6].other}
-            position={officialsData[0].officials[6].position}
-            img={officialsData[0].officials[6].image}
+            name={officialsData[3]?.full_name}
+            committee={officialsData[3]?.other}
+            position={officialsData[3]?.position}
+            img={officialsData[3]?.image}
           />
           <HomeOfficialsBox
-            name={officialsData[0].officials[7].name}
-            committee={officialsData[0].officials[7].other}
-            position={officialsData[0].officials[7].position}
-            img={officialsData[0].officials[7].image}
+            name={officialsData[4]?.full_name}
+            committee={officialsData[4]?.other}
+            position={officialsData[4]?.position}
+            img={officialsData[4]?.image}
           />
-        </div>
-      </ScrollReveal>
-      <ScrollReveal direction="Bottom">
-        <div className="HomeOfficialsRow">
           <HomeOfficialsBox
-            name={officialsData[0].officials[10].name}
-            committee={officialsData[0].officials[10].other}
-            position={officialsData[0].officials[10].position}
-            img={officialsData[0].officials[10].image}
+            name={officialsData[5]?.full_name}
+            committee={officialsData[5]?.other}
+            position={officialsData[5]?.position}
+            img={officialsData[5]?.image}
           />
         </div>
       </ScrollReveal>
       <ScrollReveal direction="Bottom">
         <div className="HomeOfficialsRow">
           <HomeOfficialsBox
-            name={officialsData[0].officials[8].name}
-            committee={officialsData[0].officials[8].other}
-            position={officialsData[0].officials[8].position}
-            img={officialsData[0].officials[8].image}
+            name={officialsData[6]?.full_name}
+            committee={officialsData[6]?.other}
+            position={officialsData[6]?.position}
+            img={officialsData[6]?.image}
           />
           <HomeOfficialsBox
-            name={officialsData[0].officials[9].name}
-            committee={officialsData[0].officials[9].other}
-            position={officialsData[0].officials[9].position}
-            img={officialsData[0].officials[9].image}
+            name={officialsData[7]?.full_name}
+            committee={officialsData[7]?.other}
+            position={officialsData[7]?.position}
+            img={officialsData[7]?.image}
+          />
+        </div>
+      </ScrollReveal>
+      <ScrollReveal direction="Bottom">
+        <div className="HomeOfficialsRow">
+          <HomeOfficialsBox
+            name={officialsData[8]?.full_name}
+            committee={officialsData[8]?.other}
+            position={officialsData[8]?.position}
+            img={officialsData[8]?.image}
+          />
+        </div>
+      </ScrollReveal>
+      <ScrollReveal direction="Bottom">
+        <div className="HomeOfficialsRow">
+          <HomeOfficialsBox
+            name={officialsData[9]?.full_name}
+            committee={officialsData[9]?.other}
+            position={officialsData[9]?.position}
+            img={officialsData[9]?.image}
+          />
+          <HomeOfficialsBox
+            name={officialsData[10]?.full_name}
+            committee={officialsData[10]?.other}
+            position={officialsData[10]?.position}
+            img={officialsData[10]?.image}
           />
         </div>
       </ScrollReveal>

@@ -6,6 +6,8 @@ const app = express();
 const multer = require('multer');
 const path = require('path');
 app.use(bodyParser.json());
+const db = require('../db'); // Import db connection
+
 
 const filepath = "./routes/personel1.JSON"
 const filePath = path.join(__dirname, 'personel1.json');
@@ -26,12 +28,17 @@ const upload = multer({ storage: storage })
 //View
 router.get("/view", (req, res) => {
     
-    fs.readFile(filepath, "utf8", (err, data) => {
+    const query = "SELECT * FROM officialsview"
+    db.query(query, (err,results)=>{
       if (err) {
-        return res.status(500).json({ message: "Failed to read the file." });
+        console.error('Error fetching residents:', err);
+        res.status(500).send(err);
+      }else {
+        console.log(results);
+        res.json(results);
       }
-      res.json(JSON.parse(data));
-    });
+    })
+    
   });
 //Specific
 router.get("/specific/:id", (req, res) => {
