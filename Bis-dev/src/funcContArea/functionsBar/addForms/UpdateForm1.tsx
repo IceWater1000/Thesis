@@ -339,7 +339,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
             name="ResidentID"
             id="ResidentID"
             value={citizenshipOpetion.find(
-              (option) => option.value === formData.citizenship
+              (option) => option.value == formData.citizenship
             )}
             onChange={handleReactSelectChange}
             className="reactSelect"

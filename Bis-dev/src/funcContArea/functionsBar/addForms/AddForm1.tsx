@@ -710,8 +710,6 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
               id="ResidentID"
               onChange={handleReactSelectChange}
               className="reactSelect"
-
-              //isMulti={false} // Set to true for multi-select
             />
           </div>
           <div className="formContainer" style={{ marginTop: "10px" }}>
