@@ -137,6 +137,7 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                 ""
               )}
               <div
+                style={{ marginLeft: isEdetingEmergency ? "" : "auto" }}
                 className="CarouselAdd"
                 onClick={() => {
                   setIsEdetingEmergency((prev) => !prev);
@@ -154,17 +155,23 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                 {isEdetingEmergency ? (
                   <>
                     <input
-                      type="number"
+                      type="tel"
+                      inputMode="numeric"
                       className="DashboardUIInput"
                       value={numbersLabel[0]?.Number[0]}
+                      pattern="[0-9]{11}"
+                      maxLength={11}
                       onChange={(event) => {
                         onEmergencyNumberChange(0, 0, event);
                       }}
                     />
                     <input
-                      type="number"
+                      type="tel"
+                      inputMode="numeric"
                       className="DashboardUIInput"
                       value={numbersLabel[0]?.Number[1]}
+                      pattern="[0-9]{11}"
+                      maxLength={11}
                       onChange={(event) => {
                         onEmergencyNumberChange(0, 1, event);
                       }}
@@ -186,17 +193,23 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                 {isEdetingEmergency ? (
                   <>
                     <input
-                      type="number"
+                      type="tel"
+                      inputMode="numeric"
                       className="DashboardUIInput"
                       value={numbersLabel[1]?.Number[0]}
+                      pattern="[0-9]{11}"
+                      maxLength={11}
                       onChange={(event) => {
                         onEmergencyNumberChange(1, 0, event);
                       }}
                     />
                     <input
-                      type="number"
+                      type="tel"
+                      inputMode="numeric"
                       className="DashboardUIInput"
                       value={numbersLabel[1]?.Number[1]}
+                      pattern="[0-9]{11}"
+                      maxLength={11}
                       onChange={(event) => {
                         onEmergencyNumberChange(1, 1, event);
                       }}
@@ -218,17 +231,23 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                 {isEdetingEmergency ? (
                   <>
                     <input
-                      type="number"
+                      type="tel"
+                      inputMode="numeric"
                       className="DashboardUIInput"
+                      pattern="[0-9]{11}"
+                      maxLength={11}
                       value={numbersLabel[2]?.Number[0]}
                       onChange={(event) => {
                         onEmergencyNumberChange(2, 0, event);
                       }}
                     />
                     <input
-                      type="number"
+                      type="tel"
+                      inputMode="numeric"
                       className="DashboardUIInput"
                       value={numbersLabel[2]?.Number[1]}
+                      pattern="[0-9]{11}"
+                      maxLength={11}
                       onChange={(event) => {
                         onEmergencyNumberChange(2, 1, event);
                       }}
@@ -250,16 +269,22 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
                 {isEdetingEmergency ? (
                   <>
                     <input
-                      type="number"
+                      type="tel"
+                      inputMode="numeric"
                       className="DashboardUIInput"
+                      pattern="[0-9]{11}"
+                      maxLength={11}
                       value={numbersLabel[3]?.Number[0]}
                       onChange={(event) => {
                         onEmergencyNumberChange(3, 0, event);
                       }}
                     />
                     <input
-                      type="number"
+                      type="tel"
+                      inputMode="numeric"
                       className="DashboardUIInput"
+                      pattern="[0-9]{11}"
+                      maxLength={11}
                       value={numbersLabel[3]?.Number[1]}
                       onChange={(event) => {
                         onEmergencyNumberChange(3, 1, event);
@@ -283,7 +308,11 @@ const DashboardUI = ({ label, onItemClick }: Props) => {
           <div className="CarouselImageTable">
             <div style={{ display: "flex", flexDirection: "row", gap: "24px" }}>
               <div className="DashboardUIHead">CAROUSEL IMAGES</div>
-              <div className="CarouselAdd" onClick={carouselAddClickHandler}>
+              <div
+                style={{ marginLeft: "auto" }}
+                className="CarouselAdd"
+                onClick={carouselAddClickHandler}
+              >
                 ADD
               </div>
             </div>

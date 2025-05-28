@@ -7,7 +7,7 @@
 }
 .CarouselAdd{
     font-size: 24px;
-    margin-left: auto;
+    
     margin-bottom: 12px;
     font-family: "Inter", sans-serif;
     font-weight: bold;
@@ -93,7 +93,7 @@
 }
 .EmergnecySave{
     font-size: 24px;
-    
+    margin-left: auto;
     margin-bottom: 12px;
     font-family: "Inter", sans-serif;
     font-weight: bold;
