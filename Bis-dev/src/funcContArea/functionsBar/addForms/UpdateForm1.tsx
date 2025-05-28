@@ -14,6 +14,8 @@ interface OptionType {
   label: string;
 }
 const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
+  const today = new Date().toISOString().split("T")[0];
+
   //const [data, setData] = useState<DataTransferItem[]>([]);
   const [citizenshipOpetion, setCitizenshipOption] = useState<OptionType[]>([]);
   const [residentData, setResidentData] = useState<any>({});
@@ -243,6 +245,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick, residentId }) => {
             name="dateOfBirth"
             value={formData.dateOfBirth}
             onChange={handleChange}
+            max={today}
             required
           />
         </div>

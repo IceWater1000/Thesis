@@ -11,6 +11,7 @@ interface OptionType {
   label: string;
 }
 const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
+  const today = new Date().toISOString().split("T")[0];
   //for house forms
   const [assignToHouseActivity, setAssignToHouseActivity] = useState(false);
   const [houseOption, setHouseOption] = useState<OptionType[]>([]);
@@ -627,6 +628,7 @@ const AddForm1: React.FC<Props> = ({ onItemClick }: Props) => {
               value={formData.dateOfBirth}
               onChange={handleChange}
               required
+              max={today}
             />
           </div>
 
