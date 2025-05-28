@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 
 // Hash the password using bcrypt
 /*
-const username = 'official1';
+const username = 'admin';
 const password = 'official1';
 bcrypt.hash(password, 10, (err, hashedPassword) => {
     if (err) {

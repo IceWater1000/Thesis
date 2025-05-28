@@ -11,9 +11,8 @@ const Maps = () => {
     <div className="map">
       <div className="mapTitle">THE BARANGAY BUTNGA</div>
       <div className="originalMapContainer">
-        <div>
-          <img className="map1" src="/Images/map3.jpg" />
-        </div>
+        <img className="map1" src="/Images/map3.jpg" />
+        <img className="map2" src="/Images/MapLegend.png" />
       </div>
       <div className="openLayerMapComponents">
         <div className="openLayerMapComponentsHeader">

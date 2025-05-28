@@ -29,13 +29,19 @@ const AnnouncementsContainer = () => {
       const response = await fetch(
         "http://localhost:5000/api/Announcements/projects"
       );
-      const data = await response.json();
+      const data: Project[] = await response.json();
+      data.sort(
+        (a, b) =>
+          new Date(a.activityDate).getTime() -
+          new Date(b.activityDate).getTime()
+      );
+
       setProjects(data);
     };
 
     fetchProjects();
   }, []);
-  console.log(projects);
+
   return (
     <div className="announcementsContainer">
       {projects.map((item, index) => (

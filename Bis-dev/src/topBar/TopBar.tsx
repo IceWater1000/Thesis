@@ -140,14 +140,14 @@ const TopBar = ({ userID }: Props) => {
           <div className="ATrow">
             {theUserData.usertype == "admin" ||
             theUserData.usertype == "secretary" ? (
-              <div className="buttons" onClick={handleAdd}>
+              <div className="buttons buttons10" onClick={handleAdd}>
                 View Logs
               </div>
             ) : (
               ""
             )}
 
-            <div className="buttons" onClick={handleOpenClick}>
+            <div className="buttons buttons10" onClick={handleOpenClick}>
               Close
             </div>
           </div>
@@ -161,7 +161,7 @@ const TopBar = ({ userID }: Props) => {
           </div>
           <div className="ATrow">
             <div
-              className="buttons"
+              className="buttons buttons10"
               onClick={handleAdd}
               style={{ marginTop: "auto" }}
             >

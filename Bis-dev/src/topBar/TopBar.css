@@ -138,11 +138,12 @@
     font-size: 16px;
     overflow-x: auto;
 }
-.buttons{
+.buttons10{
     margin-left: 12px;
     margin-right: 12px;
     margin-bottom: 12px;
     width: 100%;
+    text-align: center;
     background-color: #2F27CE;
     font-family: "Roboto", sans-serif;
     color: #fbfbfe;

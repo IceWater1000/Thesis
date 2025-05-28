@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    max-width: 72vw;
     border-collapse: collapse;
     box-sizing: border-box;
     overflow: scroll;
@@ -8,7 +9,7 @@ table {
   th, td {
     font-family: "Roboto", sans-serif;
 
-    font-size: 12px;
+    font-size: 11px;
     border: 1px solid black;
     background-color: #fbfbfe;
     padding: 4px;
