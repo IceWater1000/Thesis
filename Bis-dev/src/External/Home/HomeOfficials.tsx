@@ -27,7 +27,7 @@ const HomeOfficials = () => {
     };
     fetchOfficials();
   }, []);
-  console.log(officialsData);
+
   return (
     <div className="HomeOfficials">
       <div className="HomeIntroductionText">THE BARANGAY COUNCIL</div>

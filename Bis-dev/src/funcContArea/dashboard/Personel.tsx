@@ -17,7 +17,8 @@ import TanodAddForm from "../dashboard/TanodAddForm";
 import OfficialsAddForm from "../dashboard/OfficialsAddForm";
 interface theData {
   id: string;
-  name: string;
+  residentID: string;
+  full_name: string;
   position: string;
   other: string;
   image: string;
@@ -42,7 +43,7 @@ const Personel = ({ label, onItemClick }: Props) => {
   const [formToDisplay, setFormToDisplay] = useState("");
   const [activeID, setActiveID] = useState("");
   const [officialsData, setOfficialsData] = useState<theData[]>([]);
-  const [data, setData] = useState<Officials[]>([{ year: "", officials: [] }]);
+  const [data, setData] = useState<theData[]>([]);
   const [data2, setData2] = useState<theData2[]>([]);
   const [data3, setData3] = useState<theData2[]>([]);
   const [data4, setData4] = useState<theData2[]>([]);
@@ -115,7 +116,7 @@ const Personel = ({ label, onItemClick }: Props) => {
     fetchProjects2();
     fetchProjects();
   }, [reload]);
-  console.log(data);
+
   //close form
   const closeForm = () => {
     setFormDisplay(!formDisplay);
@@ -281,7 +282,7 @@ const Personel = ({ label, onItemClick }: Props) => {
                 style={{ display: "flex", flexDirection: "row", gap: "24px" }}
               >
                 <p className="PersonnelName">Barangay Officials</p>
-                <p className="PersonnelName">{data[0].year}</p>
+
                 <div
                   className="adder"
                   onClick={() => {
@@ -297,13 +298,13 @@ const Personel = ({ label, onItemClick }: Props) => {
 
               <hr></hr>
               <div className="BarangayPersonnelContainer">
-                {data[0].officials.map((item) => (
+                {data.map((item) => (
                   <>
                     <div className="Person">
                       <div className="imgContainer">
                         <img src={item.image} />
                       </div>
-                      <div className="Name">{item.name}</div>
+                      <div className="Name">{item.full_name}</div>
                       <div className="Position">{item.position}</div>
                       <div className="Other">{item.other}</div>
                       <button

@@ -34,7 +34,7 @@ router.get("/view", (req, res) => {
         console.error('Error fetching residents:', err);
         res.status(500).send(err);
       }else {
-        console.log(results);
+      
         res.json(results);
       }
     })
@@ -43,41 +43,41 @@ router.get("/view", (req, res) => {
 //Specific
 router.get("/specific/:id", (req, res) => {
     const projectId = req.params.id;
-  
-    fs.readFile(filepath, "utf8", (err, data) => {
+     const query = "SELECT * FROM officialsview WHERE id = ?"
+    db.query(query,[projectId], (err,results)=>{
       if (err) {
-        return res.status(500).json({ message: "Failed to read the file." });
+        console.error('Error fetching residents:', err);
+        res.status(500).send(err);
+      }else {
+        
+        res.json(results);
       }
-  
-      try {
-        const jsonData = JSON.parse(data);
-        
-        // Find and update the project
-        const projectIndex = jsonData[0].officials.findIndex(project => project.id == projectId);
-        if (projectIndex === -1) {
-          return res.status(404).json({ message: "Project not found." });
-        }
-  
-        res.json(jsonData[0].officials[projectIndex]);
-        
-        
-        
-      } catch (err) {
-        return res.status(500).json({ message: "Failed to parse JSON data." });
-      }
-    });
+    })
+    
+    
   });
   //updating
 router.post('/update', upload.single("personImage"), function (req, res) {
+    
+     let { id, residentID, position, other, image } = req.body;
 
-    const {id,name,position,other} = req.body;
+    // If a new image was uploaded, update the image path
+    if (req.file?.filename) {
+        image = `/Data2/${req.file.filename}`;
+    }
+
+    const query = "UPDATE officials SET ResidentID = ?, position = ?, other = ?, image = ? WHERE id = ?";
+
+    db.query(query, [residentID, position, other, image, id], (err, result) => {
+        if (err) {
+            console.error('Error updating resident:', err);
+            res.status(500).send(err); // ✅ correctly using Express `res`
+        } else {
+            res.json({ message: 'Resident updated successfully', result }); // ✅ also correct
+        }
+    });
     
-    const image = `/Data2/${req.file.filename}`
-    const newProject = {id,name,position,other,image};
-    
-    
-    
-    fs.readFile(filepath, "utf8", (err, data) => {
+    /*fs.readFile(filepath, "utf8", (err, data) => {
       if (err) {
         return res.status(500).json({ message: "Failed to read the file." });
       }
@@ -106,7 +106,23 @@ router.post('/update', upload.single("personImage"), function (req, res) {
       } catch (err) {
         return res.status(500).json({ message: "Failed to parse JSON data." });
       }
-    });
+    }); */
+    
     
   });
   module.exports = router;
+router.get('/residentsNotOfficials/:id',(req,res) =>{
+  
+  const Current = req.params.id;
+  
+  console.log(Current)
+  const query = `SELECT r.* FROM residenttracker r LEFT JOIN officials o ON r.ResidentID = o.ResidentID WHERE o.ResidentID IS NULL UNION SELECT * FROM residenttracker r WHERE ResidentID = ? ORDER BY Name;`;
+  db.query(query, [Current], (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      res.json(results);
+    }
+  })
+});
