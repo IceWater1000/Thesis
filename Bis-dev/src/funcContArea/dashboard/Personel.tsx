@@ -25,8 +25,8 @@ interface theData {
 }
 interface theData2 {
   id: string;
-  name: string;
-  other: string;
+  full_name: string;
+  type: string;
   image: string;
 }
 interface Officials {
@@ -68,36 +68,20 @@ const Personel = ({ label, onItemClick }: Props) => {
     const fetchProjects2 = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/personel2/view"
+          "http://localhost:5000/api/personel1/personelview"
         );
-        const datas = await response.json();
-        setData2(datas);
+        const datas: theData2[] = await response.json();
+        const BHW: theData2[] = datas.filter((person) => person.type == "BHW");
+        const TND: theData2[] = datas.filter((person) => person.type == "TND");
+        const BS: theData2[] = datas.filter((person) => person.type == "BS");
+        setData2(BHW);
+        setData3(TND);
+        setData4(BS);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    const fetchProjects3 = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/personel3/view"
-        );
-        const datas = await response.json();
-        setData3(datas);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    const fetchProjects4 = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/personel4/view"
-        );
-        const datas = await response.json();
-        setData4(datas);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+
     const fetchProjects5 = async () => {
       try {
         const response = await fetch(
@@ -111,8 +95,7 @@ const Personel = ({ label, onItemClick }: Props) => {
       }
     };
     fetchProjects5();
-    fetchProjects4();
-    fetchProjects3();
+
     fetchProjects2();
     fetchProjects();
   }, [reload]);
@@ -343,9 +326,8 @@ const Personel = ({ label, onItemClick }: Props) => {
                       <div className="imgContainer">
                         <img src={item.image} />
                       </div>
-                      <div className="Name">{item.name}</div>
+                      <div className="Name">{item.full_name}</div>
 
-                      <div className="Other">{item.other}</div>
                       <div style={{ display: "flex", flexDirection: "row" }}>
                         <button
                           style={{ width: "100%" }}
@@ -392,9 +374,8 @@ const Personel = ({ label, onItemClick }: Props) => {
                       <div className="imgContainer">
                         <img src={item.image} />
                       </div>
-                      <div className="Name">{item.name}</div>
+                      <div className="Name">{item.full_name}</div>
 
-                      <div className="Other">{item.other}</div>
                       <div style={{ display: "flex", flexDirection: "row" }}>
                         <button
                           style={{ width: "100%" }}
@@ -442,9 +423,8 @@ const Personel = ({ label, onItemClick }: Props) => {
                       <div className="imgContainer">
                         <img src={item.image} />
                       </div>
-                      <div className="Name">{item.name}</div>
+                      <div className="Name">{item.full_name}</div>
 
-                      <div className="Other">{item.other}</div>
                       <div style={{ display: "flex", flexDirection: "row" }}>
                         <button
                           style={{ width: "100%" }}
@@ -478,9 +458,8 @@ const Personel = ({ label, onItemClick }: Props) => {
                       <div className="imgContainer">
                         <img src={item.image} />
                       </div>
-                      <div className="Name">{item.name}</div>
+                      <div className="Name">{item.full_name}</div>
 
-                      <div className="Other">{item.other}</div>
                       <button
                         onClick={() => {
                           editClickHandle(item.id, "SKU");

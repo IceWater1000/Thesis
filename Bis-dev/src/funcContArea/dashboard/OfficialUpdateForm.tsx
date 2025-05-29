@@ -39,7 +39,7 @@ const OfficialUpdateForm = ({ items, onItemClick }: Props) => {
         `http://localhost:5000/api/personel1/specific/${items}`
       );
       const data = await response.json();
-      console.log(data);
+
       setTheData(data[0]);
     };
     getData();
@@ -97,6 +97,7 @@ const OfficialUpdateForm = ({ items, onItemClick }: Props) => {
     setReloader(!reloader);
     onItemClick();
   };
+  // for react select options
   const [options, setOptions] = useState<OptionType[]>([]);
   const filterOption = (options: OptionType, inputValue: string) => {
     const lastName = options.label.split(",")[0]; // Extract the surname

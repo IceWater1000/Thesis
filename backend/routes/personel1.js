@@ -40,6 +40,21 @@ router.get("/view", (req, res) => {
     })
     
   });
+router.get("/personelview", (req, res) => {
+    
+    const query = "SELECT * FROM personelview"
+    db.query(query, (err,results)=>{
+      if (err) {
+        console.error('Error fetching residents:', err);
+        res.status(500).send(err);
+      }else {
+      
+        res.json(results);
+      }
+    })
+    
+  });
+  
 //Specific
 router.get("/specific/:id", (req, res) => {
     const projectId = req.params.id;
