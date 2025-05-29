@@ -262,7 +262,13 @@ const Ordinances = ({ label, onItemClick }: Props) => {
       <div className="dashboardTab">
         <div className="dashboardTabTopBar">
           <div className="dashbaorTabTopBarLabel">{label.toUpperCase()}</div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              marginLeft: "auto",
+            }}
+          >
             <div
               style={{
                 color: "white",

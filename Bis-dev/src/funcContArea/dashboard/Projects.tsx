@@ -214,6 +214,7 @@ const Projects = ({ label, onItemClick }: Props) => {
           <div className="dashbaorTabTopBarLabel">{label.toUpperCase()}</div>
           <div
             className="AddButton"
+            style={{ marginLeft: "auto" }}
             onClick={() => {
               handleUpdate();
             }}
