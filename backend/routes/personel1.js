@@ -198,4 +198,18 @@ router.get('/residentsNotOfficials/:id',(req,res) =>{
   })
 });
 
+router.get("/delete/:id", (req, res) => {
+    const projectId = parseInt(req.params.id);
+
+    const query = "DELETE FROM `personel` WHERE `personel`.`id` = ?"
+    db.query(query, projectId, (err,results)=>{
+    if (err) {
+      console.error("Error fetching residents:", err);
+      res.status(500).send(err);
+
+    } else {
+      res.json(results);
+    } 
+    })
+})
 module.exports = router;

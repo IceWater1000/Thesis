@@ -112,7 +112,7 @@ const Personel = ({ label, onItemClick }: Props) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/personel2/delete/${id}`
+          `http://localhost:5000/api/personel1/delete/${id}`
         );
 
         if (response.ok) {
@@ -133,7 +133,7 @@ const Personel = ({ label, onItemClick }: Props) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/personel3/delete/${id}`
+          `http://localhost:5000/api/personel1/delete/${id}`
         );
 
         if (response.ok) {
@@ -154,7 +154,7 @@ const Personel = ({ label, onItemClick }: Props) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/personel4/delete/${id}`
+          `http://localhost:5000/api/personel1/delete/${id}`
         );
 
         if (response.ok) {
