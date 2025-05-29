@@ -17,6 +17,7 @@ import FilterForms2 from "./filterForms/FilterForms2";
 import FilterForms3 from "./filterForms/FilterForms3";
 import FilterForms4 from "./filterForms/FilterForms4";
 import FilterForms5 from "./filterForms/FilterForms5";
+import PrintLayout from "./printLayout/PrintLayout";
 
 interface Props {
   type: string;
@@ -39,6 +40,7 @@ const FunctionsBarRI = ({
   //let [reload, setReload] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [isFiltering, setIsFiltering] = useState(false);
+  const [isPrinting, setIsPrinting] = useState(false);
   //handling Filter button form show
   const handleFilterClick = () => {
     setIsFiltering(!isFiltering);
@@ -54,6 +56,53 @@ const FunctionsBarRI = ({
   const handleAddClick = () => {
     setIsAdding(!isAdding);
     closes();
+  };
+  const handlePrintClick = () => {
+    setIsPrinting(!isPrinting);
+  };
+  const determinePrintLayout = () => {
+    switch (passItemName) {
+      case "Residents-Information":
+        return (
+          <PrintLayout
+            url="http://localhost:5000/api/inhabitants/viewForPrinting"
+            onItemClick={handlePrintClick}
+            name="BRGY. Butnga Resident's Data"
+          />
+        );
+      case "Household-Record":
+        return (
+          <PrintLayout
+            url="http://localhost:5000/api/household/view"
+            onItemClick={handlePrintClick}
+            name="BRGY. Butnga Household Record"
+          />
+        );
+      case "Household-Members":
+        return (
+          <PrintLayout
+            url="http://localhost:5000/api/householdMembers/view"
+            onItemClick={handlePrintClick}
+            name="BRGY. Butnga Household Members"
+          />
+        );
+      case "Senior-Citizens":
+        return (
+          <PrintLayout
+            url="http://localhost:5000/api/seniorCitizen/view"
+            onItemClick={handlePrintClick}
+            name="BRGY. Butnga Senior-Citizens"
+          />
+        );
+      case "KK-Members":
+        return (
+          <PrintLayout
+            url="http://localhost:5000/api/KKMembers/view"
+            onItemClick={handlePrintClick}
+            name="BRGY. Butnga KK-Members"
+          />
+        );
+    }
   };
   const determineFormToDisplay = () => {
     switch (passItemName) {
@@ -130,21 +179,29 @@ const FunctionsBarRI = ({
           <FunctionsBarButton label="Filter" onItemClick={handleFilterClick} />
         </div>
         <div>
-          <FunctionsBarButton label="Print" onItemClick={handleFilterClick} />
+          <FunctionsBarButton label="Print" onItemClick={handlePrintClick} />
         </div>
       </div>
       {
         //Shows UI for Adding and Filtering the Data
       }
-      <div className={`offCanvas2 ${isFiltering ? "show2" : ""}`}>
-        {determineFilterToDisplay()}
-      </div>
+      {isFiltering ? (
+        <div className={`offCanvas2 show2`}>{determineFilterToDisplay()}</div>
+      ) : (
+        ""
+      )}
+
       {isFiltering && <div className="backdrop2"></div>}
 
-      <div className={`offCanvas ${isAdding ? "show" : ""}`}>
-        {determineFormToDisplay()}
-      </div>
+      {isAdding ? (
+        <div className={`offCanvas show`}>{determineFormToDisplay()}</div>
+      ) : (
+        ""
+      )}
+
       {isAdding && <div className="backdrop"></div>}
+
+      {isPrinting && <div className="backdrop">{determinePrintLayout()}</div>}
     </div>
   );
 };

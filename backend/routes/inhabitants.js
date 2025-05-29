@@ -179,6 +179,36 @@ router.get('/citizen', (req,res) =>{
     }
   });
 });
+router.get('/viewForPrinting', (req, res) => {
+  const query = `SELECT 
+  bi.ResidentID AS ResidentID,
+  bi.LastName AS LastName,
+  bi.GivenName AS GivenName,
+  bi.MiddleName AS MiddleName,
+  bi.Qualifier AS Qualifier,
+ 
+  CONCAT(a.Zone, ', ', a.Barangay, ', ', a.Town) AS Address,
+  bi.PlaceOfBirth AS PlaceOfBirth,
+  bi.Sex AS Sex,
+  cs.Name AS CivilStatus,
+  bi.OccupationID AS Occupation,
+  DATE_FORMAT(DateOfBirth, "%Y-%m-%d") AS DateOfBirth,
+  c.Name AS Citizenship
+  FROM 
+  barangayinhabitants bi
+  LEFT JOIN address a ON bi.AddressID = a.AddressID
+  LEFT JOIN civilstatus cs ON bi.CivilStatusID = cs.CivilStatusID
+  LEFT JOIN citizenship c ON bi.CitizenshipID = c.CitizenshipID
+  ORDER BY bi.LastName ASC`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      res.json(results);
+    }
+  });
+});
 //Sort Down
 router.get('/view', (req, res) => {
   const query = 'SELECT *, DATE_FORMAT(DateOfBirth, "%Y-%m-%d") AS DateOfBirth FROM `barangayinhabitantsfulls3` ORDER BY `barangayinhabitantsfulls3`.`ResidentID` ASC';
