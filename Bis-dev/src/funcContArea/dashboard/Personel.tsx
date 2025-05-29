@@ -5,8 +5,7 @@ import "../mainContent/contentArea.css";
 
 import OfficialUpdateForm from "../dashboard/OfficialUpdateForm";
 import BHWUpdateForm from "../dashboard/BHWUpdateForm";
-import StaffUpdateForm from "../dashboard/StaffUpdateForm";
-import TanodUpdateForm from "../dashboard/TanodUpdateForm";
+
 import SKUpdateForm from "../dashboard/SKUpdateForm";
 import BHWAddForm from "../dashboard/BHWAddForm";
 
@@ -218,19 +217,34 @@ const Personel = ({ label, onItemClick }: Props) => {
       case "BHWU":
         return (
           <>
-            <BHWUpdateForm items={asd} onItemClick={closeForm} />
+            <BHWUpdateForm
+              items={asd}
+              onItemClick={closeForm}
+              type="BHW"
+              formText="Barangay Health Workers"
+            />
           </>
         );
       case "BSU":
         return (
           <>
-            <StaffUpdateForm items={asd} onItemClick={closeForm} />
+            <BHWUpdateForm
+              items={asd}
+              onItemClick={closeForm}
+              type="BS"
+              formText="Barangay Staff"
+            />
           </>
         );
       case "BTU":
         return (
           <>
-            <TanodUpdateForm items={asd} onItemClick={closeForm} />
+            <BHWUpdateForm
+              items={asd}
+              onItemClick={closeForm}
+              type="BT"
+              formText="Barangay Tanod"
+            />
           </>
         );
       case "SKU":
@@ -485,9 +499,13 @@ const Personel = ({ label, onItemClick }: Props) => {
               </div>
             </div>
           </div>
-          <div className={`PersonnelAddform ${formDisplay ? "show" : ""}`}>
-            {determineFormToDisplay(formToDisplay, activeID)}
-          </div>
+          {formDisplay ? (
+            <div className={`PersonnelAddform show`}>
+              {determineFormToDisplay(formToDisplay, activeID)}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>

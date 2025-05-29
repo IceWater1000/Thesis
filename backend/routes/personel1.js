@@ -71,6 +71,21 @@ router.get("/specific/:id", (req, res) => {
     
     
   });
+router.get("/specificpersonel/:id", (req, res) => {
+    const projectId = req.params.id;
+     const query = "SELECT * FROM personelview WHERE id = ?"
+    db.query(query,[projectId], (err,results)=>{
+      if (err) {
+        console.error('Error fetching residents:', err);
+        res.status(500).send(err);
+      }else {
+        
+        res.json(results);
+      }
+    })
+    
+    
+  });
   //updating
 router.post('/update', upload.single("personImage"), function (req, res) {
     
@@ -125,6 +140,29 @@ router.post('/update', upload.single("personImage"), function (req, res) {
     
     
   });
+
+router.post('/personelupdate', upload.single("personImage"), function (req, res) {
+    
+     let { id, ResidentID, type, image } = req.body;
+
+    // If a new image was uploaded, update the image path
+    if (req.file?.filename) {
+        image = `/Data2/${req.file.filename}`;
+    }
+
+    const query = "UPDATE `personel` SET `ResidentID` = ?, type = ?, image=?  WHERE `personel`.`id` = ?;";
+
+    db.query(query, [ResidentID, type, image, id], (err, result) => {
+        if (err) {
+            console.error('Error updating resident:', err);
+            res.status(500).send(err); // ✅ correctly using Express `res`
+        } else {
+            res.json({ message: 'Resident updated successfully', result }); // ✅ also correct
+        }
+    });
+    
+  
+  });
 router.post('/personel_upload', upload.single("personImage"), function (req, res) {
    
     let { ResidentID, type, image } = req.body;
@@ -149,7 +187,6 @@ router.get('/residentsNotOfficials/:id',(req,res) =>{
   
   const Current = req.params.id;
   
-  console.log(Current)
   const query = `SELECT r.* FROM residenttracker r LEFT JOIN officials o ON r.ResidentID = o.ResidentID WHERE o.ResidentID IS NULL UNION SELECT * FROM residenttracker r WHERE ResidentID = ? ORDER BY Name;`;
   db.query(query, [Current], (err,results)=>{
     if (err) {

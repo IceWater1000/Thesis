@@ -2,49 +2,49 @@ import React, { useState } from "react";
 import "./dForms.css";
 import { useEffect } from "react";
 import axios from "axios";
-import UpdateForm3 from "../functionsBar/addForms/UpdateForm3";
-import { useActionData } from "react-router-dom";
+import Select, { SingleValue } from "react-select";
+import { option } from "framer-motion/client";
 interface theData {
   id: string;
-  name: string;
-
-  other: string;
+  ResidentID: string;
+  full_name: string;
+  type: string;
   image: string;
 }
 interface Props {
   items: string;
   onItemClick: () => void;
+
+  type: string;
+  formText: string;
 }
-const BHWUpdateForm = ({ items, onItemClick }: Props) => {
+interface OptionType {
+  value: string;
+  label: string;
+}
+const BHWUpdateForm = ({ items, onItemClick, type, formText }: Props) => {
   const [imgs, setImgs] = useState<File | null>(null);
   const [theData, setTheData] = useState<theData>({
     id: "",
-    name: "",
-
-    other: "",
+    ResidentID: "",
+    full_name: "",
+    type: "",
     image: "",
   });
 
   useEffect(() => {
     const getData = async () => {
       const response = await fetch(
-        `http://localhost:5000/api/personel2/specific/${items}`
+        `http://localhost:5000/api/personel1/specificpersonel/${items}`
       );
       const data = await response.json();
-      setTheData(data);
+
+      setTheData(data[0]);
     };
     getData();
   }, [items]);
-  //input change
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setTheData({
-      ...theData,
-      [name]: value,
-    });
 
-    // on submission
-  };
+  //on submission
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setImgs(event.target.files[0]); // Set the file if it exists
@@ -52,19 +52,20 @@ const BHWUpdateForm = ({ items, onItemClick }: Props) => {
   };
   const handleSubmits = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!imgs) {
-      return;
-    }
+
     const formData = new FormData();
     formData.append("id", theData.id);
-    formData.append("name", theData.name);
-
-    formData.append("other", theData.other);
-    formData.append("personImage", imgs);
+    formData.append("ResidentID", theData.ResidentID);
+    formData.append("type", type);
+    if (imgs) {
+      formData.append("personImage", imgs);
+    } else {
+      formData.append("image", theData.image);
+    }
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/personel2/update`,
+        `http://localhost:5000/api/personel1/personelupdate`,
         formData,
         {
           headers: {
@@ -76,11 +77,47 @@ const BHWUpdateForm = ({ items, onItemClick }: Props) => {
     } catch (error) {}
     onItemClick();
   };
+
+  //react select change
+  const [options, setOptions] = useState<OptionType[]>([]);
+  const filterOption = (options: OptionType, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
+
+  useEffect(() => {
+    const fetchResidents = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/personel1/residentsNotOfficials/${items}`
+        );
+        const transformResponse: OptionType[] = response.data.map(
+          (residents: any) => ({
+            value: residents.ResidentID,
+            label: residents.Name,
+          })
+        );
+
+        setOptions(transformResponse);
+      } catch (err) {
+        console.log("Error", err);
+      }
+    };
+    fetchResidents();
+  }, []);
+
+  const handleReactSelectChange = (option: SingleValue<OptionType>) => {
+    const value = option?.value || "";
+    setTheData({
+      ...theData,
+      ResidentID: value,
+    });
+  };
   return (
     <>
       <div className="theForm">
         <div style={{ display: "flex", gap: "24px" }}>
-          <p className="tl">Barangay Health Workers</p>
+          <p className="tl">{formText}</p>
           <button
             style={{ marginLeft: "auto" }}
             onClick={() => {
@@ -93,31 +130,27 @@ const BHWUpdateForm = ({ items, onItemClick }: Props) => {
 
         <form onSubmit={handleSubmits}>
           <div className="thefor">
-            <label>Name: </label>
-            <input
-              type="text"
-              name="name"
-              value={theData.name}
-              onChange={handleChange}
+            <Select
+              options={options}
+              name="ResidentID"
+              id="ResidentID"
+              filterOption={filterOption}
+              value={options.find(
+                (option) => option.value == theData.ResidentID
+              )}
+              onChange={handleReactSelectChange}
+              className="reactSelect2 "
+              required
+              //isMulti={false} // Set to true for multi-select
             />
           </div>
 
-          <div className="thefor">
-            <label>Type: </label>
-            <input
-              type="text"
-              name="other"
-              value={theData.other}
-              onChange={handleChange}
-            />
-          </div>
           <div className="thefor">
             <label>Image:</label>
             <input
               type="file"
               name="personImage"
               onChange={handleImageChange}
-              required
             />
           </div>
           <button className="fButton" type="submit">
