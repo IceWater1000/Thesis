@@ -129,6 +129,9 @@ const FunctionsBarRI = ({
         <div>
           <FunctionsBarButton label="Filter" onItemClick={handleFilterClick} />
         </div>
+        <div>
+          <FunctionsBarButton label="Print" onItemClick={handleFilterClick} />
+        </div>
       </div>
       {
         //Shows UI for Adding and Filtering the Data

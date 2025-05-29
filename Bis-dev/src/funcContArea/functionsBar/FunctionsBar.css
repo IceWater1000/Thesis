@@ -50,7 +50,7 @@
 }
 .functionsBarSearch{
     background-color: #fbfbfe;
-    
+    width: 100%;
     height: 42px;
     display: flex;
     font-family: 'Inter', sans-serif;

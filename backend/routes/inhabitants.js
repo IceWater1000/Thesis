@@ -626,4 +626,16 @@ router.get('/residents11',(req,res) =>{
     }
   })
 })
+router.get('/residentsTotal', (req, res) => {
+  const query = "SELECT COUNT(*) AS total FROM `barangayinhabitants` WHERE status = 'alive'";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching resident count:', err);
+      res.status(500).send(err);
+    } else {
+      res.json({ total: results[0].total }); // Return just the count
+    }
+  });
+});
+
 module.exports = router;
