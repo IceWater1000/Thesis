@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./dashboardContents.css";
 
-import axios from "axios";
-import Select, { SingleValue } from "react-select";
-
 import "../mainContent/contentArea.css";
 
 import OfficialUpdateForm from "../dashboard/OfficialUpdateForm";
@@ -12,8 +9,7 @@ import StaffUpdateForm from "../dashboard/StaffUpdateForm";
 import TanodUpdateForm from "../dashboard/TanodUpdateForm";
 import SKUpdateForm from "../dashboard/SKUpdateForm";
 import BHWAddForm from "../dashboard/BHWAddForm";
-import StaffAddForm from "../dashboard/StaffAddForm";
-import TanodAddForm from "../dashboard/TanodAddForm";
+
 import OfficialsAddForm from "../dashboard/OfficialsAddForm";
 interface theData {
   id: string;
@@ -75,8 +71,8 @@ const Personel = ({ label, onItemClick }: Props) => {
         const TND: theData2[] = datas.filter((person) => person.type == "TND");
         const BS: theData2[] = datas.filter((person) => person.type == "BS");
         setData2(BHW);
-        setData3(TND);
-        setData4(BS);
+        setData3(BS);
+        setData4(TND);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -186,19 +182,31 @@ const Personel = ({ label, onItemClick }: Props) => {
       case "BTA":
         return (
           <>
-            <TanodAddForm onItemClick={closeForm} />
+            <BHWAddForm
+              type="TND"
+              formText="Barangay Tanod"
+              onItemClick={closeForm}
+            />
           </>
         );
       case "BSA":
         return (
           <>
-            <StaffAddForm onItemClick={closeForm} />
+            <BHWAddForm
+              type="BS"
+              formText="Barangay Staff"
+              onItemClick={closeForm}
+            />
           </>
         );
       case "BHWA":
         return (
           <>
-            <BHWAddForm onItemClick={closeForm} />
+            <BHWAddForm
+              type="BHW"
+              formText="Barangay Healt Workers"
+              onItemClick={closeForm}
+            />
           </>
         );
       case "BOU":
@@ -268,6 +276,7 @@ const Personel = ({ label, onItemClick }: Props) => {
 
                 <div
                   className="adder"
+                  style={{ marginLeft: "auto" }}
                   onClick={() => {
                     editClickHandle("", "BOA");
                   }}
@@ -307,6 +316,7 @@ const Personel = ({ label, onItemClick }: Props) => {
                 <p className="PersonnelName">Barangay Health Workers</p>
                 <div
                   className="adder"
+                  style={{ marginLeft: "auto" }}
                   onClick={() => {
                     editClickHandle("", "BHWA");
                   }}
@@ -356,6 +366,7 @@ const Personel = ({ label, onItemClick }: Props) => {
                 <p className="PersonnelName">Barangay Staffs</p>
                 <div
                   className="adder"
+                  style={{ marginLeft: "auto" }}
                   onClick={() => {
                     editClickHandle("", "BSA");
                   }}
@@ -405,6 +416,7 @@ const Personel = ({ label, onItemClick }: Props) => {
                 <p className="PersonnelName">Barangay Tanods</p>
                 <div
                   className="adder"
+                  style={{ marginLeft: "auto" }}
                   onClick={() => {
                     editClickHandle("", "BTA");
                   }}

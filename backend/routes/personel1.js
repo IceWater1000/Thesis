@@ -54,7 +54,7 @@ router.get("/personelview", (req, res) => {
     })
     
   });
-  
+
 //Specific
 router.get("/specific/:id", (req, res) => {
     const projectId = req.params.id;
@@ -125,7 +125,26 @@ router.post('/update', upload.single("personImage"), function (req, res) {
     
     
   });
-  module.exports = router;
+router.post('/personel_upload', upload.single("personImage"), function (req, res) {
+   
+    let { ResidentID, type, image } = req.body;
+    
+    if (req.file?.filename) {
+        image = `/Data2/${req.file.filename}`;
+    }
+
+    const query = "INSERT INTO `personel` (`ResidentID`, `type`, `image`) VALUES (?,?,?);"
+    db.query(query, [ResidentID, type, image], (err, result)=>{
+      if (err) {
+            console.error('Error updating resident:', err);
+            res.status(500).send(err); // ✅ correctly using Express `res`
+        } else {
+            res.json({ message: 'Resident updated successfully', result }); // ✅ also correct
+        }
+    })
+    
+})
+  
 router.get('/residentsNotOfficials/:id',(req,res) =>{
   
   const Current = req.params.id;
@@ -141,3 +160,5 @@ router.get('/residentsNotOfficials/:id',(req,res) =>{
     }
   })
 });
+
+module.exports = router;
