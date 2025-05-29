@@ -23,7 +23,7 @@ const AddForm6 = ({ onItemClick }: Props) => {
     ComplainDetails: "",
     CaseNo: "",
     DateWritten: "",
-    IsResolve: false,
+    IsResolve: "No",
   });
   const cleanFormData = () => {
     setFormData({
@@ -33,7 +33,7 @@ const AddForm6 = ({ onItemClick }: Props) => {
       ComplainDetails: "",
       CaseNo: "",
       DateWritten: "",
-      IsResolve: false,
+      IsResolve: "No",
     });
   };
   const handleChange = (
@@ -48,19 +48,22 @@ const AddForm6 = ({ onItemClick }: Props) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitFormData(formData);
+
+    submitFormData();
     cleanFormData();
   };
-  const submitFormData = (data: typeof formData) => {
-    setFormData({
-      ...formData,
-      DateWritten: getCurrentDate(),
-    });
+  const submitFormData = () => {
+    const curDate = getCurrentDate();
     const addKK = async () => {
+      const dataToSubmit = {
+        ...formData,
+        DateWritten: curDate,
+      };
+
       try {
         const response = await axios.post(
           "http://localhost:5000/api/lupon/add",
-          formData
+          dataToSubmit
         );
         console.log("Data added successfully:", response.data);
         AddToLog("Data Added --Lupon Record--");
@@ -143,6 +146,7 @@ const AddForm6 = ({ onItemClick }: Props) => {
           <div className="formContainer">
             <label className="labels">Complain Details: </label>
             <textarea
+              style={{ width: "447px", height: "30vh" }}
               value={formData.ComplainDetails}
               id="ComplainDetails"
               name="ComplainDetails"
@@ -153,10 +157,10 @@ const AddForm6 = ({ onItemClick }: Props) => {
             />
           </div>
           <div className="formContainer">
-            <label className="labels">Name of Respondents: </label>
+            <label className="labels">Case Number: </label>
             <input
               className="input"
-              type="text"
+              type="number"
               id="CaseNo"
               name="CaseNo"
               value={formData.CaseNo}

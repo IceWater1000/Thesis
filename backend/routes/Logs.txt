@@ -15,3 +15,71 @@
 [2025-05-23T03:40:29.537Z] admin -- Data Updated --Lupon Record--
 [2025-05-23T03:40:29.573Z] admin -- Data Updated --Lupon Record--
 [2025-05-23T03:41:22.901Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:31:11.298Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:31:11.299Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:35:06.107Z] admin -- Data Deleted --Barangay Inhabitants-- ID:76
+[2025-05-29T07:36:41.687Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:36:41.687Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:39:29.921Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:39:31.921Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:40:12.722Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:42:58.452Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:42:58.453Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:43:18.970Z] admin -- Data Deleted --Lupon Record-- ID:16
+[2025-05-29T07:43:20.320Z] admin -- Data Deleted --Lupon Record-- ID:14
+[2025-05-29T07:43:21.719Z] admin -- Data Deleted --Lupon Record-- ID:13
+[2025-05-29T07:43:23.067Z] admin -- Data Deleted --Lupon Record-- ID:12
+[2025-05-29T07:43:24.568Z] admin -- Data Deleted --Lupon Record-- ID:11
+[2025-05-29T07:43:42.822Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:44:46.710Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:44:46.710Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:44:47.669Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:48:52.114Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:48:52.114Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:49:57.014Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:49:57.014Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:50:23.170Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:50:43.544Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:50:43.544Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:51:06.714Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:51:09.885Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:51:09.896Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:51:11.091Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:51:50.557Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:51:50.557Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:52:19.483Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:55:10.755Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T07:58:18.926Z] admin -- Data Deleted --Lupon Record-- ID:1
+[2025-05-29T07:58:24.673Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:01:02.617Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T08:01:10.493Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:01:54.301Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T08:02:10.633Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:02:55.891Z] admin -- Data Deleted --Lupon Record-- ID:19
+[2025-05-29T08:02:58.187Z] admin -- Data Deleted --Lupon Record-- ID:18
+[2025-05-29T08:03:02.936Z] admin -- Data Deleted --Lupon Record-- ID:17
+[2025-05-29T08:03:23.557Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:03:38.779Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T08:34:08.942Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:34:39.590Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T08:36:42.451Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:37:37.599Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:38:12.670Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:40:42.384Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:41:41.633Z] admin -- Data Deleted --Lupon Record-- ID:27
+[2025-05-29T08:41:43.797Z] admin -- Data Deleted --Lupon Record-- ID:26
+[2025-05-29T08:41:45.081Z] admin -- Data Deleted --Lupon Record-- ID:24
+[2025-05-29T08:41:46.279Z] admin -- Data Deleted --Lupon Record-- ID:23
+[2025-05-29T08:41:47.650Z] admin -- Data Deleted --Lupon Record-- ID:22
+[2025-05-29T08:41:51.597Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:45:27.632Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:45:48.377Z] admin -- Data Deleted --Lupon Record-- ID:32
+[2025-05-29T08:45:51.302Z] admin -- Data Deleted --Lupon Record-- ID:29
+[2025-05-29T08:45:51.302Z] admin -- Data Deleted --Lupon Record-- ID:29
+[2025-05-29T08:46:41.178Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:48:39.477Z] admin -- Data Added --Lupon Record--
+[2025-05-29T08:49:01.756Z] admin -- Data Deleted --Lupon Record-- ID:33
+[2025-05-29T08:49:05.540Z] admin -- Data Updated --Lupon Record--
+[2025-05-29T08:49:17.804Z] admin -- Data Deleted --Lupon Record-- ID:34
+[2025-05-29T08:49:17.805Z] admin -- Data Deleted --Lupon Record-- ID:34
+[2025-05-29T08:49:50.139Z] admin -- Data Added --Lupon Record--

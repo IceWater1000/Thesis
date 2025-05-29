@@ -182,6 +182,7 @@ const UpdateForm6 = ({ onItemClick, theID }: Props) => {
           <div className="formContainer">
             <label className="labels">Complain Details: </label>
             <textarea
+              style={{ width: "447px", height: "30vh" }}
               value={formData.ComplainDetails}
               id="ComplainDetails"
               name="ComplainDetails"

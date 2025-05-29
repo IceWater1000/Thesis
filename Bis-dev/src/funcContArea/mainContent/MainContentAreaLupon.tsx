@@ -38,6 +38,7 @@ const MainContentAreaLupon = ({ addValue, searchValue }: Props) => {
           "http://localhost:5000/api/lupon/view"
         );
         setData(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log("Error", error);
       }
@@ -217,9 +218,19 @@ const MainContentAreaLupon = ({ addValue, searchValue }: Props) => {
             {filteredData.map((item, rowIndex) => (
               <tr key={`row-${rowIndex}`}>
                 {Object.values(item).map((val, colIndex) => (
-                  <td key={`row-${rowIndex}-col-${colIndex}`}>{val}</td>
+                  <td
+                    style={{
+                      wordWrap: "break-word",
+                      overflowWrap: "break-word",
+                      wordBreak: "break-all",
+                      maxWidth: "200px",
+                    }}
+                    key={`row-${rowIndex}-col-${colIndex}`}
+                  >
+                    {val}
+                  </td>
                 ))}
-                <td>
+                <td style={{ maxWidth: "90px" }}>
                   <div className="actionColumn">
                     <div
                       className="update"
@@ -260,7 +271,7 @@ const MainContentAreaLupon = ({ addValue, searchValue }: Props) => {
             </div>
           </div>
         </table>
-        <div className={`offCanvas2 ${isUpdating ? "show2" : ""}`}>
+        <div className={`offCanvas3 ${isUpdating ? "show3" : ""}`}>
           {<UpdateForm6 theID={resID} onItemClick={handleAddClick} />}
         </div>
 

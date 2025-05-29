@@ -15,9 +15,17 @@ interface OptionType {
   civil: string;
   place: string;
 }
+interface OptionType2 {
+  value: string;
+  label: string;
+}
 const MainContentAreaCertificates2 = () => {
   // the Select Option
   const [options, setOptions] = useState<OptionType[]>([]);
+  const filterOption = (options: OptionType2, inputValue: string) => {
+    const lastName = options.label.split(",")[0]; // Extract the surname
+    return lastName.toLowerCase().includes(inputValue.toLowerCase());
+  };
   const [formData, setFormData] = useState({
     name: "",
     date: "",
@@ -206,6 +214,7 @@ const MainContentAreaCertificates2 = () => {
             id="ResidentID"
             onChange={handleReactSelectChange}
             className=""
+            filterOption={filterOption}
 
             //isMulti={false} // Set to true for multi-select
           />

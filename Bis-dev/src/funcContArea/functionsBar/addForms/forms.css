@@ -1,4 +1,5 @@
 .container{
+    position: relative;
     border-radius: 10px;
     min-width: 1000px;
     border: 2px solid #433BFF;
@@ -9,6 +10,8 @@
 }
 .container.householdRecord{
     position: relative;
+    
+
     min-width: 700px;
     min-height: 100px;
 }
@@ -192,4 +195,20 @@ select {
 }
 .KKSC{
     flex: 1;
+}
+.offCanvas3{
+    position: fixed;
+    display: none;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1050;
+}
+.offCanvas3.show3{
+    opacity: 100;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
 }
