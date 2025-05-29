@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import ScrollReveal from "./ScrollReveal";
 import HomeIntroductionImageCarousel from "./HomeIntroductionImageCarousel";
+import axios from "axios";
 const HomeIntroduction = () => {
+  const [totalResidents, setTotalResidents] = useState<number | null>(null);
+  useEffect(() => {
+    const fetchTotalResidents = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/inhabitants/residentsTotal"
+        );
+        setTotalResidents(response.data.total);
+      } catch (error) {
+        console.error("Error fetching total residents:", error);
+      }
+    };
+
+    fetchTotalResidents();
+  }, []);
   return (
     <div className="HomeIntroduction">
       <ScrollReveal direction="Bottom">
@@ -17,9 +33,9 @@ const HomeIntroduction = () => {
               of the smallest barangays in Oras, Eastern Samar, located at the
               heart of the town's poblacion. Recognized as one of the most
               peaceful and cleanest barangays in the municipality, it is home to
-              a close-knit community with a total population of #.
+              a close-knit community with a total population of {totalResidents}
+              .
             </div>
-            <div className="AThing"></div>
           </div>
         </ScrollReveal>
         <ScrollReveal direction="Right">
