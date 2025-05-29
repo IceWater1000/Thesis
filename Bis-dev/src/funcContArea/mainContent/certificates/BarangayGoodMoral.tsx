@@ -74,14 +74,13 @@ const BarangayGoodMoral = ({
           <span className="regularBold" style={{ textDecoration: "underline" }}>
             {" " + civil + ""}
           </span>{" "}
-          with postal address of{" "}
+          with postal address of Avenue{" "}
           <span className="regularBold" style={{ textDecoration: "underline" }}>
             {" " + ave + " "}
           </span>
-          Avenue, Barangay Butnga, Oras, Eastern Samar, that his signature
-          appears hereon shows that he is a low-abiding citizen and no
-          derogatory record that may affect his reputation and social standing
-          in this community.
+          , Barangay Butnga, Oras, Eastern Samar, that his signature appears
+          hereon shows that he is a low-abiding citizen and no derogatory record
+          that may affect his reputation and social standing in this community.
           <br></br>
           <p className="h1s" style={{ marginTop: "40px" }}>
             BARANGAY BUSINESS CLEARANCE

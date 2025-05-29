@@ -11,6 +11,7 @@ import BarangayGoodMoral from "./certificates/BarangayGoodMoral";
 interface OptionType {
   value: string;
   label: string;
+  avenue: string;
   date: string;
   civil: string;
   place: string;
@@ -19,12 +20,13 @@ const MainContentAreaCertificates6 = () => {
   // the Select Option
   const [options, setOptions] = useState<OptionType[]>([]);
   const [formData, setFormData] = useState({
+    avenue: "",
     name: "",
     date: "",
     business: "",
     businesno: "",
     purpose: "",
-    ave: "",
+
     civil: "",
     place: "",
     ctcno: "",
@@ -44,6 +46,7 @@ const MainContentAreaCertificates6 = () => {
             date: residents.BirthDay,
             place: residents.PlaceOfBirth,
             civil: residents.CivilStatus,
+            avenue: residents.Avenue,
           })
         );
         console.log(transformResponse);
@@ -58,7 +61,6 @@ const MainContentAreaCertificates6 = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handleExport = () => {
-    console.log(formData);
     if (contentRef.current) {
       const options = {
         filename: "document.pdf",
@@ -171,6 +173,7 @@ const MainContentAreaCertificates6 = () => {
     const date = option?.date || "";
     const place = option?.place || "";
     const civil = option?.civil || "";
+    const avenue = option?.avenue || "";
 
     setFormData({
       ...formData,
@@ -178,6 +181,7 @@ const MainContentAreaCertificates6 = () => {
       date: date,
       place: place,
       civil: civil,
+      avenue: avenue,
     });
   };
 
@@ -186,7 +190,7 @@ const MainContentAreaCertificates6 = () => {
       <div style={{ display: "none" }}>
         <div ref={contentRef}>
           <BarangayGoodMoral
-            ave={formData.ave}
+            ave={formData.avenue}
             purpose={formData.purpose}
             name={formData.name}
             civil={formData.civil}
@@ -232,13 +236,6 @@ const MainContentAreaCertificates6 = () => {
           ></input>
           <label>Avenue</label>
 
-          <input
-            className="ave"
-            name="ave"
-            value={formData.ave}
-            onChange={handleChange}
-            required
-          ></input>
           <button
             onClick={() => {
               handleExport();
@@ -250,7 +247,7 @@ const MainContentAreaCertificates6 = () => {
         </div>
         <div className="PreviewArea">
           <BarangayGoodMoral
-            ave={formData.ave}
+            ave={formData.avenue}
             purpose={formData.purpose}
             name={formData.name}
             civil={formData.civil}
