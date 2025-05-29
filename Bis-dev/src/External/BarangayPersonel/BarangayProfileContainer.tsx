@@ -6,16 +6,15 @@ import BarLeft from "../BarLeft";
 
 interface theData {
   id: string;
-  name: string;
-  position: string;
-  other: string;
+  full_name: string;
+  type: string;
   image: string;
 }
 interface Props {
-  url: string;
+  type: string;
   name: string;
 }
-const BarangayProfileContainer = ({ url, name }: Props) => {
+const BarangayProfileContainer = ({ type, name }: Props) => {
   const [personel, setPersonel] = useState<theData[]>([]);
   // for Generating the Background Bars
   const [rowCount, setRowCount] = useState(0);
@@ -24,13 +23,32 @@ const BarangayProfileContainer = ({ url, name }: Props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setPersonel(data);
+        const response = await fetch(
+          "http://localhost:5000/api/personel1/personelview"
+        );
+        const datas = await response.json();
+        const BHW: theData[] = datas.filter(
+          (person: theData) => person.type == "BHW"
+        );
+        const TND: theData[] = datas.filter(
+          (person: theData) => person.type == "TND"
+        );
+        const BS: theData[] = datas.filter(
+          (person: theData) => person.type == "BS"
+        );
+
+        if (type == "BHW") {
+          setPersonel(BHW);
+        } else if (type == "BS") {
+          setPersonel(BS);
+        } else {
+          setPersonel(TND);
+        }
+
         setRowCount(
-          data.length % 4 !== 0
-            ? Math.floor(data.length / 4) + 1
-            : Math.floor(data.length / 4)
+          datas.length % 4 !== 0
+            ? Math.floor(datas.length / 4) + 1
+            : Math.floor(datas.length / 4)
         );
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -106,7 +124,7 @@ const BarangayProfileContainer = ({ url, name }: Props) => {
           <BarangayPersonelProfile
             key={index}
             image={item.image}
-            name={item.name}
+            name={item.full_name}
           />
         ))}
       </div>
