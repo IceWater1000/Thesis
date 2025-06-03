@@ -263,7 +263,25 @@ router.get('/residentsNotOfficials/:id',(req,res) =>{
     }
   })
 });
+router.get('/residentsisofficial',(req,res) =>{
+  
+  const Current = req.params.id;
+  
+  const query = `SELECT r.*
+FROM residenttracker r
+INNER JOIN officials o ON r.ResidentID = o.ResidentID
+ORDER BY r.Name;
 
+`;
+  db.query(query, [Current], (err,results)=>{
+    if (err) {
+      console.error('Error fetching residents:', err);
+      res.status(500).send(err);
+    } else {
+      res.json(results);
+    }
+  })
+});
 router.get("/delete/:id", (req, res) => {
     const projectId = parseInt(req.params.id);
 

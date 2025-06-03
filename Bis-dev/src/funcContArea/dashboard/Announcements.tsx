@@ -236,16 +236,16 @@ const Announcements = ({ label, onItemClick }: Props) => {
     const fetchResidents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/personel1/view"
+          "http://localhost:5000/api/personel1/residentsisofficial"
         );
         console.log(response);
-
-        const transformResponse: OptionType[] = response.data[0].officials.map(
+        const transformResponse: OptionType[] = response.data.map(
           (officalsInfo: any) => ({
-            value: officalsInfo.name,
-            label: officalsInfo.name,
+            value: officalsInfo.Name,
+            label: officalsInfo.Name,
           })
         );
+        console.log(transformResponse);
         setOptions(transformResponse);
       } catch (err) {
         console.log("Error", err);

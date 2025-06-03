@@ -13,6 +13,9 @@ interface Project {
 }
 
 const AnnouncementsContainer = () => {
+  const [announcementIndex, setAnnouncementIndex] = useState<number | null>(
+    null
+  );
   const [projects, setProjects] = useState<Project[]>([
     {
       id: "",
@@ -51,20 +54,74 @@ const AnnouncementsContainer = () => {
 
   return (
     <div className="announcementsContainer">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <div className="Atitle">Announcement Title</div>
+        <div className="ADate">Activity Date</div>
+      </div>
+
       {projects.map((item, index) => (
-        <ScrollReveal direction="Bottom">
-          <AnnouncementsBox
-            date={item.date}
-            title={item.title}
-            image={item.image}
-            uploader={item.uploader}
-            activityDate={item.activityDate}
-            description={item.description}
-          />
-        </ScrollReveal>
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+            onClick={() => {
+              if (announcementIndex == index) {
+                setAnnouncementIndex(null);
+              } else {
+                setAnnouncementIndex(index);
+              }
+            }}
+          >
+            <div
+              className={`ACtitle ${announcementIndex == index ? "show" : ""}`}
+            >
+              {item.title}
+            </div>
+            <div
+              className={`ACDate ${announcementIndex == index ? "show" : ""}`}
+            >
+              {item.activityDate}
+            </div>
+          </div>
+          <div
+            className={`announcement ${
+              announcementIndex == index ? "show" : ""
+            }`}
+          >
+            <AnnouncementsBox
+              date={item.date}
+              title={item.title}
+              image={item.image}
+              uploader={item.uploader}
+              activityDate={item.activityDate}
+              description={item.description}
+            />
+          </div>
+        </>
       ))}
     </div>
   );
 };
 
+/*
+<ScrollReveal direction="Bottom">
+             
+
+              <AnnouncementsBox
+                date={item.date}
+                title={item.title}
+                image={item.image}
+                uploader={item.uploader}
+                activityDate={item.activityDate}
+                description={item.description}
+              />
+            </ScrollReveal>
+*/
 export default AnnouncementsContainer;
