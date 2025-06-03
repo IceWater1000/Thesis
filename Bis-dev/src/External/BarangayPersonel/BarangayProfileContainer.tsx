@@ -41,8 +41,14 @@ const BarangayProfileContainer = ({ type, name }: Props) => {
           setPersonel(BHW);
         } else if (type == "BS") {
           setPersonel(BS);
-        } else {
+        } else if (type == "TND") {
           setPersonel(TND);
+        } else {
+          const response = await fetch(
+            "http://localhost:5000/api/personel1/skview"
+          );
+          const data2 = await response.json();
+          setPersonel(data2);
         }
 
         setRowCount(

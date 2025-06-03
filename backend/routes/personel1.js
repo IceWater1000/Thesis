@@ -182,12 +182,78 @@ router.post('/personel_upload', upload.single("personImage"), function (req, res
     })
     
 })
-  
+router.get("/skview", (req, res) => {
+    
+    const query = "SELECT * FROM skview"
+    db.query(query, (err,results)=>{
+      if (err) {
+        console.error('Error fetching residents:', err);
+        res.status(500).send(err);
+      }else {
+      
+        res.json(results);
+      }
+    })
+    
+  });
+  router.get("/specificsk/:id", (req, res) => {
+    const projectId = req.params.id;
+     const query = "SELECT * FROM skview WHERE id = ?"
+    db.query(query,[projectId], (err,results)=>{
+      if (err) {
+        console.error('Error fetching residents:', err);
+        res.status(500).send(err);
+      }else {
+        
+        res.json(results);
+      }
+    })
+    
+    
+  });
+router.post('/updatesk', upload.single("personImage"), function (req, res) {
+    
+     let { id, residentID, image } = req.body;
+
+    // If a new image was uploaded, update the image path
+    if (req.file?.filename) {
+        image = `/Data2/${req.file.filename}`;
+    }
+
+    const query = "UPDATE sk SET ResidentID = ?, image = ? WHERE id = ?";
+
+    db.query(query, [residentID, image, id], (err, result) => {
+        if (err) {
+            console.error('Error updating resident:', err);
+            res.status(500).send(err); // ✅ correctly using Express `res`
+        } else {
+            res.json({ message: 'Resident updated successfully', result }); // ✅ also correct
+        }
+    });
+    
+    
+    
+    
+  });
 router.get('/residentsNotOfficials/:id',(req,res) =>{
   
   const Current = req.params.id;
   
-  const query = `SELECT r.* FROM residenttracker r LEFT JOIN officials o ON r.ResidentID = o.ResidentID WHERE o.ResidentID IS NULL UNION SELECT * FROM residenttracker r WHERE ResidentID = ? ORDER BY Name;`;
+  const query = `SELECT r.* 
+    FROM residenttracker r
+    LEFT JOIN officials o ON r.ResidentID = o.ResidentID
+    LEFT JOIN sk s ON r.ResidentID = s.ResidentID
+    LEFT JOIN personel p ON r.ResidentID = p.ResidentID
+    WHERE o.ResidentID IS NULL AND s.ResidentID IS NULL AND p.ResidentID IS NULL
+
+    UNION
+
+    SELECT * 
+    FROM residenttracker 
+    WHERE ResidentID = ? 
+
+    ORDER BY Name;
+`;
   db.query(query, [Current], (err,results)=>{
     if (err) {
       console.error('Error fetching residents:', err);

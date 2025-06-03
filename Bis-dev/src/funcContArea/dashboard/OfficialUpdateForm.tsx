@@ -39,7 +39,7 @@ const OfficialUpdateForm = ({ items, onItemClick }: Props) => {
         `http://localhost:5000/api/personel1/specific/${items}`
       );
       const data = await response.json();
-
+      console.log(data[0]);
       setTheData(data[0]);
     };
     getData();

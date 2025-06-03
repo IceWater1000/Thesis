@@ -24,6 +24,12 @@ interface theData2 {
   type: string;
   image: string;
 }
+interface theData3 {
+  id: string;
+  full_name: string;
+  position: string;
+  image: string;
+}
 interface Officials {
   year: string;
   officials: theData[];
@@ -42,7 +48,7 @@ const Personel = ({ label, onItemClick }: Props) => {
   const [data2, setData2] = useState<theData2[]>([]);
   const [data3, setData3] = useState<theData2[]>([]);
   const [data4, setData4] = useState<theData2[]>([]);
-  const [data5, setData5] = useState<theData2[]>([]);
+  const [data5, setData5] = useState<theData3[]>([]);
   const [reload, setReload] = useState(false);
   //Load JSON File Data Officials
 
@@ -80,7 +86,7 @@ const Personel = ({ label, onItemClick }: Props) => {
     const fetchProjects5 = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/personel5/view"
+          "http://localhost:5000/api/personel1/skview"
         );
         const datas = await response.json();
 
@@ -485,7 +491,7 @@ const Personel = ({ label, onItemClick }: Props) => {
                         <img src={item.image} />
                       </div>
                       <div className="Name">{item.full_name}</div>
-
+                      <div className="Position">{item.position}</div>
                       <button
                         onClick={() => {
                           editClickHandle(item.id, "SKU");
